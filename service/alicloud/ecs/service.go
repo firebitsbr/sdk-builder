@@ -46,7 +46,7 @@ func newClient(cfg sdf.Config, handlers request.Handlers, endpoint, signingRegio
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
 				Endpoint:      endpoint,
-				APIVersion:    "2016-11-15",
+				APIVersion:    "2014-05-26",
 			},
 			handlers,
 		),
@@ -62,7 +62,7 @@ func newClient(cfg sdf.Config, handlers request.Handlers, endpoint, signingRegio
 	*/
 	svc.Handlers.Sign.PushBackNamed(alicloudsig.SignRequestHandler)
 	svc.Handlers.Build.Clear()
-	svc.Handlers.Build.PushBackNamed(alicloudquery.BuildVersionHandler)
+	// svc.Handlers.Build.PushBackNamed(alicloudquery.BuildVersionHandler)
 
 	svc.Handlers.Build.PushBackNamed(alicloudquery.BuildHandler)
 	svc.Handlers.Unmarshal.PushBackNamed(alicloudquery.UnmarshalHandler)

@@ -18,13 +18,13 @@ import (
 )
 
 // BuildHandler is a named request handler for building aliyunquery protocol requests
-var BuildHandler = request.NamedHandler{Name: "alitunsdk.aliyunquery.Build", Fn: Build}
+var BuildHandler = request.NamedHandler{Name: "alicloudsdk.aliyunquery.Build", Fn: Build}
 
 // Build builds a request for the aliyun protocol.
 func Build(r *request.Request) {
 	body := r.HTTPRequest.URL.Query()
-	body.Set("Action", r.Operation.Name)
-	body.Set("Format", "JSON")
+	// body.Set("Action", r.Operation.Name)
+	// body.Set("Format", "JSON")
 
 	if err := queryutil.Parse(body, r.Params, true); err != nil {
 		r.Error = sdferr.New("SerializationError", "failed encoding EC2 Query request", err)
@@ -42,13 +42,13 @@ func genNonce() string {
 var emptyJSON = []byte("{}")
 
 // UnmarshalHandler is a named request handler for unmarshaling jsonrpc protocol requests
-var UnmarshalHandler = request.NamedHandler{Name: "alitunsdk.jsonrpc.Unmarshal", Fn: Unmarshal}
+var UnmarshalHandler = request.NamedHandler{Name: "alicloudsdk.jsonrpc.Unmarshal", Fn: Unmarshal}
 
 // UnmarshalMetaHandler is a named request handler for unmarshaling jsonrpc protocol request metadata
-var UnmarshalMetaHandler = request.NamedHandler{Name: "alitunsdk.jsonrpc.UnmarshalMeta", Fn: UnmarshalMeta}
+var UnmarshalMetaHandler = request.NamedHandler{Name: "alicloudsdk.jsonrpc.UnmarshalMeta", Fn: UnmarshalMeta}
 
 // UnmarshalErrorHandler is a named request handler for unmarshaling jsonrpc protocol request errors
-var UnmarshalErrorHandler = request.NamedHandler{Name: "alitunsdk.jsonrpc.UnmarshalError", Fn: UnmarshalError}
+var UnmarshalErrorHandler = request.NamedHandler{Name: "alicloudsdk.jsonrpc.UnmarshalError", Fn: UnmarshalError}
 
 // Unmarshal unmarshals a response for a JSON RPC service.
 func Unmarshal(req *request.Request) {
@@ -104,7 +104,7 @@ type jsonErrorResponse struct {
 }
 
 // BuildVersionHandler is a named request handler  add Version to url query
-var BuildVersionHandler = request.NamedHandler{Name: "alitunsdk.aliyunquery.BuildVersionHandler", Fn: BuildVersion}
+var BuildVersionHandler = request.NamedHandler{Name: "alicloudsdk.aliyunquery.BuildVersionHandler", Fn: BuildVersion}
 
 // BuildVersion add Version=2014-05-26 to url query
 func BuildVersion(req *request.Request) {

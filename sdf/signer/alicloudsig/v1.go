@@ -2,13 +2,9 @@ package alicloudsig
 
 import (
 	"crypto/hmac"
-	srand "crypto/rand"
 	"crypto/sha1"
 	"encoding/base64"
 	"fmt"
-	"io"
-	"log"
-	"math/rand"
 	"net/http"
 	"net/url"
 	"strings"
@@ -17,6 +13,7 @@ import (
 	"github.com/polefishu/sdk-builder/sdf"
 	"github.com/polefishu/sdk-builder/sdf/credentials"
 	"github.com/polefishu/sdk-builder/sdf/request"
+	"github.com/polefishu/sdk-builder/sdf/sdfutil"
 )
 
 // Signer 阿里云API签名
@@ -55,119 +52,91 @@ func NewSigner(credentials *credentials.Credentials, options ...func(*Signer)) *
 	return v1
 }
 
+func (v1 *Signer) logSigningInfo(ctx *signingCtx) {
+	msg := fmt.Sprintf(logSignInfoMsg, ctx.Request.Host, ctx.Request.URL.Path, ctx.Request.URL.RawQuery)
+	v1.Logger.Log(msg)
+}
+
 type signingCtx struct {
-	ServiceName      string
-	Region           string
-	Request          *http.Request
-	Body             io.ReadSeeker
-	Query            url.Values
-	Time             time.Time
-	ExpireTime       time.Duration
-	SignedHeaderVals http.Header
+	ServiceName string
+	Region      string
+	Request     *http.Request
+	Query       url.Values
+	Time        time.Time
+	ExpireTime  time.Duration
 
 	credValues credentials.Value
 
-	signedHeaders string
-	signature     string
+	signature string
 }
 
-const dictionary = "_0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-
-//createRandomString create random string
-func createRandomString() string {
-	b := make([]byte, 32)
-	l := len(dictionary)
-
-	_, err := srand.Read(b)
-
-	if err != nil {
-		// fail back to insecure rand
-		rand.Seed(time.Now().UnixNano())
-		for i := range b {
-			b[i] = dictionary[rand.Int()%l]
-		}
-	} else {
-		for i, v := range b {
-			b[i] = dictionary[v%byte(l)]
-		}
-	}
-
-	return string(b)
-}
-
-func (ctx *signingCtx) makePlainText() (plainText string, err error) {
-	params := ctx.Query
-	params.Set("AccessKeyId", ctx.credValues.AccessKeyID)
-	params.Set("SignatureMethod", "HMAC-SHA1")
-	params.Set("SignatureVersion", "1.0")
-	// params.Set("Timestamp", "2017-06-29T11:12:42Z")
-	params.Set("Timestamp", NewISO6801Time(time.Now().UTC()).String())
-	// params.Set("SignatureNonce", "bUhobV5P67XalU6ET1_cOp8GCjCdhF0K")
-	params.Set("SignatureNonce", createRandomString())
-
-	// 排序
-	// keys := make([]string, 0, len(params))
-	// for k := range params {
-	// 	keys = append(keys, k)
-	// }
-	// sort.Strings(keys)
-
-	// var plainParms string
-	// for i := range keys {
-	// 	k := keys[i]
-	// 	plainParms += "&" + fmt.Sprintf("%v", k) + "=" + fmt.Sprintf("%v", params[k][0])
-	// }
-	// plainText += plainParms[1:]
-
-	// return plainText, nil
-	return params.Encode(), nil
-}
-
-//createSignature creates signature for string following Aliyun rules
-func createSignature(stringToSignature, accessKeySecret string) string {
-	// Crypto by HMAC-SHA1
-	hmacSha1 := hmac.New(sha1.New, []byte(accessKeySecret))
-	hmacSha1.Write([]byte(stringToSignature))
-	sign := hmacSha1.Sum(nil)
-
-	// Encode to Base64
-	base64Sign := base64.StdEncoding.EncodeToString(sign)
-
-	return base64Sign
-}
-
-func percentReplace(str string) string {
+func replace(str string) string {
 	str = strings.Replace(str, "+", "%20", -1)
 	str = strings.Replace(str, "*", "%2A", -1)
-	// str = strings.Replace(str, ":", "%3A", -1)
 	str = strings.Replace(str, "%7E", "~", -1)
-
 	return str
 }
 
-func (ctx *signingCtx) buildSignature() {
-	secretKey := ctx.credValues.SecretAccessKey + "&"
-	var source string
+func (s *signingCtx) SignatureVersion() string {
+	return "1.0"
+}
 
-	source, err := ctx.makePlainText()
-	if err != nil {
-		log.Fatalln("Make PlainText error.", err)
+func (s *signingCtx) SignatureMethod() string {
+	return "HMAC-SHA1"
+}
+
+func (s *signingCtx) SignatureFormat() string {
+	return "JSON"
+}
+
+func (s *signingCtx) completeSignParams(apiVersion, action, region string) {
+	params := s.Query
+	params.Set("AccessKeyId", s.credValues.AccessKeyID)
+	params.Set("SignatureMethod", s.SignatureMethod())
+	params.Set("SignatureVersion", s.SignatureVersion())
+	params.Set("Timestamp", sdfutil.GetTimeInFormatISO8601())
+	params.Set("SignatureNonce", sdfutil.GetUUIDV4())
+	params.Set("Format", s.SignatureFormat())
+	params.Set("Version", apiVersion)
+	params.Set("Action", action)
+	params.Set("RegionId", region)
+}
+
+const logSignInfoMsg = `DEBUG: Request Signature:
+---[ HOST STRING  ]-----------------------------
+%s
+---[ SIGN TO SIGN ]--------------------------------
+%s
+%s
+-----------------------------------------------------`
+const logSignedURLMsg = `
+---[ SIGNED URL ]------------------------------------
+%s`
+
+func (s *signingCtx) handlePresignRemoval() {
+	// The credentials have expired for this request. The current signing
+	// is invalid, and needs to be request because the request will fail.
+	s.removePresign()
+}
+
+// isRequestSigned returns if the request is currently signed or presigned
+func (s *signingCtx) isRequestSigned() bool {
+	if s.Query.Get("Signature") != "" {
+		return true
 	}
 
-	canonicalizedQueryString := percentReplace(source)
-	stringToSign := strings.ToUpper(ctx.Request.Method) + "&%2F&" + url.QueryEscape(canonicalizedQueryString)
+	return false
+}
 
-	sig := createSignature(stringToSign, secretKey)
-
-	ctx.Query.Set("Signature", sig)
-	// ctx.Query.Set("Signature", url.QueryEscape(sig))
-	ctx.Request.URL.RawQuery = ctx.Query.Encode()
+// unsign removes signing flags for both signed and presigned requests.
+func (s *signingCtx) removePresign() {
+	s.Query.Del("Signature")
 }
 
 // SignRequestHandler is a named request handler the SDK will use to sign
 // service client request with using the V1 signature.
 var SignRequestHandler = request.NamedHandler{
-	Name: "tv1.SignRequestHandler", Fn: SignSDKRequest,
+	Name: "aliv1.SignRequestHandler", Fn: SignSDKRequest,
 }
 
 // SignSDKRequest signs an tencent request with the V1 signature. This
@@ -194,6 +163,9 @@ func signSDKRequestWithCurrTime(req *request.Request, curTimeFn func() time.Time
 		name = req.ClientInfo.ServiceName
 	}
 
+	apiVersion := req.ClientInfo.APIVersion
+	action := req.Operation.Name
+
 	v1 := NewSigner(req.Config.Credentials, func(v1 *Signer) {
 		v1.Debug = req.Config.LogLevel.Value()
 		v1.Logger = req.Config.Logger
@@ -206,28 +178,25 @@ func signSDKRequestWithCurrTime(req *request.Request, curTimeFn func() time.Time
 		signingTime = req.LastSignedAt
 	}
 
-	signedHeaders, err := v1.sign(req.HTTPRequest, req.GetBody(),
-		name, region, req.ExpireTime, signingTime,
+	err := v1.signRequest(req.HTTPRequest, name, region, apiVersion, action,
+		req.ExpireTime, signingTime,
 	)
 	if err != nil {
 		req.Error = err
-		req.SignedHeaderVals = nil
 		return
 	}
 
-	req.SignedHeaderVals = signedHeaders
 	req.LastSignedAt = curTimeFn()
 }
 
-func (v1 *Signer) sign(r *http.Request, body io.ReadSeeker, service, region string, exp time.Duration, signTime time.Time) (http.Header, error) {
+func (v1 *Signer) signRequest(r *http.Request, service, region, apiVersion, action string, exp time.Duration, signTime time.Time) error {
 	currentTimeFn := v1.currentTimeFn
 	if currentTimeFn == nil {
 		currentTimeFn = time.Now
 	}
 
-	ctx := &signingCtx{
+	s := &signingCtx{
 		Request:     r,
-		Body:        body,
 		Query:       r.URL.Query(),
 		Time:        signTime,
 		ExpireTime:  exp,
@@ -236,61 +205,54 @@ func (v1 *Signer) sign(r *http.Request, body io.ReadSeeker, service, region stri
 	}
 
 	var err error
-	ctx.credValues, err = v1.Credentials.Get()
+	s.credValues, err = v1.Credentials.Get()
 	if err != nil {
-		return http.Header{}, err
+		return err
 	}
 
-	if ctx.isRequestSigned() {
-		ctx.Time = currentTimeFn()
-		ctx.handlePresignRemoval()
+	if s.isRequestSigned() {
+		s.Time = currentTimeFn()
+		s.handlePresignRemoval()
 	}
 
-	ctx.build()
+	sig := s.build(region, apiVersion, action)
+	s.Query.Set("Signature", sig)
+	s.Request.URL.RawQuery = s.Query.Encode()
 
 	if v1.Debug.Matches(sdf.LogDebugWithSigning) {
-		v1.logSigningInfo(ctx)
+		v1.logSigningInfo(s)
 	}
 
-	return ctx.SignedHeaderVals, nil
+	return nil
 }
 
-const logSignInfoMsg = `DEBUG: Request Signature:
----[ HOST STRING  ]-----------------------------
-%s
----[ SIGN TO SIGN ]--------------------------------
-%s
-%s
------------------------------------------------------`
-const logSignedURLMsg = `
----[ SIGNED URL ]------------------------------------
-%s`
-
-func (v1 *Signer) logSigningInfo(ctx *signingCtx) {
-	msg := fmt.Sprintf(logSignInfoMsg, ctx.Request.Host, ctx.Request.URL.Path, ctx.Request.URL.RawQuery)
-	v1.Logger.Log(msg)
+func (s *signingCtx) buildCredentialString(canonicalizedQueryString string) string {
+	return strings.ToUpper(s.Request.Method) + "&%2F&" + canonicalizedQueryString
 }
 
-func (ctx *signingCtx) handlePresignRemoval() {
-	// The credentials have expired for this request. The current signing
-	// is invalid, and needs to be request because the request will fail.
-	ctx.removePresign()
+func (s *signingCtx) build(region, apiVersion, action string) string {
+	s.completeSignParams(apiVersion, action, region)
+	stringToSign := s.buildStringToSign()
+	return s.sign(stringToSign, "&")
 }
 
-// isRequestSigned returns if the request is currently signed or presigned
-func (ctx *signingCtx) isRequestSigned() bool {
-	if ctx.Query.Get("Signature") != "" {
-		return true
-	}
-
-	return false
+func (s *signingCtx) buildStringToSign() string {
+	stringToSign := s.Query.Encode()
+	stringToSign = replace(stringToSign)
+	stringToSign = url.QueryEscape(stringToSign)
+	return s.buildCredentialString(stringToSign)
 }
 
-// unsign removes signing flags for both signed and presigned requests.
-func (ctx *signingCtx) removePresign() {
-	ctx.Query.Del("Signature")
+func (s *signingCtx) sign(stringToSign, secretSuffix string) string {
+	secret := s.credValues.SecretAccessKey + secretSuffix
+	return ShaHmac1(stringToSign, secret)
 }
 
-func (ctx *signingCtx) build() {
-	ctx.buildSignature() // depends on string to sign
+func ShaHmac1(source, secret string) string {
+	key := []byte(secret)
+	hmac := hmac.New(sha1.New, key)
+	hmac.Write([]byte(source))
+	signedBytes := hmac.Sum(nil)
+	signedString := base64.StdEncoding.EncodeToString(signedBytes)
+	return signedString
 }
