@@ -33,6 +33,21 @@ func UnmarshalJSON(v interface{}, stream io.Reader) error {
 	return unmarshalAny(reflect.ValueOf(v), out, "")
 }
 
+// UnmarshalJSON2 reads bytes and unmarshals the results in object v.
+func UnmarshalJSON2(v interface{}, b []byte) error {
+	var out interface{}
+
+	if len(b) == 0 {
+		return nil
+	}
+	// fmt.Println("body <", string(b), ">")
+	if err := json.Unmarshal(b, &out); err != nil {
+		return err
+	}
+
+	return unmarshalAny(reflect.ValueOf(v), out, "")
+}
+
 func unmarshalAny(value reflect.Value, data interface{}, tag reflect.StructTag) error {
 	vtype := value.Type()
 	if vtype.Kind() == reflect.Ptr {

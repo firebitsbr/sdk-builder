@@ -4,6 +4,8 @@ import (
 	"crypto/md5"
 	"encoding/base64"
 	"encoding/hex"
+	"fmt"
+	"math/rand"
 	"time"
 
 	"github.com/satori/uuid"
@@ -39,4 +41,9 @@ func GetTimeInFormatISO8601() (timeStr string) {
 		panic(err)
 	}
 	return time.Now().In(gmt).Format("2006-01-02T15:04:05Z")
+}
+
+func GenNonce() string {
+	rand.Seed(time.Now().UnixNano())
+	return fmt.Sprintf("%v", rand.Int())
 }

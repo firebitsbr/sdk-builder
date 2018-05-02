@@ -169,6 +169,7 @@ const (
 	WorkmailServiceID                     = "workmail"                     // Workmail.
 	WorkspacesServiceID                   = "workspaces"                   // Workspaces.
 	XrayServiceID                         = "xray"                         // Xray.
+	// CvmServiceID                          = "cvm"                          // Cvm.
 )
 
 // DefaultResolver returns an Endpoint resolver that will be able
@@ -195,6 +196,7 @@ var defaultPartitions = partitions{
 	awscnPartition,
 	awsusgovPartition,
 	alicloudPartition,
+	tencentcloudPartition,
 }
 
 // AwsPartition returns the Resolver for AWS Standard.

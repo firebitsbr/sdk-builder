@@ -10,7 +10,6 @@ import (
 	"os"
 
 	"github.com/polefishu/sdk-builder/sdf"
-	"github.com/polefishu/sdk-builder/sdf/sdferr"
 	"github.com/polefishu/sdk-builder/sdf/client"
 	"github.com/polefishu/sdk-builder/sdf/corehandlers"
 	"github.com/polefishu/sdk-builder/sdf/credentials"
@@ -18,6 +17,7 @@ import (
 	"github.com/polefishu/sdk-builder/sdf/defaults"
 	"github.com/polefishu/sdk-builder/sdf/endpoints"
 	"github.com/polefishu/sdk-builder/sdf/request"
+	"github.com/polefishu/sdk-builder/sdf/sdferr"
 )
 
 // A Session provides a central location to create service clients from and
@@ -566,6 +566,8 @@ func (s *Session) clientConfigWithErr(serviceName string, cfgs ...*sdf.Config) (
 				// Support the condition where the service is modeled but its
 				// endpoint metadata is not available.
 				opt.ResolveUnknownService = true
+				// 关闭 region 正则匹配
+				opt.StrictMatching = true
 			},
 		)
 	}
