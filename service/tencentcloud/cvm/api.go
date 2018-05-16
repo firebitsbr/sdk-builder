@@ -1,7 +1,6 @@
 package cvm
 
 import (
-	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/polefishu/sdk-builder/sdf"
 	"github.com/polefishu/sdk-builder/sdf/request"
 	"github.com/polefishu/sdk-builder/sdf/sdfutil"
@@ -155,7 +154,7 @@ type Response struct {
 
 // String returns the string representation
 func (s Response) String() string {
-	return awsutil.Prettify(s)
+	return sdfutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -191,7 +190,7 @@ type ResponseError struct {
 
 // String returns the string representation
 func (s ResponseError) String() string {
-	return awsutil.Prettify(s)
+	return sdfutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -247,7 +246,7 @@ type Instance struct {
 
 // String returns the string representation
 func (s Instance) String() string {
-	return awsutil.Prettify(s)
+	return sdfutil.Prettify(s)
 }
 
 // GoString returns the string representation
