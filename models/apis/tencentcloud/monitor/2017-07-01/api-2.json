@@ -1,0 +1,250 @@
+{
+  "version": "2.0",
+  "metadata": {
+    "apiVersion": "2017-07-01",
+    "endpointPrefix": "monitor",
+    "jsonVersion": "1.1",
+    "protocol": "tencentquery",
+    "serviceAbbreviation": "CM",
+    "serviceFullName": "Cloud Monitor",
+    "signatureVersion": "tencentcloud",
+    "serviceCorp": "tencent"
+  },
+  "operations": {
+    "GetMonitorData": {
+      "name": "GetMonitorData",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v2/index.php"
+      },
+      "input": {
+        "shape": "GetMonitorDataRequest"
+      },
+      "output": {
+        "shape": "GetMonitorDataResult"
+      }
+    },
+    "DescribeBaseMetrics": {
+      "name": "DescribeBaseMetrics",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v2/index.php"
+      },
+      "input": {
+        "shape": "DescribeBaseMetricsRequest"
+      },
+      "output": {
+        "shape": "DescribeBaseMetricsResult"
+      }
+    }
+  },
+  "shapes": {
+    "RegionEnum": {
+      "type": "string",
+      "enum": [
+        "ap-beijing",
+        "ap-chengdu",
+        "ap-guangzhou",
+        "ap-guangzhou-open",
+        "ap-hongkong",
+        "ap-shanghai",
+        "ap-singapore",        
+        "eu-frankfurt",        
+        "na-siliconvalley",        
+        "na-toronto",        
+        "ap-shanghai-fsi",
+        "ap-shenzhen-fsi"
+      ]
+    },
+    "GetMonitorDataRequest": {
+      "type": "structure",
+      "members": {
+        "Region": {
+          "shape": "RegionEnum"
+        },
+        "Filters": {
+          "shape": "Dimensions",
+          "locationName": "dimensions"
+        },
+        "Namespace": {
+          "shape": "String",
+          "locationName": "namespace"
+        },
+        "MetricName": {
+          "shape": "String",
+          "locationName": "metricName"
+        },
+        "Period": {
+          "shape": "Integer",
+          "locationName": "period"
+        },
+        "StartTime": {
+          "shape": "String",
+          "locationName": "startTime"
+        },
+        "EndTime": {
+          "shape": "String",
+          "locationName": "endTime"
+        }
+      }
+    },
+    "Dimensions": {
+      "type": "list",
+      "member": {
+        "shape": "DimensionsFilter"
+      },
+      "flattened": true
+    },
+    "DimensionsFilter": {
+      "type": "structure",
+      "members": {
+        "Name": {
+          "shape": "String",
+          "locationName": "name"
+        },
+        "Values": {
+          "shape": "String",
+          "locationName": "value"
+        }
+      }
+    },
+    "GetMonitorDataResult": {
+      "type": "structure",
+      "members": {
+        "Code": {
+          "shape": "Integer",
+          "locationName": "code"
+        },
+        "Message": {
+          "shape": "String",
+          "locationName": "message"
+        },
+        "CodeDesc": {
+          "shape": "String",
+          "locationName": "codeDesc"
+        },
+        "MetricName": {
+          "shape": "String",
+          "locationName": "metricName"
+        },
+        "Period": {
+          "shape": "String",
+          "locationName": "period"
+        },
+        "StartTime": {
+          "shape": "String",
+          "locationName": "startTime"
+        },
+        "EndTime": {
+          "shape": "String",
+          "locationName": "endTime"
+        },
+        "DataPoints": {
+          "shape": "DataPoints",
+          "locationName": "dataPoints"
+        }
+      }
+    },
+    "DataPoints": {
+      "type": "list",
+      "member": {
+        "shape": "Float"
+      }
+    },
+    "String": {
+      "type": "string"
+    },
+    "Integer": {
+      "type": "integer"
+    },
+    "Bool": {
+      "type": "boolean"
+    },
+    "Float": {
+      "type": "float"
+    },
+    "DescribeBaseMetricsRequest": {
+      "type": "structure",
+      "required":["Namespace"],
+      "members": {
+        "Region": {
+          "shape": "RegionEnum"
+        },
+        "Namespace": {
+          "shape": "String",
+          "locationName":"namespace"
+        },
+        "MetricName": {
+          "shape": "String",
+          "locationName":"metricName"
+        }
+      }
+    },
+    "DescribeBaseMetricsResult": {
+      "type": "structure",
+      "members": {
+       "Code": {
+          "shape": "Integer",
+          "locationName": "code"
+        },
+        "Message": {
+          "shape": "String",
+          "locationName": "message"
+        },
+        "CodeDesc": {
+          "shape": "String",
+          "locationName": "codeDesc"
+        },
+        "MetricSet": {
+          "shape": "MetricSet",
+          "locationName": "metricSet"
+        }
+      }
+    },
+    "MetricSet": {
+      "type": "list",
+      "member": {
+        "shape": "Metric"
+      }
+    },
+    "Metric": {
+      "type": "structure",
+      "members": {
+       "Namespace": {
+          "shape": "String",
+          "locationName":"namespace"
+        },
+        "MetricName": {
+          "shape": "String",
+          "locationName":"metricName"
+        },
+        "MetricCName": {
+          "shape": "String",
+          "locationName":"metricCname"
+        },
+        "Dimensions": {
+          "shape": "String",
+          "locationName":"dimensions"
+        },
+        "Unit": {
+          "shape": "String",
+          "locationName":"unit"
+        },
+        "UnitCname": {
+          "shape": "String",
+          "locationName":"unitCname"
+        },
+        "Period": {
+          "shape": "PeriodSet",
+          "locationName":"period"
+        }
+      }
+    },
+    "PeriodSet": {
+      "type": "list",
+      "member": {
+        "shape": "Integer"
+      }
+    }
+  }
+}
