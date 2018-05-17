@@ -116,7 +116,7 @@ var waiterTmpls = template.Must(template.New("waiterTmpls").Funcs(
 // If the condition is not met within the max attempt window, an error will
 // be returned.
 func (c *{{ .Operation.API.StructName }}) WaitUntil{{ .Name }}(input {{ .Operation.InputRef.GoType }}) error {
-	return c.WaitUntil{{ .Name }}WithContext(aws.BackgroundContext(), input)
+	return c.WaitUntil{{ .Name }}WithContext(sdf.BackgroundContext(), input)
 }
 
 // WaitUntil{{ .Name }}WithContext is an extended version of WaitUntil{{ .Name }}.

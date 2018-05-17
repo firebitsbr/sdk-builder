@@ -523,8 +523,8 @@ func newClient(cfg sdf.Config, handlers request.Handlers, endpoint, signingRegio
 	{{if eq .Metadata.SignatureVersion "v2"}}
 		svc.Handlers.Sign.PushBackNamed(v2.SignRequestHandler)
 	{{end}}
-	{{if eq .Metadata.SignatureVersion "v4"}}
-		svc.Handlers.Sign.PushBackNamed(v4.SignRequestHandler)
+	{{if eq .Metadata.SignatureVersion "awssig"}}
+		svc.Handlers.Sign.PushBackNamed(awssig.SignRequestHandler)
 	{{end}}
 	{{if eq .Metadata.SignatureVersion "tencentcloud"}}
 		svc.Handlers.Sign.PushBackNamed(tencentcloudsig.SignRequestHandler)
@@ -589,7 +589,7 @@ func (a *API) ServiceGoCode() string {
 	case "v2":
 		a.imports["github.com/polefishu/sdk-builder/sdf/signer/v2"] = true
 		a.imports["github.com/polefishu/sdk-builder/sdf/corehandlers"] = true
-	case "v4":
+	case "awssig":
 		a.imports["github.com/polefishu/sdk-builder/sdf/signer/awssig"] = true
 	case "tencentcloud":
 		a.imports["github.com/polefishu/sdk-builder/sdf/signer/tencentcloudsig"] = true
