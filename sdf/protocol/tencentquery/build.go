@@ -61,7 +61,7 @@ func Unmarshal(req *request.Request) {
 		}
 		var jsonErr jsonErrorResponse
 		if err := json.Unmarshal(bodyBytes, &jsonErr); err != nil {
-			req.Error = sdferr.New("SerializationError", "failed decoding JSON RPC error response", err)
+			req.Error = sdferr.New("SerializationError", "failed decoding jsonErrorResponse", err)
 			return
 		}
 		codes := jsonErr.Response.Error.Code
@@ -75,7 +75,7 @@ func Unmarshal(req *request.Request) {
 		}
 		var jsonOldErr jsonErrorOldResponse
 		if err := json.Unmarshal(bodyBytes, &jsonOldErr); err != nil {
-			req.Error = sdferr.New("SerializationError", "failed decoding JSON RPC error response", err)
+			req.Error = sdferr.New("SerializationError", "failed decoding jsonErrorOldResponse", err)
 			return
 		}
 		if jsonOldErr.Code > 0 {
@@ -90,7 +90,7 @@ func Unmarshal(req *request.Request) {
 		err = jsonutil.UnmarshalJSON2(req.Data, bodyBytes)
 
 		if err != nil {
-			req.Error = sdferr.New("SerializationError", "failed decoding JSON RPC response", err)
+			req.Error = sdferr.New("SerializationError", "failed decoding response", err)
 		}
 	}
 	return

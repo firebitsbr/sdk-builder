@@ -128,7 +128,7 @@
           "locationName": "metricName"
         },
         "Period": {
-          "shape": "String",
+          "shape": "Integer",
           "locationName": "period"
         },
         "StartTime": {

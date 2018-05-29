@@ -366,7 +366,7 @@ type GetMonitorDataOutput struct {
 
 	MetricName *string `locationName:"metricName" type:"string"`
 
-	Period *string `locationName:"period" type:"string"`
+	Period *int64 `locationName:"period" type:"integer"`
 
 	StartTime *string `locationName:"startTime" type:"string"`
 }
@@ -418,7 +418,7 @@ func (s *GetMonitorDataOutput) SetMetricName(v string) *GetMonitorDataOutput {
 }
 
 // SetPeriod sets the Period field's value.
-func (s *GetMonitorDataOutput) SetPeriod(v string) *GetMonitorDataOutput {
+func (s *GetMonitorDataOutput) SetPeriod(v int64) *GetMonitorDataOutput {
 	s.Period = &v
 	return s
 }
