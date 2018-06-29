@@ -1,0 +1,89 @@
+{
+    "version": 2,
+    "waiters": {
+        "InstanceRunning": {
+            "delay": 15,
+            "operation": "DescribeInstancesStatus",
+            "maxAttempts": 40,
+            "acceptors": [{
+                    "expected": "RUNNING",
+                    "matcher": "pathAll",
+                    "state": "success",
+                    "argument": "Response.InstanceStatusSet[].InstanceState"
+                },
+                {
+                    "expected": "TERMINATING",
+                    "matcher": "pathAny",
+                    "state": "failure",
+                    "argument": "Response.InstanceStatusSet[].InstanceState"
+                },
+                {
+                    "expected": "STOPPING",
+                    "matcher": "pathAny",
+                    "state": "failure",
+                    "argument": "Response.InstanceStatusSet[].InstanceState"
+                },
+                {
+                    "expected": "EXPIRED",
+                    "matcher": "pathAny",
+                    "state": "failure",
+                    "argument": "Response.InstanceStatusSet[].InstanceState"
+                }
+            ]
+        },
+        "InstanceStopped": {
+            "delay": 15,
+            "operation": "DescribeInstancesStatus",
+            "maxAttempts": 40,
+            "acceptors": [{
+                    "expected": "STOPPED",
+                    "matcher": "pathAll",
+                    "state": "success",
+                    "argument": "Response.InstanceStatusSet[].InstanceState"
+                },
+                {
+                    "expected": "TERMINATING",
+                    "matcher": "pathAny",
+                    "state": "failure",
+                    "argument": "Response.InstanceStatusSet[].InstanceState"
+                },
+                {
+                    "expected": "STARTING",
+                    "matcher": "pathAny",
+                    "state": "failure",
+                    "argument": "Response.InstanceStatusSet[].InstanceState"
+                },
+                {
+                    "expected": "REBOOTING",
+                    "matcher": "pathAny",
+                    "state": "failure",
+                    "argument": "Response.InstanceStatusSet[].InstanceState"
+                }
+            ]
+        },
+        "InstanceRestart": {
+            "delay": 15,
+            "operation": "DescribeInstancesStatus",
+            "maxAttempts": 40,
+            "acceptors": [{
+                    "expected": "RUNNING",
+                    "matcher": "pathAll",
+                    "state": "success",
+                    "argument": "Response.InstanceStatusSet[].InstanceState"
+                },
+                {
+                    "expected": "PENDING",
+                    "matcher": "pathAny",
+                    "state": "failure",
+                    "argument": "Response.InstanceStatusSet[].InstanceState"
+                },
+                {
+                    "expected": "EXPIRED",
+                    "matcher": "pathAny",
+                    "state": "failure",
+                    "argument": "Response.InstanceStatusSet[].InstanceState"
+                }
+            ]
+        }
+    }
+}

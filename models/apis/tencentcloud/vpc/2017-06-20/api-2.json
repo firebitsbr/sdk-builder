@@ -1,0 +1,557 @@
+{
+    "version": "2.0",
+    "metadata": {
+        "apiVersion": "2017-06-20",
+        "endpointPrefix": "vpc",
+        "jsonVersion": "1.1",
+        "protocol": "tencentquery",
+        "serviceAbbreviation": "VPC",
+        "serviceFullName": "VirtualPrivateCloud",
+        "signatureVersion": "tencentcloud",
+        "serviceCorp": "tencent"
+    },
+    "operations": {
+        "DescribeVpc": {
+            "name": "DescribeVpcEx",
+            "http": {
+                "method": "GET",
+                "requestUri": "/v2/index.php"
+            },
+            "input": {
+                "shape": "DescribeVpcRequest"
+            },
+            "output": {
+                "shape": "DescribeVpcResult"
+            }
+        },
+        "DeleteVpc": {
+            "name": "DeleteVpc",
+            "http": {
+                "method": "GET",
+                "requestUri": "/v2/index.php"
+            },
+            "input": {
+                "shape": "DeleteVpcRequest"
+            },
+            "output": {
+                "shape": "DeleteVpcResult"
+            }
+        },
+        "CreateVpc": {
+            "name": "CreateVpc",
+            "http": {
+                "method": "GET",
+                "requestUri": "/v2/index.php"
+            },
+            "input": {
+                "shape": "CreateVpcRequest"
+            },
+            "output": {
+                "shape": "CreateVpcResult"
+            }
+        },
+        "DescribeSubnet": {
+            "name": "DescribeSubnetEx",
+            "http": {
+                "method": "GET",
+                "requestUri": "/v2/index.php"
+            },
+            "input": {
+                "shape": "DescribeSubnetRequest"
+            },
+            "output": {
+                "shape": "DescribeSubnetResult"
+            }
+        },
+        "CreateSubnet": {
+            "name": "CreateSubnet",
+            "http": {
+                "method": "GET",
+                "requestUri": "/v2/index.php"
+            },
+            "input": {
+                "shape": "CreateSubnetRequest"
+            },
+            "output": {
+                "shape": "CreateSubnetResult"
+            }
+        },
+        "DeleteSubnet": {
+            "name": "DeleteSubnet",
+            "http": {
+                "method": "GET",
+                "requestUri": "/v2/index.php"
+            },
+            "input": {
+                "shape": "DeleteSubnetRequest"
+            },
+            "output": {
+                "shape": "DeleteSubnetResult"
+            }
+        }
+    },
+    "shapes": {
+        "DescribeVpcRequest": {
+            "type": "structure",
+            "members": {
+                "VpcId": {
+                    "shape": "String",
+                    "locationName": "vpcId"
+                },
+                "VpcName": {
+                    "shape": "String",
+                    "locationName": "VpcName"
+                },
+                "OrderField": {
+                    "shape": "String",
+                    "locationName": "orderField"
+                },
+                "orderDirection": {
+                    "shape": "String",
+                    "locationName": "OffsetLine,"
+                },
+                "Offset": {
+                    "shape": "Integer",
+                    "locationName": "Offset,"
+                },
+                "Limit": {
+                    "shape": "Integer",
+                    "locationName": "Limit,"
+                }
+            }
+        },
+        "DescribeVpcResult": {
+            "type": "structure",
+            "members": {
+                "Code": {
+                    "shape": "Integer",
+                    "locationName": "code"
+                },
+                "Message": {
+                    "shape": "String",
+                    "locationName": "message"
+                },
+                "CodeDesc": {
+                    "shape": "String",
+                    "locationName": "codeDesc"
+                },
+                "TotalCount": {
+                    "shape": "Integer",
+                    "locationName": "totalCount"
+                },
+                "Data": {
+                    "shape": "VpcList",
+                    "locationName": "data"
+                }
+            }
+        },
+        "VpcList": {
+            "type": "list",
+            "member": {
+                "shape": "Vpc"
+            }
+        },
+        "Vpc": {
+            "type": "structure",
+            "members": {
+                "VpcId": {
+                    "shape": "String",
+                    "locationName": "vpcId"
+                },
+                "UnVpcId": {
+                    "shape": "String",
+                    "locationName": "unVpcId"
+                },
+                "VpcName": {
+                    "shape": "String",
+                    "locationName": "vpcName"
+                },
+                "CidrBlock": {
+                    "shape": "String",
+                    "locationName": "cidrBlock"
+                },
+                "SubnetNum": {
+                    "shape": "Integer",
+                    "locationName": "subnetNum"
+                },
+                "RouteTableNum": {
+                    "shape": "Integer",
+                    "locationName": "routeTableNum"
+                },
+                "VpnGwNum": {
+                    "shape": "Integer",
+                    "locationName": "vpnGwNum"
+                },
+                "VpcPeerNum": {
+                    "shape": "Integer",
+                    "locationName": "vpcPeerNum"
+                },
+                "VpcDeviceNum": {
+                    "shape": "Integer",
+                    "locationName": "vpcDeviceNum"
+                },
+                "ClassicLinkNum": {
+                    "shape": "Integer",
+                    "locationName": "classicLinkNum"
+                },
+                "VpgNum": {
+                    "shape": "Integer",
+                    "locationName": "vpgNum"
+                },
+                "NatNum": {
+                    "shape": "Integer",
+                    "locationName": "natNum"
+                },
+                "CreateTime": {
+                    "shape": "String",
+                    "locationName": "createTime"
+                },
+                "IsMulticast":{
+                    "shape": "Bool",
+                    "locationName": "isMulticast"
+                },
+                "IsDefault": {
+                    "shape": "Bool",
+                    "locationName": "isDefault"
+                }
+            }
+        },
+        "CreateVpcRequest": {
+            "type": "structure",
+            "members": {
+                "VpcName": {
+                    "shape": "String",
+                    "locationName": "vpcName"
+                },
+                "CidrBlock": {
+                    "shape": "String",
+                    "locationName": "cidrBlock"
+                },
+                "SubnetSet": {
+                    "shape": "SubnetList",
+                    "locationName": "subnetSet"
+                }
+            }
+        },
+        "CreateVpcResult": {
+            "type": "structure",
+            "members": {
+                "Code": {
+                    "shape": "Integer",
+                    "locationName": "code"
+                },
+                "Message": {
+                    "shape": "String",
+                    "locationName": "message"
+                },
+                "CodeDesc": {
+                    "shape": "String",
+                    "locationName": "codeDesc"
+                },
+                "VpcId": {
+                    "shape": "String",
+                    "locationName": "vpcId"
+                },
+                "UniqVpcId": {
+                    "shape": "String",
+                    "locationName": "uniqVpcId"
+                },
+                "VpcCreateTime": {
+                    "shape": "String",
+                    "locationName": "vpcCreateTime"
+                },
+                "SubnetSet": {
+                    "shape": "SubnetList",
+                    "locationName": "subnetSet"
+                },
+                "RouteTableSet": {
+                    "shape": "RouteTableList",
+                    "locationName": "routeTableSet"
+                }
+            }
+        },
+        "SubnetList": {
+            "type": "list",
+            "member": {
+                "shape": "Subnet"
+            },
+            "flattened": true
+        },
+        "Subnet": {
+            "type": "structure",
+            "members": {
+                "ZoneId": {
+                    "shape": "Integer",
+                    "locationName": "zoneId"
+                },
+                "Zone": {
+                    "shape": "String",
+                    "locationName": "zone"
+                },
+                "VpcId": {
+                    "shape": "String",
+                    "locationName": "vpcId"
+                },
+                "UniVpcId": {
+                    "shape": "String",
+                    "locationName": "uniVpcId"
+                },
+                "SubnetId": {
+                    "shape": "String",
+                    "locationName": "subnetId"
+                },
+                "UnSubnetId": {
+                    "shape": "String",
+                    "locationName": "unSubnetId"
+                },
+                "SubnetName": {
+                    "shape": "String",
+                    "locationName": "subnetName"
+                },
+                "CidrBlock": {
+                    "shape": "String",
+                    "locationName": "cidrBlock"
+                },
+                "RouteTableId": {
+                    "shape": "String",
+                    "locationName": "routeTableId"
+                },
+                "TotalIPNum": {
+                    "shape": "Integer",
+                    "locationName": "totalIPNum"
+                },
+                "AvailableIPNum": {
+                    "shape": "Integer",
+                    "locationName": "availableIPNum"
+                },
+                "NetworkAclId": {
+                    "shape": "String",
+                    "locationName": "networkAclId"
+                },
+                "VpcDevices": {
+                    "shape": "Integer",
+                    "locationName": "vpcDevices"
+                },
+                "Broadcast": {
+                    "shape": "Bool",
+                    "locationName": "broadcast"
+                },
+                "IsDefault": {
+                    "shape": "Bool",
+                    "locationName": "isDefault"
+                }
+            }
+        },
+        "RouteTableList": {
+            "type": "list",
+            "member": {
+                "shape": "RouteTable"
+            },
+            "flattened": true
+        },
+        "RouteTable": {
+            "type": "structure",
+            "members": {
+                "RouteTableType": {
+                    "shape": "Integer",
+                    "locationName": "routeTableType"
+                },
+                "RouteTableName": {
+                    "shape": "String",
+                    "locationName": "routeTableName"
+                },
+                "RouteTableId": {
+                    "shape": "String",
+                    "locationName": "routeTableId"
+                }
+            }
+        },
+        "DeleteVpcRequest": {
+            "type": "structure",
+            "members": {
+                "VpcId": {
+                    "shape": "String",
+                    "locationName": "vpcId"
+                }
+            }
+        },
+        "DeleteVpcResult": {
+            "type": "structure",
+            "members": {
+                "Code": {
+                    "shape": "Integer",
+                    "locationName": "code"
+                },
+                "CodeDesc": {
+                    "shape": "String",
+                    "locationName": "codeDesc"
+                },
+                "Message": {
+                    "shape": "String",
+                    "locationName": "message"
+                }
+            }
+        },
+        "DescribeSubnetRequest": {
+            "type": "structure",
+            "members": {
+                "CodeDesc": {
+                    "shape": "String",
+                    "locationName": "codeDesc"
+                },
+                "VpcId": {
+                    "shape": "String",
+                    "locationName": "vpcId"
+                },
+                "SubnetId": {
+                    "shape": "String",
+                    "locationName": "SubnetId"
+                },
+                "SubnetName": {
+                    "shape": "String",
+                    "locationName": "subnetName"
+                },
+                "ZoneIds": {
+                    "shape": "ValueStringList",
+                    "locationName": "zoneIds"
+                },
+                "OrderField": {
+                    "shape": "String",
+                    "locationName": "orderField"
+                },
+                "orderDirection": {
+                    "shape": "String",
+                    "locationName": "OffsetLine,"
+                },
+                "Offset": {
+                    "shape": "Integer",
+                    "locationName": "Offset,"
+                },
+                "Limit": {
+                    "shape": "Integer",
+                    "locationName": "Limit,"
+                }
+            }
+        },
+        "DescribeSubnetResult": {
+            "type": "structure",
+            "members": {
+                "Code": {
+                    "shape": "Integer",
+                    "locationName": "code"
+                },
+                "Message": {
+                    "shape": "String",
+                    "locationName": "message"
+                },
+                "TotalCount": {
+                    "shape": "Integer",
+                    "locationName": "totalCount"
+                },
+                "Data": {
+                    "shape": "SubnetList",
+                    "locationName": "data"
+                }
+            }
+        },
+        "CreateSubnetRequest": {
+            "type": "structure",
+            "members": {
+                "VpcId": {
+                    "shape": "String",
+                    "locationName": "vpcId"
+                },
+                "SubnetSet": {
+                    "shape": "SubnetList",
+                    "locationName": "subnetSet"
+                }
+            }
+        },
+        "CreateSubnetResult": {
+            "type": "structure",
+            "members": {
+                "Code": {
+                    "shape": "Integer",
+                    "locationName": "code"
+                },
+                "Message": {
+                    "shape": "String",
+                    "locationName": "message"
+                },
+                "SubnetSet": {
+                    "shape": "SubnetList",
+                    "locationName": "subnetSet"
+                }
+            }
+        },
+        "DeleteSubnetRequest": {
+            "type": "structure",
+            "members": {
+                "VpcId": {
+                    "shape": "String",
+                    "locationName": "vpcId"
+                },
+                "SubnetId": {
+                    "shape": "String",
+                    "locationName": "subnetId"
+                }
+            }
+        },
+        "DeleteSubnetResult": {
+            "type": "structure",
+            "members": {
+                "Code": {
+                    "shape": "Integer",
+                    "locationName": "code"
+                },
+                "Message": {
+                    "shape": "String",
+                    "locationName": "message"
+                }
+            }
+        },
+        "FilterList": {
+            "type": "list",
+            "member": {
+                "shape": "Filter",
+                "locationName": "Filter"
+            },
+            "flattened": true
+        },
+        "Filter": {
+            "type": "structure",
+            "members": {
+                "Name": {
+                    "shape": "String"
+                },
+                "Values": {
+                    "shape": "ValueStringList",
+                    "locationName": "Value"
+                }
+            }
+        },
+        "ValueStringList": {
+            "type": "list",
+            "member": {
+                "shape": "String",
+                "locationName": "item"
+            },
+            "flattened": true
+        },
+        "IntegerList": {
+            "type": "list",
+            "member": {
+                "shape": "Integer"
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "Integer": {
+            "type": "integer"
+        },
+        "Bool": {
+            "type": "boolean"
+        }
+    }
+}

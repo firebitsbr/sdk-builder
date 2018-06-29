@@ -1,0 +1,499 @@
+{
+    "version": "2.0",
+    "metadata": {
+        "apiVersion": "2017-06-20",
+        "endpointPrefix": "dfw",
+        "jsonVersion": "1.1",
+        "protocol": "tencentquery",
+        "serviceAbbreviation": "DFW",
+        "serviceFullName": "SecurityGroup",
+        "signatureVersion": "tencentcloud",
+        "serviceCorp": "tencent"
+    },
+    "operations": {
+        "DescribeSecurityGroups": {
+            "name": "DescribeSecurityGroupEx",
+            "http": {
+                "method": "GET",
+                "requestUri": "/v2/index.php"
+            },
+            "input": {
+                "shape": "DescribeSecurityGroupExRequest"
+            },
+            "output": {
+                "shape": "DescribeSecurityGroupExResult"
+            }
+        },
+        "CreateSecurityGroup": {
+            "name": "CreateSecurityGroup",
+            "http": {
+                "method": "GET",
+                "requestUri": "/v2/index.php"
+            },
+            "input": {
+                "shape": "CreateSecurityGroupRequest"
+            },
+            "output": {
+                "shape": "CreateSecurityGroupResult"
+            }
+        },
+        "DeleteSecurityGroup": {
+            "name": "DeleteSecurityGroup",
+            "http": {
+                "method": "GET",
+                "requestUri": "/v2/index.php"
+            },
+            "input": {
+                "shape": "DeleteSecurityGroupRequest"
+            },
+            "output": {
+                "shape": "DeleteSecurityGroupResult"
+            }
+        },
+        "DescribeSecurityGroupPolicys": {
+            "name": "DescribeSecurityGroupPolicys",
+            "http": {
+                "method": "GET",
+                "requestUri": "/v2/index.php"
+            },
+            "input": {
+                "shape": "DescribeSecurityGroupPolicysRequest"
+            },
+            "output": {
+                "shape": "DescribeSecurityGroupPolicysResult"
+            }
+        },
+        "DeleteSecurityGroup": {
+            "name": "DeleteSecurityGroup",
+            "http": {
+                "method": "GET",
+                "requestUri": "/v2/index.php"
+            },
+            "input": {
+                "shape": "DeleteSecurityGroupRequest"
+            },
+            "output": {
+                "shape": "DeleteSecurityGroupResult"
+            }
+        },
+        
+        "CreateSecurityGroupPolicy": {
+            "name": "CreateSecurityGroupPolicy",
+            "http": {
+                "method": "GET",
+                "requestUri": "/v2/index.php"
+            },
+            "input": {
+                "shape": "CreateSecurityGroupPolicyRequest"
+            },
+            "output": {
+                "shape": "CreateSecurityGroupPolicyResult"
+            }
+        },
+        "DeleteSecurityGroupPolicy": {
+            "name": "DeleteSecurityGroupPolicy",
+            "http": {
+                "method": "GET",
+                "requestUri": "/v2/index.php"
+            },
+            "input": {
+                "shape": "DeleteSecurityGroupPolicyRequest"
+            },
+            "output": {
+                "shape": "DeleteSecurityGroupPolicyResult"
+            }
+        }
+    },
+    "shapes": {
+        "DescribeSecurityGroupExRequest": {
+            "type": "structure",
+            "members": {
+                "SgId": {
+                    "shape": "String",
+                    "locationName": "SgId"
+                },
+                "SgName": {
+                    "shape": "String",
+                    "locationName": "SgName"
+                },
+                "ProjectId": {
+                    "shape": "Integer",
+                    "locationName": "ProjectId"
+                },
+                "Offset": {
+                    "shape": "Integer",
+                    "locationName": "Offset,"
+                },
+                "OffsetLine": {
+                    "shape": "Integer",
+                    "locationName": "OffsetLine,"
+                },
+                "Limit": {
+                    "shape": "Integer",
+                    "locationName": "Limit,"
+                }
+            }
+        },
+        "DescribeSecurityGroupExResult": {
+            "type": "structure",
+            "members": {
+                "Code": {
+                    "shape": "Integer",
+                    "locationName": "code"
+                },
+                "Message": {
+                    "shape": "String",
+                    "locationName": "message"
+                },
+                "CodeDesc":{
+                    "shape": "String",
+                    "locationName": "codeDesc"
+                },
+                "Data": {
+                    "shape": "DescribeSecurityGroupData",
+                    "locationName": "data"
+                }
+            }
+        },
+        "DescribeSecurityGroupData":{
+            "type": "structure",
+            "members": {
+               "TotalNum": {
+                    "shape": "Integer",
+                    "locationName": "totalNum"
+                },
+                "Detail": {
+                    "shape": "SecurityGroupList",
+                    "locationName": "detail"
+                }  
+            } 
+        },
+        "SecurityGroupList": {
+            "type": "list",
+            "member": {
+                "shape": "SecurityGroup"
+            }
+        },
+        "SecurityGroup": {
+            "type": "structure",
+            "members": {
+                "SgId": {
+                    "shape": "String",
+                    "locationName": "sgId"
+                },
+                "SgName": {
+                    "shape": "String",
+                    "locationName": "sgName"
+                },
+                "SgRemark": {
+                    "shape": "String",
+                    "locationName": "sgRemark"
+                },
+                "CreateTime": {
+                    "shape": "String",
+                    "locationName": "createTime"
+                },
+             
+                "BeAssociateCount": {
+                    "shape": "Integer",
+                    "locationName": "beAssociateCount"
+                },
+                "Version": {
+                    "shape": "Integer",
+                    "locationName": "version"
+                }
+            }
+        },
+        "CreateSecurityGroupRequest": {
+            "type": "structure",
+            "members": {
+                "SgRemark": {
+                    "shape": "String",
+                    "locationName": "sgRemark"
+                },
+                "SgName": {
+                    "shape": "String",
+                    "locationName": "sgName"
+                },
+                "ProjectId": {
+                    "shape": "Integer",
+                    "locationName": "projectId"
+                }
+            }
+        },
+        "CreateSecurityGroupResult": {
+            "type": "structure",
+            "members": {
+                "Code": {
+                    "shape": "Integer",
+                    "locationName": "codc"
+                },
+                "Message": {
+                    "shape": "String",
+                    "locationName": "message"
+                },
+                "CodeDesc":{
+                    "shape": "String",
+                    "locationName": "codeDesc"
+                },
+                "Data": {
+                    "shape": "SecurityGroup",
+                    "locationName": "data"
+                }
+            }
+        },
+        "DeleteSecurityGroupRequest": {
+            "type": "structure",
+            "members": {
+                "SgId": {
+                    "shape": "String",
+                    "locationName": "sgId"
+                },
+                "Region": {
+                    "shape": "RegionEnum",
+                    "locationName": "Region"
+                }
+            }
+        },
+        "DeleteSecurityGroupResult": {
+            "type": "structure",
+            "members": {
+                "Code": {
+                    "shape": "Integer",
+                    "locationName": "code"
+                },
+                "Message": {
+                    "shape": "String",
+                    "locationName": "message"
+                }
+            }
+        },
+         "DescribeSecurityGroupPolicysRequest": {
+            "type": "structure",
+            "members": {
+                "SgId": {
+                    "shape": "String",
+                    "locationName": "sgId"
+                }
+            }
+        },
+        "DescribeSecurityGroupPolicysResult": {
+            "type": "structure",
+            "members": {
+                "Code": {
+                    "shape": "Integer",
+                    "locationName": "code"
+                },
+                "Message": {
+                    "shape": "String",
+                    "locationName": "message"
+                },
+                "CodeDesc":{
+                    "shape": "String",
+                    "locationName": "codeDesc"
+                },
+                "Data": {
+                    "shape": "DescribeSecurityGroupPolicyData",
+                    "locationName": "data"
+                }
+            }
+        },
+        "DescribeSecurityGroupPolicyData":{
+            "type": "structure",
+            "members": {
+               "Ingress": {
+                    "shape": "SecurityGroupPolicyList",
+                    "locationName": "ingress"
+                },
+                "Egress": {
+                    "shape": "SecurityGroupPolicyList",
+                    "locationName": "egress"
+                }  
+            } 
+        },
+        "CreateSecurityGroupPolicyRequest": {
+            "type": "structure",
+            "members": {
+                "Index": {
+                    "shape": "Integer",
+                    "locationName": "index"
+                },
+                "Version": {
+                    "shape": "Integer",
+                    "locationName": "version"
+                },
+                "SgId": {
+                    "shape": "String",
+                    "locationName": "sgId"
+                },
+                "Direction": {
+                    "shape": "String",
+                    "locationName": "direction"
+                },
+                "Policys": {
+                    "shape": "SecurityGroupPolicyList",
+                    "locationName": "policys"
+                }
+            }
+        },
+        "SecurityGroupPolicyList": {
+           "type": "list",
+            "member": {
+                "shape": "SecurityGroupPolicy"
+            },
+          "flattened": true
+        },
+        "SecurityGroupPolicy": {
+            "type": "structure",
+            "members": {
+                "Key":{
+                    "shape": "Integer",
+                    "locationName": "key"
+                },
+                "IpProtocol": {
+                    "shape": "String",
+                    "locationName": "ipProtocol"
+                },
+                "CidrIp": {
+                    "shape": "String",
+                    "locationName": "cidrIp"
+                },
+                "SgId": {
+                    "shape": "String",
+                    "locationName": "sgId"
+                },
+                "AddressModule": {
+                    "shape": "String",
+                    "locationName": "addressModule"
+                },
+                "PortRange": {
+                    "shape": "String",
+                    "locationName": "portRange"
+                },
+                "ServiceModule": {
+                    "shape": "String",
+                    "locationName": "serviceModule"
+                },
+                "Desc": {
+                    "shape": "String",
+                    "locationName": "desc"
+                },
+                "Action": {
+                    "shape": "String",
+                    "locationName": "action"
+                }
+            }
+        },
+        "CreateSecurityGroupPolicyResult": {
+            "type": "structure",
+            "members": {
+                "Code": {
+                    "shape": "Integer",
+                    "locationName": "code"
+                },
+                "Message": {
+                    "shape": "String",
+                    "locationName": "message"
+                },
+                "CodeDesc":{
+                    "shape": "String",
+                    "locationName": "codeDesc"
+                }
+            }
+        },
+        "DeleteSecurityGroupPolicyRequest": {
+            "type": "structure",
+            "members": {
+                "Version": {
+                    "shape": "Integer",
+                    "locationName": "version"
+                },
+                "Indexes": {
+                    "shape": "IntegerList",
+                    "locationName": "indexes"
+                },
+                "SgId": {
+                    "shape": "String",
+                    "locationName": "sgId"
+                },
+                "Direction": {
+                    "shape": "String",
+                    "locationName": "direction"
+                }
+            }
+        },
+        "DeleteSecurityGroupPolicyResult": {
+            "type": "structure",
+            "members": {
+                "Code": {
+                    "shape": "Integer",
+                    "locationName": "code"
+                },
+                "Message": {
+                    "shape": "String",
+                    "locationName": "message"
+                }
+            }
+        },
+        "RegionEnum": {
+            "type": "string",
+            "enum": [
+                "ap-beijing",
+                "ap-chengdu",
+                "ap-guangzhou",
+                "ap-guangzhou-open",
+                "ap-hongkong",
+                "ap-shanghai",
+                "ap-singapore",
+                "eu-frankfurt",
+                "na-siliconvalley",
+                "na-toronto",
+                "ap-shanghai-fsi",
+                "ap-shenzhen-fsi"
+            ]
+        },
+        "FilterList": {
+            "type": "list",
+            "member": {
+                "shape": "Filter",
+                "locationName": "Filter"
+            },
+            "flattened": true
+        },
+        "Filter": {
+            "type": "structure",
+            "members": {
+                "Name": {
+                    "shape": "String"
+                },
+                "Values": {
+                    "shape": "ValueStringList",
+                    "locationName": "Value"
+                }
+            }
+        },
+        "ValueStringList": {
+            "type": "list",
+            "member": {
+                "shape": "String",
+                "locationName": "item"
+            },
+            "flattened": true
+        },
+        "IntegerList":{
+            "type": "list",
+            "member": {
+                "shape": "Integer"
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "Integer": {
+            "type": "integer"
+        },
+        "Bool": {
+            "type": "boolean"
+        }
+    }
+}

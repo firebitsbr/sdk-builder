@@ -1,0 +1,70 @@
+{
+  "version": "2.0",
+  "service": "<fullname>Cloud Virtual Machine</fullname> <p>欢迎使用云服务器（Cloud Virtual Machine）</p><p>腾讯云服务器（Cloud Virtual Machine，以下又称CVM）运行在腾讯数据中心，它提供了可以弹性伸缩的计算服务，可以根据业务需要来构建和托管软件系统。</p><p>云服务器向用户提供弹性的计算、存储和网络资源。用户可以使用本文档介绍的 API，并参照相应的示例，对云服务器进行相关操作：如创建、销毁、更改带宽、重启等；支持的全部操作可参见<a href=\"https://cloud.tencent.com/document/api/213/569\" target=\"_blank\">API概览页</a>。</p>",
+  "operations": {
+    "DescribeInstances": "<p>本接口 (DescribeInstances) 用于查询一个或多个实例的详细信息。</p><p>接口请求域名：<font style=\"color:red\">cvm.api.qcloud.com</font></p><ul><li>可以根据实例<code>ID</code>、实例名称或者实例计费模式等信息来查询实例的详细信息。过滤信息详细请见过滤器<code>Filter</code>。</li><li>如果参数为空，返回当前用户一定数量（<code>Limit</code>所指定的数量，默认为20）的实例。</li></ul>"
+  },
+  "shapes": {
+    "DescribeInstancesRequest": {
+      "base": "<p>test</p>",
+      "refs": {}
+    },
+    "DescribeInstancesResult": {
+      "base": "<p>test</p>",
+      "refs": {}
+    },
+    "Instance":{
+      "base":"<p> item </p>",
+      "refs":{
+        "InstanceList$member": "<p>test</p>"
+      }
+    },
+    "Response":{
+      "base":"<p> Response item </p>",
+      "refs":{
+        "DescribeInstancesResult$Response": "<p>test</p>"
+      }
+    },
+    "InstanceList": {
+      "base": "<p>test</p>",
+      "refs": {
+        "DescribeInstancesResult$InstanceSet": "<p>test</p>"
+      }
+    },
+    "WanIpList": {
+      "base": "<p>test</p>",
+      "refs": {
+        "Instance$PublicIpAddresses": "<p>test</p>"
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "Common$Action": "<p>test</p>",
+        "Common$SecretId": "<p>test</p>",
+        "Common$Signature": "<p>test</p>",
+        "Common$SignatureMethod": "<p>test</p>",
+        "Common$Region": "<p>test</p>",
+        "Common$Token": "<p>test</p>",
+        "DescribeInstancesResult$RequestId": "<p>test</p>",
+        "Instance$InstanceId": "<p>test</p>",
+        "Instance$InstanceType": "<p>test</p>",
+        "Instance$PrivateIpAddresses": "<p>test</p>",
+        "Instance$Status": "<p>test</p>",
+        "WanIpList$member":"<p>test</p>"
+      }
+    },
+    "Integer": {
+      "base": null,
+      "refs": {
+        "Common$Timestamp": "<p>test</p>",
+        "Common$Nonce": "<p>test</p>",
+        "DescribeInstancesRequest$Offset": "<p>test</p>",
+        "DescribeInstancesRequest$Limit": "<p>test</p>",
+        "DescribeInstancesResult$TotalCount": "<p>test</p>",
+        "Instance$CPU": "<p>test</p>",
+        "Instance$Memory": "<p>test</p>"
+      }
+    }
+  }
+}

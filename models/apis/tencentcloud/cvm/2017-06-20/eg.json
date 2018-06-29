@@ -1,0 +1,103 @@
+{
+    "Instance": {
+        "Response": {
+            "TotalCount": 2,
+            "InstanceSet": [{
+                "Placement": {
+                    "Zone": "ap-shanghai-1",
+                    "HostId": null,
+                    "ProjectId": 0
+                },
+                "InstanceId": "ins-ac0hjmlj",
+                "InstanceType": "S1.SMALL1",
+                "CPU": 1,
+                "Memory": 1,
+                "InstanceName": "test",
+                "InstanceChargeType": "POSTPAID_BY_HOUR",
+                "SystemDisk": {
+                    "DiskType": "CLOUD_BASIC",
+                    "DiskId": "disk-0i2f3nxh",
+                    "DiskSize": 50
+                },
+                "DataDisks": [],
+                "PrivateIpAddresses": ["192.168.10.4"],
+                "PublicIpAddresses": ["118.89.166.224"],
+                "InternetAccessible": {
+                    "InternetMaxBandwidthOut": 0,
+                    "InternetChargeType": "TRAFFIC_POSTPAID_BY_HOUR"
+                },
+                "VirtualPrivateCloud": {
+                    "VpcId": "vpc-26v31qaw",
+                    "SubnetId": "subnet-6bi9zcwt",
+                    "AsVpcGateway": false
+                },
+                "ImageId": "img-6ns5om13",
+                "OsName": "CentOS 6.8 64\u4f4d",
+                "RenewFlag": null,
+                "CreatedTime": "2017-06-01T06:18:50Z",
+                "ExpiredTime": null
+            }, {
+                "Placement": {
+                    "Zone": "ap-shanghai-1",
+                    "HostId": null,
+                    "ProjectId": 0
+                },
+                "InstanceId": "ins-qbnarbfv",
+                "InstanceType": "S1.SMALL1",
+                "CPU": 1,
+                "Memory": 1,
+                "InstanceName": "test01",
+                "InstanceChargeType": "POSTPAID_BY_HOUR",
+                "SystemDisk": {
+                    "DiskType": "CLOUD_BASIC",
+                    "DiskId": "disk-8pzwqg3n",
+                    "DiskSize": 50
+                },
+                "DataDisks": [],
+                "PrivateIpAddresses": ["10.222.222.97"],
+                "PublicIpAddresses": null,
+                "InternetAccessible": {
+                    "InternetMaxBandwidthOut": 0,
+                    "InternetChargeType": "TRAFFIC_POSTPAID_BY_HOUR"
+                },
+                "VirtualPrivateCloud": {
+                    "VpcId": "vpc-g77xwqq2",
+                    "SubnetId": "subnet-lk0xn06p",
+                    "AsVpcGateway": false
+                },
+                "ImageId": "img-6ns5om13",
+                "OsName": "CentOS 6.8 64\u4f4d",
+                "RenewFlag": null,
+                "CreatedTime": "2017-06-01T06:30:33Z",
+                "ExpiredTime": null
+            }],
+            "RequestId": "0abe37b2-e265-43fe-b99b-150258272cde"
+        }
+    },
+
+    "Status": {
+        "Response": {
+            "InstanceStatusSet": [{
+                    "InstanceId": "ins-ac0hjmlj",
+                    "InstanceState": "RUNNING"
+                },
+                {
+                    "InstanceId": "ins-qbnarbfv",
+                    "InstanceState": "RUNNING"
+                }
+            ],
+            "RequestId": "c7864a0b-1052-447a-8f35-ea17288ae3ed",
+            "TotalCount": 2
+        }
+    },
+
+    "Error": {
+        "Response": {
+            "Error": {
+                "Code": "InvalidInstance.NotSupported",
+                "Message": "The request does not support the instance `ins-ac0hjmlj` which is in the state of `RUNNING`."
+            },
+            "RequestId": "c806ac00-2172-4b6a-b5bb-f81188794789"
+        }
+    }
+}

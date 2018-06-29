@@ -1,0 +1,15 @@
+{
+    "version": "1.0",
+    "examples": {
+        "DescribeInstances": [{
+            "input": {
+                "Region":"sh"
+            },
+            "output": {
+            },
+            "description": "This example DescribeInstances.",
+            "id": "DescribeInstances-1",
+            "title": "To describe instances"
+        }]
+    }
+}

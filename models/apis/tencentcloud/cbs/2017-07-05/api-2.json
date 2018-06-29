@@ -1,0 +1,214 @@
+{
+  "version": "2.0",
+  "metadata": {
+    "apiVersion": "2017-07-01",
+    "endpointPrefix": "cbs",
+    "jsonVersion": "1.1",
+    "protocol": "tencentquery",
+    "serviceAbbreviation": "CBS",
+    "serviceFullName": "Cloud Virtual Machine CBS",
+    "signatureVersion": "tencentcloud",
+    "serviceCorp": "tencent"
+  },
+  "operations": {
+    "DescribeCbsStorages": {
+      "name": "DescribeCbsStorages",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v2/index.php"
+      },
+      "input": {
+        "shape": "DescribeCbsStoragesRequest"
+      },
+      "output": {
+        "shape": "DescribeCbsStoragesResult"
+      }
+    }
+  },
+  "shapes": {
+    "RegionEnum": {
+      "type": "string",
+      "enum": [
+        "ap-beijing",
+        "ap-chengdu",
+        "ap-guangzhou",
+        "ap-guangzhou-open",
+        "ap-hongkong",
+        "ap-shanghai",
+        "ap-singapore",        
+        "eu-frankfurt",        
+        "na-siliconvalley",        
+        "na-toronto",        
+        "ap-shanghai-fsi",
+        "ap-shenzhen-fsi"
+      ]
+    },
+    "DescribeCbsStoragesRequest": {
+      "type": "structure",
+      "members": {
+        "Region": {
+          "shape": "RegionEnum"
+        },
+        "DiskType": {
+          "shape": "String",
+          "locationName": "diskType"
+        },
+        "PayMode": {
+          "shape": "String",
+          "locationName": "payMode"
+        },
+        "StorageType": {
+          "shape": "String",
+          "locationName": "storageType"
+        },
+        "Portable": {
+          "shape": "Integer",
+          "locationName": "portable"
+        },
+        "ProjectId": {
+          "shape": "Integer",
+          "locationName": "projectId"
+        },
+        "UInstanceIds": {
+          "shape": "InstanceIdStringList",
+          "locationName": "uInstanceIds"
+        },
+        "StorageStatus": {
+          "shape": "InstanceIdStringList",
+          "locationName": "storageStatus"
+        },
+        "StorageIds": {
+          "shape": "InstanceIdStringList",
+          "locationName": "storageIds"
+        },
+        "ZoneId": {
+          "shape": "String",
+          "locationName": "zoneId"
+        },
+        "Offset": {
+          "shape": "Integer",
+          "locationName": "offset"
+        },
+        "Limit": {
+          "shape": "Integer",
+          "locationName": "limit"
+        }
+      }
+    },
+    "InstanceIdStringList": {
+      "type": "list",
+      "member": {
+        "shape": "String"
+      },
+      "flattened": true
+    },
+    "DescribeCbsStoragesResult": {
+      "type": "structure",
+      "members": {
+        "Code": {
+          "shape": "Integer",
+          "locationName": "code"
+        },
+        "Message": {
+          "shape": "String",
+          "locationName": "message"
+        },
+        "CodeDesc": {
+          "shape": "String",
+          "locationName": "codeDesc"
+        },
+        "TotalCount": {
+          "shape": "Integer",
+          "locationName": "totalCount"
+        },
+        "StorageSet": {
+          "shape": "StorageSet",
+          "locationName": "storageSet"
+        }
+      }
+    },
+    "StorageSet": {
+      "type": "list",
+      "member": {
+        "shape": "Storage"
+      }
+    },
+    "Storage": {
+      "type": "structure",
+      "members": {
+        "Attached": {
+          "shape": "Integer",
+          "locationName": "attached"
+        },
+        "CreateTime": {
+          "shape": "String",
+          "locationName": "createTime"
+        },
+        "DeadlineTime": {
+          "shape": "String",
+          "locationName": "deadlineTime"
+        },
+        "DiskType": {
+          "shape": "String",
+          "locationName": "diskType"
+        },
+        "PayMode": {
+          "shape": "String",
+          "locationName": "payMode"
+        },
+        "StorageId": {
+          "shape": "String",
+          "locationName": "storageId"
+        },
+        "StorageName": {
+          "shape": "String",
+          "locationName": "storageName"
+        },
+        "StorageStatus": {
+          "shape": "String",
+          "locationName": "storageStatus"
+        },
+        "StorageType": {
+          "shape": "String",
+          "locationName": "storageType"
+        },
+        "UInstanceId": {
+          "shape": "String",
+          "locationName": "uInstanceId"
+        },
+        "Portable": {
+          "shape": "Integer",
+          "locationName": "portable"
+        },
+        "ProjectId": {
+          "shape": "Integer",
+          "locationName": "projectId"
+        },
+        "SnapshotAbility": {
+          "shape": "Integer",
+          "locationName": "snapshotAbility"
+        },
+        "StorageSize": {
+          "shape": "Integer",
+          "locationName": "storageSize"
+        },
+        "ZoneId": {
+          "shape": "Integer",
+          "locationName": "zoneId"
+        }
+      }
+    },
+    "String": {
+      "type": "string"
+    },
+    "Integer": {
+      "type": "integer"
+    },
+    "Bool": {
+      "type": "boolean"
+    },
+    "Float": {
+      "type": "float"
+    }
+  }
+}

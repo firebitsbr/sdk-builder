@@ -1,0 +1,14 @@
+{
+    "version": "1.0",
+    "examples": {
+        "DescribeSecurityGroups": [{
+            "input": {
+            },
+            "output": {
+            },
+            "description": "This example DescribeSecurityGroup.",
+            "id": "DescribeSecurityGroup-1",
+            "title": "To describe SecurityGroup"
+        }]
+    }
+}
