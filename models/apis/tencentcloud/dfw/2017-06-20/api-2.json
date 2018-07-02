@@ -37,19 +37,6 @@
                 "shape": "CreateSecurityGroupResult"
             }
         },
-        "DeleteSecurityGroup": {
-            "name": "DeleteSecurityGroup",
-            "http": {
-                "method": "GET",
-                "requestUri": "/v2/index.php"
-            },
-            "input": {
-                "shape": "DeleteSecurityGroupRequest"
-            },
-            "output": {
-                "shape": "DeleteSecurityGroupResult"
-            }
-        },
         "DescribeSecurityGroupPolicys": {
             "name": "DescribeSecurityGroupPolicys",
             "http": {
