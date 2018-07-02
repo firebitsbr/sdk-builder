@@ -65,19 +65,19 @@ func Example{{ .API.StructName }}_{{ .MethodName }}() {
 
 	result, err := svc.{{ .OperationName }}(input)
 	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
+		if serr, ok := err.(sdferr.Error); ok {
+			switch serr.Code() {
 				{{ range $_, $ref := .Operation.ErrorRefs -}}
 					{{ if not ($.HasVisitedError $ref) -}}
 			case {{ .API.PackageName }}.{{ $ref.Shape.ErrorCodeName }}:
-				fmt.Println({{ .API.PackageName }}.{{ $ref.Shape.ErrorCodeName }}, aerr.Error())
+				fmt.Println({{ .API.PackageName }}.{{ $ref.Shape.ErrorCodeName }}, serr.Error())
 					{{ end -}}
 				{{ end -}}
 			default:
-				fmt.Println(aerr.Error())
+				fmt.Println(serr.Error())
 			}
 		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
+			// Print the error, cast err to sdferr.Error to get the Code and
 			// Message from an error.
 			fmt.Println(err.Error())
 		}
@@ -179,13 +179,13 @@ func getValue(t, v string) string {
 	}
 	switch t {
 	case "string":
-		return fmt.Sprintf("aws.String(%q)", v)
+		return fmt.Sprintf("sdf.String(%q)", v)
 	case "integer", "long", "int64":
-		return fmt.Sprintf("aws.Int64(%s)", v)
+		return fmt.Sprintf("sdf.Int64(%s)", v)
 	case "float", "float64", "double":
-		return fmt.Sprintf("aws.Float64(%s)", v)
+		return fmt.Sprintf("sdf.Float64(%s)", v)
 	case "boolean":
-		return fmt.Sprintf("aws.Bool(%s)", v)
+		return fmt.Sprintf("sdf.Bool(%s)", v)
 	default:
 		panic("Unsupported type: " + t)
 	}

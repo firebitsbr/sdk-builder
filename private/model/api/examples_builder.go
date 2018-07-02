@@ -217,6 +217,6 @@ func (builder defaultExamplesBuilder) Imports(a *API) string {
 	"github.com/polefishu/sdk-builder/sdf/session"
 	`)
 
-	buf.WriteString(fmt.Sprintf("\"%s/%s\"", "github.com/polefishu/sdk-builder/service", a.PackageName()))
+	buf.WriteString(fmt.Sprintf("\"%s/%s/%s\"", "github.com/polefishu/sdk-builder/service", a.Metadata.SignatureVersion, a.PackageName()))
 	return buf.String()
 }
