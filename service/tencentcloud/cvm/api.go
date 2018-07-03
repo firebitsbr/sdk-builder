@@ -36,7 +36,7 @@ func (c *CVM) DescribeImagesRequest(input *DescribeImagesInput) (req *request.Re
 	op := &request.Operation{
 		Name:       opDescribeImages,
 		HTTPMethod: "GET",
-		HTTPPath:   "/v2/index.php",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
@@ -105,7 +105,7 @@ func (c *CVM) DescribeInstancesRequest(input *DescribeInstancesInput) (req *requ
 	op := &request.Operation{
 		Name:       opDescribeInstances,
 		HTTPMethod: "GET",
-		HTTPPath:   "/v2/index.php",
+		HTTPPath:   "/",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"Offset"},
 			OutputTokens:    []string{"Response.TotalCount"},
@@ -237,7 +237,7 @@ func (c *CVM) DescribeInstancesStatusRequest(input *DescribeInstancesStatusInput
 	op := &request.Operation{
 		Name:       opDescribeInstancesStatus,
 		HTTPMethod: "GET",
-		HTTPPath:   "/v2/index.php",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
@@ -306,7 +306,7 @@ func (c *CVM) RebootInstancesRequest(input *RebootInstancesInput) (req *request.
 	op := &request.Operation{
 		Name:       opRebootInstances,
 		HTTPMethod: "GET",
-		HTTPPath:   "/v2/index.php",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
@@ -375,7 +375,7 @@ func (c *CVM) RunInstancesRequest(input *RunInstancesInput) (req *request.Reques
 	op := &request.Operation{
 		Name:       opRunInstances,
 		HTTPMethod: "GET",
-		HTTPPath:   "/v2/index.php",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
@@ -444,7 +444,7 @@ func (c *CVM) StartInstancesRequest(input *StartInstancesInput) (req *request.Re
 	op := &request.Operation{
 		Name:       opStartInstances,
 		HTTPMethod: "GET",
-		HTTPPath:   "/v2/index.php",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
@@ -513,7 +513,7 @@ func (c *CVM) StopInstancesRequest(input *StopInstancesInput) (req *request.Requ
 	op := &request.Operation{
 		Name:       opStopInstances,
 		HTTPMethod: "GET",
-		HTTPPath:   "/v2/index.php",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
@@ -582,7 +582,7 @@ func (c *CVM) TerminateInstancesRequest(input *TerminateInstancesInput) (req *re
 	op := &request.Operation{
 		Name:       opTerminateInstances,
 		HTTPMethod: "GET",
-		HTTPPath:   "/v2/index.php",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
@@ -743,15 +743,13 @@ type DescribeInstancesInput struct {
 
 	Filters []*Filter `locationName:"Filters" locationNameList:"Filter" type:"list" flattened:"true"`
 
-	InstanceIds []*string `locationName:"InstanceIds" locationNameList:"InstanceIds" type:"list" flattened:"true"`
+	InstanceIds []*string `locationName:"InstanceIds" type:"list" flattened:"true"`
 
 	// test
 	Limit *int64 `type:"integer"`
 
 	// test
 	Offset *int64 `type:"integer"`
-
-	Region *string `type:"string" enum:"RegionEnum"`
 }
 
 // String returns the string representation
@@ -788,12 +786,6 @@ func (s *DescribeInstancesInput) SetOffset(v int64) *DescribeInstancesInput {
 	return s
 }
 
-// SetRegion sets the Region field's value.
-func (s *DescribeInstancesInput) SetRegion(v string) *DescribeInstancesInput {
-	s.Region = &v
-	return s
-}
-
 // test
 type DescribeInstancesOutput struct {
 	_ struct{} `type:"structure"`
@@ -821,13 +813,11 @@ func (s *DescribeInstancesOutput) SetResponse(v *Response) *DescribeInstancesOut
 type DescribeInstancesStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	InstanceIds []*string `locationName:"InstanceIds" locationNameList:"InstanceIds" type:"list" flattened:"true"`
+	InstanceIds []*string `locationName:"InstanceIds" type:"list" flattened:"true"`
 
 	Limit *int64 `type:"integer"`
 
 	Offset *int64 `type:"integer"`
-
-	Version *string `locationName:"Version" type:"string"`
 }
 
 // String returns the string representation
@@ -858,12 +848,6 @@ func (s *DescribeInstancesStatusInput) SetOffset(v int64) *DescribeInstancesStat
 	return s
 }
 
-// SetVersion sets the Version field's value.
-func (s *DescribeInstancesStatusInput) SetVersion(v string) *DescribeInstancesStatusInput {
-	s.Version = &v
-	return s
-}
-
 type DescribeInstancesStatusOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -886,12 +870,42 @@ func (s *DescribeInstancesStatusOutput) SetResponse(v *StatusResponse) *Describe
 	return s
 }
 
+type EnhancedService struct {
+	_ struct{} `type:"structure"`
+
+	MonitorService *RunMonitorServiceEnabled `locationName:"SecurityService" type:"structure"`
+
+	SecurityService *RunSecurityServiceEnabled `locationName:"SecurityService" type:"structure"`
+}
+
+// String returns the string representation
+func (s EnhancedService) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EnhancedService) GoString() string {
+	return s.String()
+}
+
+// SetMonitorService sets the MonitorService field's value.
+func (s *EnhancedService) SetMonitorService(v *RunMonitorServiceEnabled) *EnhancedService {
+	s.MonitorService = v
+	return s
+}
+
+// SetSecurityService sets the SecurityService field's value.
+func (s *EnhancedService) SetSecurityService(v *RunSecurityServiceEnabled) *EnhancedService {
+	s.SecurityService = v
+	return s
+}
+
 type Filter struct {
 	_ struct{} `type:"structure"`
 
 	Name *string `type:"string"`
 
-	Values []*string `locationName:"Value" locationNameList:"item" type:"list" flattened:"true"`
+	Values []*string `type:"list" flattened:"true"`
 }
 
 // String returns the string representation
@@ -1053,10 +1067,14 @@ type Instance struct {
 
 	InstanceName *string `locationName:"InstanceName" type:"string"`
 
+	InstanceState *string `locationName:"InstanceState" type:"string"`
+
 	// test
 	InstanceType *string `locationName:"InstanceType" type:"string"`
 
 	InternetAccessible *InternetAccessible `type:"structure"`
+
+	LoginSettings *LoginSettings `type:"structure"`
 
 	// test
 	Memory *int64 `locationName:"Memory" type:"integer"`
@@ -1070,6 +1088,12 @@ type Instance struct {
 
 	// test
 	PublicIpAddresses []*string `locationName:"PublicIpAddresses" type:"list"`
+
+	RenewFlag *string `locationName:"RenewFlag" type:"string"`
+
+	RestrictState *string `locationName:"RestrictState" type:"string"`
+
+	SecurityGroupIds []*string `locationName:"SecurityGroupIds" type:"list"`
 
 	SystemDisk *SystemDisk `type:"structure"`
 
@@ -1134,6 +1158,12 @@ func (s *Instance) SetInstanceName(v string) *Instance {
 	return s
 }
 
+// SetInstanceState sets the InstanceState field's value.
+func (s *Instance) SetInstanceState(v string) *Instance {
+	s.InstanceState = &v
+	return s
+}
+
 // SetInstanceType sets the InstanceType field's value.
 func (s *Instance) SetInstanceType(v string) *Instance {
 	s.InstanceType = &v
@@ -1143,6 +1173,12 @@ func (s *Instance) SetInstanceType(v string) *Instance {
 // SetInternetAccessible sets the InternetAccessible field's value.
 func (s *Instance) SetInternetAccessible(v *InternetAccessible) *Instance {
 	s.InternetAccessible = v
+	return s
+}
+
+// SetLoginSettings sets the LoginSettings field's value.
+func (s *Instance) SetLoginSettings(v *LoginSettings) *Instance {
+	s.LoginSettings = v
 	return s
 }
 
@@ -1173,6 +1209,24 @@ func (s *Instance) SetPrivateIpAddresses(v []*string) *Instance {
 // SetPublicIpAddresses sets the PublicIpAddresses field's value.
 func (s *Instance) SetPublicIpAddresses(v []*string) *Instance {
 	s.PublicIpAddresses = v
+	return s
+}
+
+// SetRenewFlag sets the RenewFlag field's value.
+func (s *Instance) SetRenewFlag(v string) *Instance {
+	s.RenewFlag = &v
+	return s
+}
+
+// SetRestrictState sets the RestrictState field's value.
+func (s *Instance) SetRestrictState(v string) *Instance {
+	s.RestrictState = &v
+	return s
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *Instance) SetSecurityGroupIds(v []*string) *Instance {
+	s.SecurityGroupIds = v
 	return s
 }
 
@@ -1353,7 +1407,7 @@ type Placement struct {
 
 	ProjectId *int64 `locationName:"ProjectId" type:"integer"`
 
-	Zone *string `locationName:"Zone" type:"string" enum:"RegionEnum"`
+	Zone *string `locationName:"Zone" type:"string"`
 }
 
 // String returns the string representation
@@ -1387,11 +1441,9 @@ func (s *Placement) SetZone(v string) *Placement {
 type RebootInstancesInput struct {
 	_ struct{} `type:"structure"`
 
-	ForceStop *bool `locationName:"ForceStop" type:"boolean"`
+	ForceReboot *bool `type:"boolean"`
 
-	InstanceIds []*string `locationName:"InstanceIds" locationNameList:"InstanceIds" type:"list" flattened:"true"`
-
-	Region *string `type:"string" enum:"RegionEnum"`
+	InstanceIds []*string `locationName:"InstanceIds" type:"list" flattened:"true"`
 }
 
 // String returns the string representation
@@ -1404,21 +1456,15 @@ func (s RebootInstancesInput) GoString() string {
 	return s.String()
 }
 
-// SetForceStop sets the ForceStop field's value.
-func (s *RebootInstancesInput) SetForceStop(v bool) *RebootInstancesInput {
-	s.ForceStop = &v
+// SetForceReboot sets the ForceReboot field's value.
+func (s *RebootInstancesInput) SetForceReboot(v bool) *RebootInstancesInput {
+	s.ForceReboot = &v
 	return s
 }
 
 // SetInstanceIds sets the InstanceIds field's value.
 func (s *RebootInstancesInput) SetInstanceIds(v []*string) *RebootInstancesInput {
 	s.InstanceIds = v
-	return s
-}
-
-// SetRegion sets the Region field's value.
-func (s *RebootInstancesInput) SetRegion(v string) *RebootInstancesInput {
-	s.Region = &v
 	return s
 }
 
@@ -1484,36 +1530,6 @@ func (s *Response) SetTotalCount(v int64) *Response {
 	return s
 }
 
-type ResponseError struct {
-	_ struct{} `type:"structure"`
-
-	Code *string `locationName:"Code" type:"string"`
-
-	Message *string `locationName:"Message" type:"string"`
-}
-
-// String returns the string representation
-func (s ResponseError) String() string {
-	return sdfutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s ResponseError) GoString() string {
-	return s.String()
-}
-
-// SetCode sets the Code field's value.
-func (s *ResponseError) SetCode(v string) *ResponseError {
-	s.Code = &v
-	return s
-}
-
-// SetMessage sets the Message field's value.
-func (s *ResponseError) SetMessage(v string) *ResponseError {
-	s.Message = &v
-	return s
-}
-
 type RunInstancesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1521,7 +1537,9 @@ type RunInstancesInput struct {
 
 	DataDisks []*DataDisk `locationName:"DataDisks" type:"list"`
 
-	EnhancedService *string `locationName:"SecurityGroupIds" type:"string"`
+	EnhancedService *EnhancedService `type:"structure"`
+
+	HostName *string `type:"string"`
 
 	ImageId *string `type:"string"`
 
@@ -1545,7 +1563,9 @@ type RunInstancesInput struct {
 
 	SystemDisk *SystemDisk `locationName:"SystemDisk" type:"structure"`
 
-	Version *string `locationName:"Version" type:"string"`
+	TagSpecification []*TagSpecification `type:"list"`
+
+	UserData *string `type:"string"`
 
 	VirtualPrivateCloud *VirtualPrivateCloud `locationName:"VirtualPrivateCloud" type:"structure"`
 }
@@ -1573,8 +1593,14 @@ func (s *RunInstancesInput) SetDataDisks(v []*DataDisk) *RunInstancesInput {
 }
 
 // SetEnhancedService sets the EnhancedService field's value.
-func (s *RunInstancesInput) SetEnhancedService(v string) *RunInstancesInput {
-	s.EnhancedService = &v
+func (s *RunInstancesInput) SetEnhancedService(v *EnhancedService) *RunInstancesInput {
+	s.EnhancedService = v
+	return s
+}
+
+// SetHostName sets the HostName field's value.
+func (s *RunInstancesInput) SetHostName(v string) *RunInstancesInput {
+	s.HostName = &v
 	return s
 }
 
@@ -1644,9 +1670,15 @@ func (s *RunInstancesInput) SetSystemDisk(v *SystemDisk) *RunInstancesInput {
 	return s
 }
 
-// SetVersion sets the Version field's value.
-func (s *RunInstancesInput) SetVersion(v string) *RunInstancesInput {
-	s.Version = &v
+// SetTagSpecification sets the TagSpecification field's value.
+func (s *RunInstancesInput) SetTagSpecification(v []*TagSpecification) *RunInstancesInput {
+	s.TagSpecification = v
+	return s
+}
+
+// SetUserData sets the UserData field's value.
+func (s *RunInstancesInput) SetUserData(v string) *RunInstancesInput {
+	s.UserData = &v
 	return s
 }
 
@@ -1659,7 +1691,7 @@ func (s *RunInstancesInput) SetVirtualPrivateCloud(v *VirtualPrivateCloud) *RunI
 type RunInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
-	Response *RunInstancesResponse `locationName:"Response" type:"structure"`
+	Response *RunInstancesResponse `type:"structure"`
 }
 
 // String returns the string representation
@@ -1681,9 +1713,7 @@ func (s *RunInstancesOutput) SetResponse(v *RunInstancesResponse) *RunInstancesO
 type RunInstancesResponse struct {
 	_ struct{} `type:"structure"`
 
-	Error *ResponseError `locationName:"InstanceIds" type:"structure"`
-
-	InstanceIdSet []*string `locationName:"InstanceIdSet" locationNameList:"InstanceIds" type:"list" flattened:"true"`
+	InstanceIdSet []*string `type:"list"`
 
 	RequestId *string `locationName:"InstanceIds" type:"string"`
 }
@@ -1698,12 +1728,6 @@ func (s RunInstancesResponse) GoString() string {
 	return s.String()
 }
 
-// SetError sets the Error field's value.
-func (s *RunInstancesResponse) SetError(v *ResponseError) *RunInstancesResponse {
-	s.Error = v
-	return s
-}
-
 // SetInstanceIdSet sets the InstanceIdSet field's value.
 func (s *RunInstancesResponse) SetInstanceIdSet(v []*string) *RunInstancesResponse {
 	s.InstanceIdSet = v
@@ -1716,12 +1740,54 @@ func (s *RunInstancesResponse) SetRequestId(v string) *RunInstancesResponse {
 	return s
 }
 
+type RunMonitorServiceEnabled struct {
+	_ struct{} `type:"structure"`
+
+	Enabled *bool `locationName:"Enabled" type:"boolean"`
+}
+
+// String returns the string representation
+func (s RunMonitorServiceEnabled) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RunMonitorServiceEnabled) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *RunMonitorServiceEnabled) SetEnabled(v bool) *RunMonitorServiceEnabled {
+	s.Enabled = &v
+	return s
+}
+
+type RunSecurityServiceEnabled struct {
+	_ struct{} `type:"structure"`
+
+	Enabled *bool `locationName:"Enabled" type:"boolean"`
+}
+
+// String returns the string representation
+func (s RunSecurityServiceEnabled) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RunSecurityServiceEnabled) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *RunSecurityServiceEnabled) SetEnabled(v bool) *RunSecurityServiceEnabled {
+	s.Enabled = &v
+	return s
+}
+
 type StartInstancesInput struct {
 	_ struct{} `type:"structure"`
 
-	InstanceIds []*string `locationName:"InstanceIds" locationNameList:"InstanceIds" type:"list" flattened:"true"`
-
-	Region *string `type:"string" enum:"RegionEnum"`
+	InstanceIds []*string `locationName:"InstanceIds" type:"list" flattened:"true"`
 }
 
 // String returns the string representation
@@ -1737,12 +1803,6 @@ func (s StartInstancesInput) GoString() string {
 // SetInstanceIds sets the InstanceIds field's value.
 func (s *StartInstancesInput) SetInstanceIds(v []*string) *StartInstancesInput {
 	s.InstanceIds = v
-	return s
-}
-
-// SetRegion sets the Region field's value.
-func (s *StartInstancesInput) SetRegion(v string) *StartInstancesInput {
-	s.Region = &v
 	return s
 }
 
@@ -1811,9 +1871,11 @@ type StopInstancesInput struct {
 
 	ForceStop *bool `locationName:"ForceStop" type:"boolean"`
 
-	InstanceIds []*string `locationName:"InstanceIds" locationNameList:"InstanceIds" type:"list" flattened:"true"`
+	InstanceIds []*string `locationName:"InstanceIds" type:"list" flattened:"true"`
 
-	Region *string `type:"string" enum:"RegionEnum"`
+	StopType *string `type:"string"`
+
+	StoppedMode *string `type:"string"`
 }
 
 // String returns the string representation
@@ -1838,9 +1900,15 @@ func (s *StopInstancesInput) SetInstanceIds(v []*string) *StopInstancesInput {
 	return s
 }
 
-// SetRegion sets the Region field's value.
-func (s *StopInstancesInput) SetRegion(v string) *StopInstancesInput {
-	s.Region = &v
+// SetStopType sets the StopType field's value.
+func (s *StopInstancesInput) SetStopType(v string) *StopInstancesInput {
+	s.StopType = &v
+	return s
+}
+
+// SetStoppedMode sets the StoppedMode field's value.
+func (s *StopInstancesInput) SetStoppedMode(v string) *StopInstancesInput {
+	s.StoppedMode = &v
 	return s
 }
 
@@ -1904,12 +1972,70 @@ func (s *SystemDisk) SetDiskType(v string) *SystemDisk {
 	return s
 }
 
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	Key *string `type:"string"`
+
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
+}
+
+type TagSpecification struct {
+	_ struct{} `type:"structure"`
+
+	ResourceType *string `type:"string"`
+
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s TagSpecification) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagSpecification) GoString() string {
+	return s.String()
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *TagSpecification) SetResourceType(v string) *TagSpecification {
+	s.ResourceType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagSpecification) SetTags(v []*Tag) *TagSpecification {
+	s.Tags = v
+	return s
+}
+
 type TerminateInstancesInput struct {
 	_ struct{} `type:"structure"`
 
-	InstanceIds []*string `locationName:"InstanceIds" locationNameList:"InstanceIds" type:"list" flattened:"true"`
-
-	Version *string `locationName:"Version" type:"string"`
+	InstanceIds []*string `locationName:"InstanceIds" type:"list" flattened:"true"`
 }
 
 // String returns the string representation
@@ -1928,16 +2054,10 @@ func (s *TerminateInstancesInput) SetInstanceIds(v []*string) *TerminateInstance
 	return s
 }
 
-// SetVersion sets the Version field's value.
-func (s *TerminateInstancesInput) SetVersion(v string) *TerminateInstancesInput {
-	s.Version = &v
-	return s
-}
-
 type TerminateInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
-	Response *TerminateInstancesResponse `locationName:"Response" type:"structure"`
+	Response *OperateInstancesResponse `type:"structure"`
 }
 
 // String returns the string representation
@@ -1951,38 +2071,8 @@ func (s TerminateInstancesOutput) GoString() string {
 }
 
 // SetResponse sets the Response field's value.
-func (s *TerminateInstancesOutput) SetResponse(v *TerminateInstancesResponse) *TerminateInstancesOutput {
+func (s *TerminateInstancesOutput) SetResponse(v *OperateInstancesResponse) *TerminateInstancesOutput {
 	s.Response = v
-	return s
-}
-
-type TerminateInstancesResponse struct {
-	_ struct{} `type:"structure"`
-
-	Error *ResponseError `locationName:"Error" type:"structure"`
-
-	RequestId *string `locationName:"RequestId" type:"string"`
-}
-
-// String returns the string representation
-func (s TerminateInstancesResponse) String() string {
-	return sdfutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s TerminateInstancesResponse) GoString() string {
-	return s.String()
-}
-
-// SetError sets the Error field's value.
-func (s *TerminateInstancesResponse) SetError(v *ResponseError) *TerminateInstancesResponse {
-	s.Error = v
-	return s
-}
-
-// SetRequestId sets the RequestId field's value.
-func (s *TerminateInstancesResponse) SetRequestId(v string) *TerminateInstancesResponse {
-	s.RequestId = &v
 	return s
 }
 

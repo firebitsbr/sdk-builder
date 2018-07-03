@@ -1,0 +1,14 @@
+{
+    "version": "1.0",
+    "examples": {
+        "DescribeVpcs": [{
+            "input": {
+            },
+            "output": {
+            },
+            "description": "This example DescribeVpc.",
+            "id": "DescribeVpc-1",
+            "title": "To describe VirtualPrivateCloud"
+        }]
+    }
+}

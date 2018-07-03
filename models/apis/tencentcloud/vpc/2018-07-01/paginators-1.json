@@ -1,0 +1,10 @@
+{
+  "pagination": {
+    "DescribeVpcs": {
+      "input_token": "Offset",
+      "limit_key": "Limit",
+      "output_token": "Response.TotalCount",
+      "result_key": "VpcSet"
+    }
+  }
+}

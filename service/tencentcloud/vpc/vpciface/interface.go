@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // VirtualPrivateCloud.
 //    func myFunc(svc vpciface.VPCAPI) bool {
-//        // Make svc.CreateSubnet request
+//        // Make svc.CreateSecurityGroup request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockVPCClient struct {
 //        vpciface.VPCAPI
 //    }
-//    func (m *mockVPCClient) CreateSubnet(input *vpc.CreateSubnetInput) (*vpc.CreateSubnetOutput, error) {
+//    func (m *mockVPCClient) CreateSecurityGroup(input *vpc.CreateSecurityGroupInput) (*vpc.CreateSecurityGroupOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,14 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type VPCAPI interface {
+	CreateSecurityGroup(*vpc.CreateSecurityGroupInput) (*vpc.CreateSecurityGroupOutput, error)
+	CreateSecurityGroupWithContext(sdf.Context, *vpc.CreateSecurityGroupInput, ...request.Option) (*vpc.CreateSecurityGroupOutput, error)
+	CreateSecurityGroupRequest(*vpc.CreateSecurityGroupInput) (*request.Request, *vpc.CreateSecurityGroupOutput)
+
+	CreateSecurityGroupPolicies(*vpc.CreateSecurityGroupPoliciesInput) (*vpc.CreateSecurityGroupPoliciesOutput, error)
+	CreateSecurityGroupPoliciesWithContext(sdf.Context, *vpc.CreateSecurityGroupPoliciesInput, ...request.Option) (*vpc.CreateSecurityGroupPoliciesOutput, error)
+	CreateSecurityGroupPoliciesRequest(*vpc.CreateSecurityGroupPoliciesInput) (*request.Request, *vpc.CreateSecurityGroupPoliciesOutput)
+
 	CreateSubnet(*vpc.CreateSubnetInput) (*vpc.CreateSubnetOutput, error)
 	CreateSubnetWithContext(sdf.Context, *vpc.CreateSubnetInput, ...request.Option) (*vpc.CreateSubnetOutput, error)
 	CreateSubnetRequest(*vpc.CreateSubnetInput) (*request.Request, *vpc.CreateSubnetOutput)
@@ -67,6 +75,14 @@ type VPCAPI interface {
 	CreateVpc(*vpc.CreateVpcInput) (*vpc.CreateVpcOutput, error)
 	CreateVpcWithContext(sdf.Context, *vpc.CreateVpcInput, ...request.Option) (*vpc.CreateVpcOutput, error)
 	CreateVpcRequest(*vpc.CreateVpcInput) (*request.Request, *vpc.CreateVpcOutput)
+
+	DeleteSecurityGroup(*vpc.DeleteSecurityGroupInput) (*vpc.DeleteSecurityGroupOutput, error)
+	DeleteSecurityGroupWithContext(sdf.Context, *vpc.DeleteSecurityGroupInput, ...request.Option) (*vpc.DeleteSecurityGroupOutput, error)
+	DeleteSecurityGroupRequest(*vpc.DeleteSecurityGroupInput) (*request.Request, *vpc.DeleteSecurityGroupOutput)
+
+	DeleteSecurityGroupPolicies(*vpc.DeleteSecurityGroupPoliciesInput) (*vpc.DeleteSecurityGroupPoliciesOutput, error)
+	DeleteSecurityGroupPoliciesWithContext(sdf.Context, *vpc.DeleteSecurityGroupPoliciesInput, ...request.Option) (*vpc.DeleteSecurityGroupPoliciesOutput, error)
+	DeleteSecurityGroupPoliciesRequest(*vpc.DeleteSecurityGroupPoliciesInput) (*request.Request, *vpc.DeleteSecurityGroupPoliciesOutput)
 
 	DeleteSubnet(*vpc.DeleteSubnetInput) (*vpc.DeleteSubnetOutput, error)
 	DeleteSubnetWithContext(sdf.Context, *vpc.DeleteSubnetInput, ...request.Option) (*vpc.DeleteSubnetOutput, error)
@@ -76,16 +92,24 @@ type VPCAPI interface {
 	DeleteVpcWithContext(sdf.Context, *vpc.DeleteVpcInput, ...request.Option) (*vpc.DeleteVpcOutput, error)
 	DeleteVpcRequest(*vpc.DeleteVpcInput) (*request.Request, *vpc.DeleteVpcOutput)
 
-	DescribeSubnet(*vpc.DescribeSubnetInput) (*vpc.DescribeSubnetOutput, error)
-	DescribeSubnetWithContext(sdf.Context, *vpc.DescribeSubnetInput, ...request.Option) (*vpc.DescribeSubnetOutput, error)
-	DescribeSubnetRequest(*vpc.DescribeSubnetInput) (*request.Request, *vpc.DescribeSubnetOutput)
+	DescribeSecurityGroupPolicies(*vpc.DescribeSecurityGroupPoliciesInput) (*vpc.DescribeSecurityGroupPoliciesOutput, error)
+	DescribeSecurityGroupPoliciesWithContext(sdf.Context, *vpc.DescribeSecurityGroupPoliciesInput, ...request.Option) (*vpc.DescribeSecurityGroupPoliciesOutput, error)
+	DescribeSecurityGroupPoliciesRequest(*vpc.DescribeSecurityGroupPoliciesInput) (*request.Request, *vpc.DescribeSecurityGroupPoliciesOutput)
 
-	DescribeVpc(*vpc.DescribeVpcInput) (*vpc.DescribeVpcOutput, error)
-	DescribeVpcWithContext(sdf.Context, *vpc.DescribeVpcInput, ...request.Option) (*vpc.DescribeVpcOutput, error)
-	DescribeVpcRequest(*vpc.DescribeVpcInput) (*request.Request, *vpc.DescribeVpcOutput)
+	DescribeSecurityGroups(*vpc.DescribeSecurityGroupsInput) (*vpc.DescribeSecurityGroupsOutput, error)
+	DescribeSecurityGroupsWithContext(sdf.Context, *vpc.DescribeSecurityGroupsInput, ...request.Option) (*vpc.DescribeSecurityGroupsOutput, error)
+	DescribeSecurityGroupsRequest(*vpc.DescribeSecurityGroupsInput) (*request.Request, *vpc.DescribeSecurityGroupsOutput)
 
-	DescribeVpcPages(*vpc.DescribeVpcInput, func(*vpc.DescribeVpcOutput, bool) bool) error
-	DescribeVpcPagesWithContext(sdf.Context, *vpc.DescribeVpcInput, func(*vpc.DescribeVpcOutput, bool) bool, ...request.Option) error
+	DescribeSubnets(*vpc.DescribeSubnetsInput) (*vpc.DescribeSubnetsOutput, error)
+	DescribeSubnetsWithContext(sdf.Context, *vpc.DescribeSubnetsInput, ...request.Option) (*vpc.DescribeSubnetsOutput, error)
+	DescribeSubnetsRequest(*vpc.DescribeSubnetsInput) (*request.Request, *vpc.DescribeSubnetsOutput)
+
+	DescribeVpcs(*vpc.DescribeVpcsInput) (*vpc.DescribeVpcsOutput, error)
+	DescribeVpcsWithContext(sdf.Context, *vpc.DescribeVpcsInput, ...request.Option) (*vpc.DescribeVpcsOutput, error)
+	DescribeVpcsRequest(*vpc.DescribeVpcsInput) (*request.Request, *vpc.DescribeVpcsOutput)
+
+	DescribeVpcsPages(*vpc.DescribeVpcsInput, func(*vpc.DescribeVpcsOutput, bool) bool) error
+	DescribeVpcsPagesWithContext(sdf.Context, *vpc.DescribeVpcsInput, func(*vpc.DescribeVpcsOutput, bool) bool, ...request.Option) error
 }
 
 var _ VPCAPI = (*vpc.VPC)(nil)

@@ -10,7 +10,7 @@ import (
 	"github.com/polefishu/sdk-builder/sdf"
 	"github.com/polefishu/sdk-builder/sdf/sdferr"
 	"github.com/polefishu/sdk-builder/sdf/session"
-	"github.com/polefishu/sdk-builder/service/cvm"
+	"github.com/polefishu/sdk-builder/service/tencentcloud/cvm"
 )
 
 var _ time.Duration
@@ -30,19 +30,17 @@ func parseTime(layout, value string) *time.Time {
 // This example DescribeInstances.
 func ExampleCVM_DescribeInstances_shared00() {
 	svc := cvm.New(session.New())
-	input := &cvm.DescribeInstancesInput{
-		Region: aws.String("sh"),
-	}
+	input := &cvm.DescribeInstancesInput{}
 
 	result, err := svc.DescribeInstances(input)
 	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
+		if serr, ok := err.(sdferr.Error); ok {
+			switch serr.Code() {
 			default:
-				fmt.Println(aerr.Error())
+				fmt.Println(serr.Error())
 			}
 		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
+			// Print the error, cast err to sdferr.Error to get the Code and
 			// Message from an error.
 			fmt.Println(err.Error())
 		}

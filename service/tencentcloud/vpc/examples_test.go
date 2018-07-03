@@ -10,7 +10,7 @@ import (
 	"github.com/polefishu/sdk-builder/sdf"
 	"github.com/polefishu/sdk-builder/sdf/sdferr"
 	"github.com/polefishu/sdk-builder/sdf/session"
-	"github.com/polefishu/sdk-builder/service/vpc"
+	"github.com/polefishu/sdk-builder/service/tencentcloud/vpc"
 )
 
 var _ time.Duration
@@ -28,19 +28,19 @@ func parseTime(layout, value string) *time.Time {
 // To describe VirtualPrivateCloud
 //
 // This example DescribeVpc.
-func ExampleVPC_DescribeVpc_shared00() {
+func ExampleVPC_DescribeVpcs_shared00() {
 	svc := vpc.New(session.New())
-	input := &vpc.DescribeVpcInput{}
+	input := &vpc.DescribeVpcsInput{}
 
-	result, err := svc.DescribeVpc(input)
+	result, err := svc.DescribeVpcs(input)
 	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
+		if serr, ok := err.(sdferr.Error); ok {
+			switch serr.Code() {
 			default:
-				fmt.Println(aerr.Error())
+				fmt.Println(serr.Error())
 			}
 		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
+			// Print the error, cast err to sdferr.Error to get the Code and
 			// Message from an error.
 			fmt.Println(err.Error())
 		}

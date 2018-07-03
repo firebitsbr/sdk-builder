@@ -1,0 +1,933 @@
+{
+    "version": "3.0",
+    "metadata": {
+        "apiVersion": "2017-03-12",
+        "endpointPrefix": "cvm",
+        "jsonVersion": "1.1",
+        "protocol": "tencentquery",
+        "serviceAbbreviation": "CVM",
+        "serviceFullName": "Cloud Virtual Machine",
+        "signatureVersion": "tencentcloud",
+        "serviceCorp": "tencent"
+    },
+    "operations": {
+        "DescribeInstances": {
+            "name": "DescribeInstances",
+            "http": {
+                "method": "GET",
+                "requestUri": "/"
+            },
+            "input": {
+                "shape": "DescribeInstancesRequest"
+            },
+            "output": {
+                "shape": "DescribeInstancesResult"
+            }
+        },
+        "DescribeInstancesStatus": {
+            "name": "DescribeInstancesStatus",
+            "http": {
+                "method": "GET",
+                "requestUri": "/"
+            },
+            "input": {
+                "shape": "DescribeInstancesStatusRequest"
+            },
+            "output": {
+                "shape": "DescribeInstancesStatusResult"
+            }
+        },
+        "RunInstances": {
+            "name": "RunInstances",
+            "http": {
+                "method": "GET",
+                "requestUri": "/"
+            },
+            "input": {
+                "shape": "RunInstancesRequest"
+            },
+            "output": {
+                "shape": "RunInstancesResult"
+            }
+        },
+        "StartInstances": {
+            "name": "StartInstances",
+            "http": {
+                "method": "GET",
+                "requestUri": "/"
+            },
+            "input": {
+                "shape": "StartInstancesRequest"
+            },
+            "output": {
+                "shape": "StartInstancesResult"
+            }
+        },
+        "StopInstances": {
+            "name": "StopInstances",
+            "http": {
+                "method": "GET",
+                "requestUri": "/"
+            },
+            "input": {
+                "shape": "StopInstancesRequest"
+            },
+            "output": {
+                "shape": "StopInstancesResult"
+            }
+        },
+        "RebootInstances": {
+            "name": "RebootInstances",
+            "http": {
+                "method": "GET",
+                "requestUri": "/"
+            },
+            "input": {
+                "shape": "RebootInstancesRequest"
+            },
+            "output": {
+                "shape": "RebootInstancesResult"
+            }
+        },
+        "TerminateInstances": {
+            "name": "TerminateInstances",
+            "http": {
+                "method": "GET",
+                "requestUri": "/"
+            },
+            "input": {
+                "shape": "TerminateInstancesRequest"
+            },
+            "output": {
+                "shape": "TerminateInstancesResult"
+            }
+        },
+        "DescribeImages": {
+            "name": "DescribeImages",
+            "http": {
+                "method": "GET",
+                "requestUri": "/"
+            },
+            "input": {
+                "shape": "DescribeImagesRequest"
+            },
+            "output": {
+                "shape": "DescribeImagesResult"
+            }
+        }
+    },
+    "shapes": {
+        "DescribeInstancesRequest": {
+            "type": "structure",
+            "members": {
+                "Filters": {
+                    "shape": "FilterList",
+                    "locationName": "Filters"
+                },
+                "InstanceIds": {
+                    "shape": "FlattenedStringList",
+                    "locationName": "InstanceIds"
+                },
+                "Offset": {
+                    "shape": "Integer"
+                },
+                "Limit": {
+                    "shape": "Integer"
+                }
+            }
+        },
+        "DescribeInstancesResult": {
+            "type": "structure",
+            "members": {
+                "Response": {
+                    "shape": "Response"
+                }
+            }
+        },
+        "InstanceList": {
+            "type": "list",
+            "member": {
+                "shape": "Instance"
+            }
+        },
+        "Instance": {
+            "type": "structure",
+            "members": {
+                "InstanceID": {
+                    "shape": "String",
+                    "locationName": "InstanceId"
+                },
+                "InstanceName": {
+                    "shape": "String",
+                    "locationName": "InstanceName"
+                },
+                "InstanceState": {
+                    "shape": "String",
+                    "locationName": "InstanceState"
+                },
+                "InstanceType": {
+                    "shape": "String",
+                    "locationName": "InstanceType"
+                },
+                "RestrictState": {
+                    "shape": "String",
+                    "locationName": "RestrictState"
+                },
+                "LoginSettings": {
+                    "shape": "LoginSettings"
+                },
+                "CPU": {
+                    "shape": "Integer",
+                    "locationName": "CPU"
+                },
+                "Memory": {
+                    "shape": "Integer",
+                    "locationName": "Memory"
+                },
+                "PrivateIpAddresses": {
+                    "shape": "StringList",
+                    "locationName": "PrivateIpAddresses"
+                },
+                "SecurityGroupIds": {
+                    "shape": "StringList",
+                    "locationName": "SecurityGroupIds"
+                },
+                "PublicIpAddresses": {
+                    "shape": "StringList",
+                    "locationName": "PublicIpAddresses"
+                },
+                "InstanceChargeType": {
+                    "shape": "String",
+                    "locationName": "InstanceChargeType"
+                },
+                "SystemDisk": {
+                    "shape": "SystemDisk"
+                },
+                "DataDisks": {
+                    "shape": "DataDiskList"
+                },
+                "ImageID": {
+                    "shape": "String",
+                    "locationName": "ImageId"
+                },
+                "OsName": {
+                    "shape": "String",
+                    "locationName": "OsName"
+                },
+                "InternetAccessible": {
+                    "shape": "InternetAccessible"
+                },
+                "Placement": {
+                    "shape": "Placement"
+                },
+                "RenewFlag": {
+                    "shape": "String",
+                    "locationName": "RenewFlag"
+                },
+                "VirtualPrivateCloud": {
+                    "shape": "VirtualPrivateCloud"
+                },
+                "CreatedTime": {
+                    "shape": "String",
+                    "locationName": "CreatedTime"
+                },
+                "ExpiredTime": {
+                    "shape": "String",
+                    "locationName": "ExpiredTime"
+                }
+            }
+        },
+        "StringList": {
+            "type": "list",
+            "member": {
+                "shape": "String"
+            }
+        },
+        "DataDiskList": {
+            "type": "list",
+            "member": {
+                "shape": "DataDisk"
+            }
+        },
+        "SystemDisk": {
+            "type": "structure",
+            "members": {
+                "DiskType": {
+                    "shape": "String",
+                    "locationName": "DiskType",
+                    "enum": [
+                        "LOCAL_BASIC",
+                        "LOCAL_SSD",
+                        "CLOUD_BASIC",
+                        "CLOUD_SSD",
+                        "CLOUD_PREMIUM"
+                    ]
+                },
+                "DiskId": {
+                    "shape": "String",
+                    "locationName": "DiskId"
+                },
+                "DiskSize": {
+                    "shape": "Integer",
+                    "locationName": "DiskSize"
+                }
+            }
+        },
+        "DataDisk": {
+            "type": "structure",
+            "members": {
+                "DiskType": {
+                    "shape": "String",
+                    "locationName": "DiskType",
+                    "enum": [
+                        "LOCAL_BASIC",
+                        "LOCAL_SSD",
+                        "CLOUD_BASIC",
+                        "CLOUD_PREMIUM",
+                        "CLOUD_SSD"
+                    ]
+                },
+                "DiskId": {
+                    "shape": "String",
+                    "locationName": "DiskId"
+                },
+                "DiskSize": {
+                    "shape": "Integer",
+                    "locationName": "DiskId"
+                }
+            }
+        },
+        "Placement": {
+            "type": "structure",
+            "members": {
+                "Zone": {
+                    "shape": "String",
+                    "locationName": "Zone"
+                },
+                "ProjectId": {
+                    "shape": "Integer",
+                    "locationName": "ProjectId"
+                },
+                "HostIds": {
+                    "shape": "HostIdStringList",
+                    "locationName": "HostIds"
+                }
+            }
+        },
+        "HostIdStringList": {
+            "type": "list",
+            "member": {
+                "shape": "String"
+            }
+        },
+        "InternetAccessible": {
+            "type": "structure",
+            "members": {
+                "InternetChargeType": {
+                    "shape": "String",
+                    "locationName": "InternetChargeType",
+                    "enum": [
+                        "BANDWIDTH_PREPAID",
+                        "TRAFFIC_POSTPAID_BY_HOUR",
+                        "BANDWIDTH_POSTPAID_BY_HOUR",
+                        "BANDWIDTH_PACKAGE"
+                    ]
+                },
+                "InternetMaxBandwidthOut": {
+                    "shape": "Integer",
+                    "locationName": "InternetMaxBandwidthOut"
+                },
+                "PublicIpAssigned": {
+                    "shape": "Bool",
+                    "locationName": "PublicIpAssigned"
+                }
+            }
+        },
+        "VirtualPrivateCloud": {
+            "type": "structure",
+            "members": {
+                "VpcId": {
+                    "shape": "String",
+                    "locationName": "VpcId"
+                },
+                "SubnetId": {
+                    "shape": "String",
+                    "locationName": "SubnetId"
+                },
+                "AsVpcGateway": {
+                    "shape": "Bool",
+                    "locationName": "AsVpcGateway"
+                },
+                "PrivateIpAddresses": {
+                    "shape": "PrivateIpAddresseStringList",
+                    "locationName": "PrivateIpAddresses"
+                }
+            }
+        },
+        "PrivateIpAddresseStringList": {
+            "type": "list",
+            "member": {
+                "shape": "String"
+            }
+        },
+        "Response": {
+            "type": "structure",
+            "members": {
+                "RequestID": {
+                    "shape": "String",
+                    "locationName": "RequestId"
+                },
+                "TotalCount": {
+                    "shape": "Integer",
+                    "locationName": "TotalCount"
+                },
+                "InstanceSet": {
+                    "shape": "InstanceList",
+                    "locationName": "InstanceSet"
+                }
+            }
+        },
+        "FlattenedStringList": {
+            "type": "list",
+            "member": {
+                "shape": "String"
+            },
+            "flattened": true
+        },
+        "FilterList": {
+            "type": "list",
+            "member": {
+                "shape": "Filter",
+                "locationName": "Filter"
+            },
+            "flattened": true
+        },
+        "Filter": {
+            "type": "structure",
+            "members": {
+                "Name": {
+                    "shape": "String"
+                },
+                "Values": {
+                    "shape": "FlattenedStringList"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "Integer": {
+            "type": "integer"
+        },
+        "Bool": {
+            "type": "boolean"
+        },
+        "DescribeInstancesStatusRequest": {
+            "type": "structure",
+            "members": {
+                "InstanceIds": {
+                    "shape": "FlattenedStringList",
+                    "locationName": "InstanceIds"
+                },
+                "Offset": {
+                    "shape": "Integer"
+                },
+                "Limit": {
+                    "shape": "Integer"
+                }
+            }
+        },
+        "DescribeInstancesStatusResult": {
+            "type": "structure",
+            "members": {
+                "Response": {
+                    "shape": "StatusResponse"
+                }
+            }
+        },
+        "StatusResponse": {
+            "type": "structure",
+            "members": {
+                "RequestID": {
+                    "shape": "String",
+                    "locationName": "RequestId"
+                },
+                "TotalCount": {
+                    "shape": "Integer",
+                    "locationName": "TotalCount"
+                },
+                "InstanceStatusSet": {
+                    "shape": "InstanceStatusList",
+                    "locationName": "InstanceStatusSet"
+                }
+            }
+        },
+        "InstanceStatusList": {
+            "type": "list",
+            "member": {
+                "shape": "InstanceStatus"
+            }
+        },
+        "InstanceStatus": {
+            "type": "structure",
+            "members": {
+                "InstanceID": {
+                    "shape": "String",
+                    "locationName": "InstanceId"
+                },
+                "InstanceState": {
+                    "shape": "String",
+                    "locationName": "InstanceState",
+                    "enum": [
+                        "PENDING",
+                        "RUNNING",
+                        "STOPPED",
+                        "REBOOTING",
+                        "STARTING",
+                        "STOPPING",
+                        "EXPIRED",
+                        "TERMINATING",
+                        "TERMINATED"
+                    ]
+                }
+            }
+        },
+        "RunInstancesRequest": {
+            "type": "structure",
+            "members": {
+                "InstanceChargeType": {
+                    "shape": "String",
+                    "locationName": "InstanceChargeType",
+                    "enum": [
+                        "PREPAID",
+                        "POSTPAID_BY_HOUR",
+                        "CDHPAID"
+                    ]
+                },
+                "InstanceChargePrepaid": {
+                    "shape": "InstanceChargePrepaid",
+                    "locationName": "InstanceChargePrepaid"
+                },
+                "Placement": {
+                    "shape": "Placement",
+                    "locationName": "Placement"
+                },
+                "InstanceType": {
+                    "shape": "String",
+                    "locationName": "InstanceType"
+                },
+                "HostName": {
+                    "shape": "String"
+                },
+                "ImageId": {
+                    "shape": "String"
+                },
+                "SystemDisk": {
+                    "shape": "SystemDisk",
+                    "locationName": "SystemDisk"
+                },
+                "DataDisks": {
+                    "shape": "DataDiskList",
+                    "locationName": "DataDisks"
+                },
+                "VirtualPrivateCloud": {
+                    "shape": "VirtualPrivateCloud",
+                    "locationName": "VirtualPrivateCloud"
+                },
+                "InternetAccessible": {
+                    "shape": "InternetAccessible",
+                    "locationName": "InternetAccessible"
+                },
+                "InstanceCount": {
+                    "shape": "Integer",
+                    "locationName": "InstanceCount"
+                },
+                "InstanceName": {
+                    "shape": "String",
+                    "locationName": "InstanceName"
+                },
+                "LoginSettings": {
+                    "shape": "LoginSettings",
+                    "locationName": "LoginSettings"
+                },
+                "SecurityGroupIds": {
+                    "shape": "FlattenedStringList",
+                    "locationName": "SecurityGroupIds"
+                },
+                "EnhancedService": {
+                    "shape": "EnhancedService"
+                },
+                "UserData": {
+                    "shape": "String"
+                },
+                "ClientToken": {
+                    "shape": "String",
+                    "locationName": "ClientToken"
+                },
+                "TagSpecification": {
+                    "shape": "TagSpecificationList"
+                }
+            }
+        },
+        "TagSpecificationList": {
+            "type": "list",
+            "member": {
+                "shape": "TagSpecification"
+            }
+        },
+        "TagSpecification": {
+            "type": "structure",
+            "members": {
+                "ResourceType": {
+                    "shape": "String",
+                    "enum": [
+                        "instance"
+                    ]
+                },
+                "Tags": {
+                    "shape": "TagsList"
+                }
+            }
+        },
+        "TagsList": {
+            "type": "list",
+            "member": {
+                "shape": "Tag"
+            }
+        },
+        "Tag": {
+            "type": "structure",
+            "members": {
+                "Key": {
+                    "shape": "String"
+                },
+                "Value": {
+                    "shape": "String"
+                }
+            }
+        },
+        "EnhancedService": {
+            "type": "structure",
+            "members": {
+                "SecurityService": {
+                    "shape": "RunSecurityServiceEnabled",
+                    "locationName": "SecurityService"
+                },
+                "MonitorService": {
+                    "shape": "RunMonitorServiceEnabled",
+                    "locationName": "SecurityService"
+                }
+            }
+        },
+        "RunSecurityServiceEnabled": {
+            "type": "structure",
+            "members": {
+                "Enabled": {
+                    "shape": "Bool",
+                    "locationName": "Enabled"
+                }
+            }
+        },
+        "RunMonitorServiceEnabled": {
+            "type": "structure",
+            "members": {
+                "Enabled": {
+                    "shape": "Bool",
+                    "locationName": "Enabled"
+                }
+            }
+        },
+        "KeyIdStringList": {
+            "type": "list",
+            "member": {
+                "shape": "String"
+            },
+            "flattened": true
+        },
+        "LoginSettings": {
+            "type": "structure",
+            "members": {
+                "Password": {
+                    "shape": "String",
+                    "locationName": "Password"
+                },
+                "KeyIds": {
+                    "shape": "KeyIdStringList",
+                    "locationName": "KeyIds"
+                },
+                "KeepImageLogin": {
+                    "shape": "Bool",
+                    "locationName": "KeepImageLogin"
+                }
+            }
+        },
+        "InstanceChargePrepaid": {
+            "type": "structure",
+            "members": {
+                "Period": {
+                    "shape": "Integer",
+                    "locationName": "Period",
+                    "enum": [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        8,
+                        9,
+                        10,
+                        11,
+                        12,
+                        24,
+                        36
+                    ]
+                },
+                "RenewFlag": {
+                    "shape": "String",
+                    "locationName": "RenewFlag",
+                    "enum": [
+                        "NOTIFY_AND_AUTO_RENEW",
+                        "NOTIFY_AND_MANUAL_RENEW",
+                        "DISABLE_NOTIFY_AND_MANUAL_RENEW"
+                    ]
+                }
+            }
+        },
+        "RunInstancesResult": {
+            "type": "structure",
+            "members": {
+                "Response": {
+                    "shape": "RunInstancesResponse"
+                }
+            }
+        },
+        "RunInstancesResponse": {
+            "type": "structure",
+            "members": {
+                "InstanceIdSet": {
+                    "shape": "StringList"
+                },
+                "RequestId": {
+                    "shape": "String",
+                    "locationName": "InstanceIds"
+                }
+            }
+        },
+        "StartInstancesRequest": {
+            "type": "structure",
+            "members": {
+                "InstanceIds": {
+                    "shape": "FlattenedStringList",
+                    "locationName": "InstanceIds"
+                }
+            }
+        },
+        "StartInstancesResult": {
+            "type": "structure",
+            "members": {
+                "Response": {
+                    "shape": "OperateInstancesResponse"
+                }
+            }
+        },
+        "StopInstancesRequest": {
+            "type": "structure",
+            "members": {
+                "InstanceIds": {
+                    "shape": "FlattenedStringList",
+                    "locationName": "InstanceIds"
+                },
+                "ForceStop": {
+                    "shape": "Bool",
+                    "locationName": "ForceStop"
+                },
+                "StopType": {
+                    "shape": "String",
+                    "enum": [
+                        "SOFT_FIRST",
+                        "HARD",
+                        "SOFT"
+                    ]
+                },
+                "StoppedMode": {
+                    "shape": "String",
+                    "enum": [
+                        "KEEP_CHARGING",
+                        "STOP_CHARGING"
+                    ]
+                }
+            }
+        },
+        "StopInstancesResult": {
+            "type": "structure",
+            "members": {
+                "Response": {
+                    "shape": "OperateInstancesResponse"
+                }
+            }
+        },
+        "RebootInstancesRequest": {
+            "type": "structure",
+            "members": {
+                "InstanceIds": {
+                    "shape": "FlattenedStringList",
+                    "locationName": "InstanceIds"
+                },
+                "ForceReboot": {
+                    "shape": "Bool"
+                }
+            }
+        },
+        "RebootInstancesResult": {
+            "type": "structure",
+            "members": {
+                "Response": {
+                    "shape": "OperateInstancesResponse"
+                }
+            }
+        },
+        "TerminateInstancesRequest": {
+            "type": "structure",
+            "members": {
+                "InstanceIds": {
+                    "shape": "FlattenedStringList",
+                    "locationName": "InstanceIds"
+                }
+            }
+        },
+        "TerminateInstancesResult": {
+            "type": "structure",
+            "members": {
+                "Response": {
+                    "shape": "OperateInstancesResponse"
+                }
+            }
+        },
+        "OperateInstancesResponse": {
+            "type": "structure",
+            "members": {
+                "RequestID": {
+                    "shape": "String",
+                    "locationName": "RequestId"
+                }
+            }
+        },
+        "RegionEnum": {
+            "type": "string",
+            "enum": [
+                "ap-beijing",
+                "ap-chengdu",
+                "ap-guangzhou",
+                "ap-guangzhou-open",
+                "ap-hongkong",
+                "ap-shanghai",
+                "ap-singapore",
+                "eu-frankfurt",
+                "na-siliconvalley",
+                "na-toronto",
+                "ap-shanghai-fsi",
+                "ap-shenzhen-fsi"
+            ]
+        },
+        "DescribeImagesRequest": {
+            "type": "structure",
+            "members": {
+                "Region": {
+                    "shape": "RegionEnum"
+                },
+                "Filters": {
+                    "shape": "FilterList",
+                    "locationName": "Filters"
+                },
+                "ImageIds": {
+                    "shape": "ImageIdsStringList",
+                    "locationName": "ImageIds"
+                },
+                "Offset": {
+                    "shape": "Integer"
+                },
+                "Limit": {
+                    "shape": "Integer"
+                }
+            }
+        },
+        "ImageIdsStringList": {
+            "type": "list",
+            "member": {
+                "shape": "String",
+                "locationName": "ImageId"
+            },
+            "flattened": true
+        },
+        "DescribeImagesResult": {
+            "type": "structure",
+            "members": {
+                "Response": {
+                    "shape": "ImageResponse"
+                }
+            }
+        },
+        "ImageResponse": {
+            "type": "structure",
+            "members": {
+                "RequestID": {
+                    "shape": "String",
+                    "locationName": "RequestId"
+                },
+                "TotalCount": {
+                    "shape": "Integer",
+                    "locationName": "TotalCount"
+                },
+                "ImageSet": {
+                    "shape": "ImageSet",
+                    "locationName": "ImageSet"
+                }
+            }
+        },
+        "ImageSet": {
+            "type": "list",
+            "member": {
+                "shape": "Image"
+            }
+        },
+        "Image": {
+            "type": "structure",
+            "members": {
+                "ImageID": {
+                    "shape": "String",
+                    "locationName": "ImageId"
+                },
+                "ImageOsName": {
+                    "shape": "String",
+                    "locationName": "ImageOsName"
+                },
+                "ImageType": {
+                    "shape": "String",
+                    "locationName": "ImageType"
+                },
+                "ImageCreateTime": {
+                    "shape": "String",
+                    "locationName": "ImageCreateTime"
+                },
+                "ImageStatus": {
+                    "shape": "String",
+                    "locationName": "ImageStatus"
+                },
+                "ImageName": {
+                    "shape": "String",
+                    "locationName": "ImageName"
+                },
+                "ImageDescription": {
+                    "shape": "String",
+                    "locationName": "ImageDescription"
+                },
+                "Creator": {
+                    "shape": "String",
+                    "locationName": "Creator"
+                }
+            }
+        }
+    }
+}

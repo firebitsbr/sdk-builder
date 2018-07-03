@@ -58,7 +58,7 @@ func newClient(cfg sdf.Config, handlers request.Handlers, endpoint, signingRegio
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
 				Endpoint:      endpoint,
-				APIVersion:    "2017-06-20",
+				APIVersion:    "2017-03-12",
 				JSONVersion:   "1.1",
 			},
 			handlers,

@@ -1,0 +1,876 @@
+{
+    "version": "3.0",
+    "metadata": {
+        "apiVersion": "2017-03-12",
+        "endpointPrefix": "vpc",
+        "jsonVersion": "1.1",
+        "protocol": "tencentquery",
+        "serviceAbbreviation": "VPC",
+        "serviceFullName": "VirtualPrivateCloud",
+        "signatureVersion": "tencentcloud",
+        "serviceCorp": "tencent"
+    },
+    "operations": {
+        "DescribeVpcs": {
+            "name": "DescribeVpcs",
+            "http": {
+                "method": "GET",
+                "requestUri": "/"
+            },
+            "input": {
+                "shape": "DescribeVpcsRequest"
+            },
+            "output": {
+                "shape": "DescribeVpcsResult"
+            }
+        },
+        "DeleteVpc": {
+            "name": "DeleteVpc",
+            "http": {
+                "method": "GET",
+                "requestUri": "/"
+            },
+            "input": {
+                "shape": "DeleteVpcRequest"
+            },
+            "output": {
+                "shape": "DeleteVpcResult"
+            }
+        },
+        "CreateVpc": {
+            "name": "CreateVpc",
+            "http": {
+                "method": "GET",
+                "requestUri": "/"
+            },
+            "input": {
+                "shape": "CreateVpcRequest"
+            },
+            "output": {
+                "shape": "CreateVpcResult"
+            }
+        },
+        "DescribeSubnets": {
+            "name": "DescribeSubnets",
+            "http": {
+                "method": "GET",
+                "requestUri": "/"
+            },
+            "input": {
+                "shape": "DescribeSubnetsRequest"
+            },
+            "output": {
+                "shape": "DescribeSubnetsResult"
+            }
+        },
+        "CreateSubnet": {
+            "name": "CreateSubnet",
+            "http": {
+                "method": "GET",
+                "requestUri": "/"
+            },
+            "input": {
+                "shape": "CreateSubnetRequest"
+            },
+            "output": {
+                "shape": "CreateSubnetResult"
+            }
+        },
+        "DeleteSubnet": {
+            "name": "DeleteSubnet",
+            "http": {
+                "method": "GET",
+                "requestUri": "/"
+            },
+            "input": {
+                "shape": "DeleteSubnetRequest"
+            },
+            "output": {
+                "shape": "DeleteSubnetResult"
+            }
+        },
+        "DescribeSecurityGroups": {
+            "name": "DescribeSecurityGroups",
+            "http": {
+                "method": "GET",
+                "requestUri": "/"
+            },
+            "input": {
+                "shape": "DescribeSecurityGroupsRequest"
+            },
+            "output": {
+                "shape": "DescribeSecurityGroupsResult"
+            }
+        },
+        "CreateSecurityGroup": {
+            "name": "CreateSecurityGroup",
+            "http": {
+                "method": "GET",
+                "requestUri": "/"
+            },
+            "input": {
+                "shape": "CreateSecurityGroupRequest"
+            },
+            "output": {
+                "shape": "CreateSecurityGroupResult"
+            }
+        },
+        "DeleteSecurityGroup": {
+            "name": "DeleteSecurityGroup",
+            "http": {
+                "method": "GET",
+                "requestUri": "/"
+            },
+            "input": {
+                "shape": "DeleteSecurityGroupRequest"
+            },
+            "output": {
+                "shape": "DeleteSecurityGroupResult"
+            }
+        },
+        "DescribeSecurityGroupPolicies": {
+            "name": "DescribeSecurityGroupPolicies",
+            "http": {
+                "method": "GET",
+                "requestUri": "/"
+            },
+            "input": {
+                "shape": "DescribeSecurityGroupPoliciesRequest"
+            },
+            "output": {
+                "shape": "DescribeSecurityGroupPoliciesResult"
+            }
+        },
+        "CreateSecurityGroupPolicies": {
+            "name": "CreateSecurityGroupPolicies",
+            "http": {
+                "method": "GET",
+                "requestUri": "/"
+            },
+            "input": {
+                "shape": "CreateSecurityGroupPoliciesRequest"
+            },
+            "output": {
+                "shape": "CreateSecurityGroupPoliciesResult"
+            }
+        },
+        "DeleteSecurityGroupPolicies": {
+            "name": "DeleteSecurityGroupPolicies",
+            "http": {
+                "method": "GET",
+                "requestUri": "/"
+            },
+            "input": {
+                "shape": "DeleteSecurityGroupPoliciesRequest"
+            },
+            "output": {
+                "shape": "DeleteSecurityGroupPoliciesResult"
+            }
+        }
+    },
+    "shapes": {
+        "DeleteSecurityGroupPoliciesRequest": {
+            "type": "structure",
+            "required": [
+                "SecurityGroupId",
+                "SecurityGroupPolicySet"
+            ],
+            "members": {
+                "SecurityGroupId": {
+                    "shape": "String",
+                    "locationName": "SecurityGroupId"
+                },
+                "SecurityGroupPolicySet": {
+                    "shape": "SecurityGroupPolicyData",
+                    "locationName": "SecurityGroupPolicySet"
+                }
+            }
+        },
+        "DeleteSecurityGroupPoliciesResult": {
+            "type": "structure",
+            "members": {
+                "Response": {
+                    "shape": "DeleteSecurityGroupPolicies"
+                }
+            }
+        },
+        "DeleteSecurityGroupPolicies": {
+            "type": "structure",
+            "members": {
+                "RequestID": {
+                    "shape": "String",
+                    "locationName": "RequestId"
+                }
+            }
+        },
+        "CreateSecurityGroupPoliciesRequest": {
+            "type": "structure",
+            "required": [
+                "SecurityGroupId",
+                "SecurityGroupPolicySet"
+            ],
+            "members": {
+                "SecurityGroupId": {
+                    "shape": "String",
+                    "locationName": "SecurityGroupId"
+                },
+                "SecurityGroupPolicySet": {
+                    "shape": "SecurityGroupPolicyData",
+                    "locationName": "SecurityGroupPolicySet"
+                }
+            }
+        },
+        "CreateSecurityGroupPoliciesResult": {
+            "type": "structure",
+            "members": {
+                "Response": {
+                    "shape": "CreateSecurityGroupPolicies"
+                }
+            }
+        },
+        "CreateSecurityGroupPolicies": {
+            "type": "structure",
+            "members": {
+                "RequestID": {
+                    "shape": "String",
+                    "locationName": "RequestId"
+                }
+            }
+        },
+        "DescribeSecurityGroupPoliciesRequest": {
+            "type": "structure",
+            "required": [
+                "SecurityGroupId"
+            ],
+            "members": {
+                "SecurityGroupId": {
+                    "shape": "String",
+                    "locationName": "SecurityGroupId"
+                }
+            }
+        },
+        "DescribeSecurityGroupPoliciesResult": {
+            "type": "structure",
+            "members": {
+                "Response": {
+                    "shape": "DescribeSecurityGroupPolicies"
+                }
+            }
+        },
+        "DescribeSecurityGroupPolicies": {
+            "type": "structure",
+            "members": {
+                "RequestID": {
+                    "shape": "String",
+                    "locationName": "RequestId"
+                },
+                "SecurityGroupPolicySet": {
+                    "shape": "SecurityGroupPolicyData",
+                    "locationName": "SecurityGroupPolicySet"
+                }
+            }
+        },
+        "SecurityGroupPolicyData": {
+            "type": "structure",
+            "members": {
+                "Ingress": {
+                    "shape": "SecurityGroupPolicyList",
+                    "locationName": "Ingress"
+                },
+                "Egress": {
+                    "shape": "SecurityGroupPolicyList",
+                    "locationName": "Egress"
+                },
+                "Version": {
+                    "shape": "Integer",
+                    "locationName": "Version"
+                }
+            }
+        },
+        "SecurityGroupPolicyList": {
+            "type": "list",
+            "member": {
+                "shape": "SecurityGroupPolicy"
+            },
+            "flattened": true
+        },
+        "SecurityGroupPolicy": {
+            "type": "structure",
+            "members": {
+                "PolicyIndex": {
+                    "shape": "Integer",
+                    "locationName": "PolicyIndex"
+                },
+                "Protocol": {
+                    "shape": "String",
+                    "locationName": "Protocol"
+                },
+                "Port": {
+                    "shape": "String",
+                    "locationName": "Port"
+                },
+                "CidrBlock": {
+                    "shape": "String",
+                    "locationName": "CidrBlock"
+                },
+                "SecurityGroupId": {
+                    "shape": "String",
+                    "locationName": "SecurityGroupId"
+                },
+                "ServiceTemplate": {
+                    "shape": "String",
+                    "locationName": "ServiceTemplate"
+                },
+                "AddressTemplate": {
+                    "shape": "String",
+                    "locationName": "AddressTemplate"
+                },
+                "PolicyDescription": {
+                    "shape": "String",
+                    "locationName": "PolicyDescription"
+                },
+                "Action": {
+                    "shape": "String",
+                    "locationName": "Action"
+                }
+            }
+        },
+        "DeleteSecurityGroupRequest": {
+            "type": "structure",
+            "members": {
+                "SecurityGroupId": {
+                    "shape": "String",
+                    "locationName": "SecurityGroupId"
+                }
+            }
+        },
+        "DeleteSecurityGroupResult": {
+            "type": "structure",
+            "members": {
+                "Response": {
+                    "shape": "DeleteSecurityGroup"
+                }
+            }
+        },
+        "DeleteSecurityGroup": {
+            "type": "structure",
+            "members": {
+                "RequestID": {
+                    "shape": "String",
+                    "locationName": "RequestId"
+                }
+            }
+        },
+        "CreateSecurityGroupRequest": {
+            "type": "structure",
+            "members": {
+                "GroupDescription": {
+                    "shape": "String",
+                    "locationName": "GroupDescription"
+                },
+                "GroupName": {
+                    "shape": "String",
+                    "locationName": "GroupName"
+                },
+                "ProjectId": {
+                    "shape": "Integer",
+                    "locationName": "projectId"
+                }
+            }
+        },
+        "CreateSecurityGroupResult": {
+            "type": "structure",
+            "members": {
+                "Response": {
+                    "shape": "CreateSecurityGroup"
+                }
+            }
+        },
+        "CreateSecurityGroup": {
+            "type": "structure",
+            "members": {
+                "RequestID": {
+                    "shape": "String",
+                    "locationName": "RequestId"
+                },
+                "SecurityGroup": {
+                    "shape": "SecurityGroup",
+                    "locationName": "SecurityGroup"
+                }
+            }
+        },
+        "DescribeSecurityGroupsRequest": {
+            "type": "structure",
+            "members": {
+                "Filters": {
+                    "shape": "FilterList",
+                    "locationName": "Filters"
+                },
+                "SecurityGroupIds": {
+                    "shape": "SecurityGroupIdsList",
+                    "locationName": "SecurityGroupIds"
+                },
+                "Offset": {
+                    "shape": "Integer"
+                },
+                "Limit": {
+                    "shape": "Integer"
+                }
+            }
+        },
+        "DescribeSecurityGroupsResult": {
+            "type": "structure",
+            "members": {
+                "Response": {
+                    "shape": "DescribeSecurityGroups"
+                }
+            }
+        },
+        "DescribeSecurityGroups": {
+            "type": "structure",
+            "members": {
+                "RequestID": {
+                    "shape": "String",
+                    "locationName": "RequestId"
+                },
+                "TotalCount": {
+                    "shape": "Integer",
+                    "locationName": "TotalCount"
+                },
+                "SecurityGroupSet": {
+                    "shape": "SecurityGroupList",
+                    "locationName": "SecurityGroupSet"
+                }
+            }
+        },
+        "SecurityGroupList": {
+            "type": "list",
+            "member": {
+                "shape": "SecurityGroup"
+            }
+        },
+        "SecurityGroup": {
+            "type": "structure",
+            "members": {
+                "ProjectId": {
+                    "shape": "String",
+                    "locationName": "ProjectId"
+                },
+                "SecurityGroupId": {
+                    "shape": "String",
+                    "locationName": "SecurityGroupId"
+                },
+                "SecurityGroupName": {
+                    "shape": "String",
+                    "locationName": "SecurityGroupName"
+                },
+                "SecurityGroupDesc": {
+                    "shape": "String",
+                    "locationName": "SecurityGroupDesc"
+                },
+                "IsDefault": {
+                    "shape": "Bool",
+                    "locationName": "IsDefault"
+                },
+                "CreatedTime": {
+                    "shape": "String",
+                    "locationName": "CreatedTime"
+                }
+            }
+        },
+        "DescribeVpcsRequest": {
+            "type": "structure",
+            "members": {
+                "Filters": {
+                    "shape": "FilterList",
+                    "locationName": "Filters"
+                },
+                "VpcIds": {
+                    "shape": "VpcIdsList",
+                    "locationName": "VpcIds"
+                },
+                "Offset": {
+                    "shape": "Integer",
+                    "locationName": "Offset,"
+                },
+                "Limit": {
+                    "shape": "Integer",
+                    "locationName": "Limit,"
+                }
+            }
+        },
+        "DescribeVpcsResult": {
+            "type": "structure",
+            "members": {
+                "Response": {
+                    "shape": "DescribeVpcs"
+                }
+            }
+        },
+        "DescribeVpcs": {
+            "type": "structure",
+            "members": {
+                "RequestID": {
+                    "shape": "String",
+                    "locationName": "RequestId"
+                },
+                "TotalCount": {
+                    "shape": "Integer",
+                    "locationName": "TotalCount"
+                },
+                "VpcSet": {
+                    "shape": "VpcList",
+                    "locationName": "VpcSet"
+                }
+            }
+        },
+        "VpcList": {
+            "type": "list",
+            "member": {
+                "shape": "Vpc"
+            }
+        },
+        "Vpc": {
+            "type": "structure",
+            "members": {
+                "VpcId": {
+                    "shape": "String",
+                    "locationName": "VpcId"
+                },
+                "VpcName": {
+                    "shape": "String",
+                    "locationName": "VpcName"
+                },
+                "CidrBlock": {
+                    "shape": "String",
+                    "locationName": "CidrBlock"
+                },
+                "EnableMulticast": {
+                    "shape": "Bool",
+                    "locationName": "EnableMulticast"
+                },
+                "CreatedTime": {
+                    "shape": "String",
+                    "locationName": "CreatedTime"
+                },
+                "IsDefault": {
+                    "shape": "Bool",
+                    "locationName": "IsDefault"
+                }
+            }
+        },
+        "CreateVpcRequest": {
+            "type": "structure",
+            "members": {
+                "DnsServers": {
+                    "shape": "DnsServersList",
+                    "locationName": "DnsServers"
+                },
+                "VpcName": {
+                    "shape": "String",
+                    "locationName": "VpcName"
+                },
+                "CidrBlock": {
+                    "shape": "String",
+                    "locationName": "CidrBlock"
+                },
+                "DomainName": {
+                    "shape": "String",
+                    "locationName": "DomainName"
+                },
+                "EnableMulticast": {
+                    "shape": "Bool",
+                    "locationName": "EnableMulticast"
+                }
+            }
+        },
+        "CreateVpcResult": {
+            "type": "structure",
+            "members": {
+                "Response": {
+                    "shape": "CreateVpc"
+                }
+            }
+        },
+        "CreateVpc": {
+            "type": "structure",
+            "members": {
+                "RequestID": {
+                    "shape": "String",
+                    "locationName": "RequestId"
+                },
+                "Vpc": {
+                    "shape": "Vpc",
+                    "locationName": "Vpc"
+                }
+            }
+        },
+        "SubnetList": {
+            "type": "list",
+            "member": {
+                "shape": "Subnet"
+            },
+            "flattened": true
+        },
+        "Subnet": {
+            "type": "structure",
+            "members": {
+                "Zone": {
+                    "shape": "Integer",
+                    "locationName": "Zone"
+                },
+                "VpcId": {
+                    "shape": "String",
+                    "locationName": "VpcId"
+                },
+                "SubnetId": {
+                    "shape": "String",
+                    "locationName": "SubnetId"
+                },
+                "SubnetName": {
+                    "shape": "String",
+                    "locationName": "SubnetName"
+                },
+                "CreatedTime": {
+                    "shape": "String",
+                    "locationName": "CreatedTime"
+                },
+                "CidrBlock": {
+                    "shape": "String",
+                    "locationName": "CidrBlock"
+                },
+                "RouteTableId": {
+                    "shape": "String",
+                    "locationName": "RouteTableId"
+                },
+                "AvailableIpAddressCount": {
+                    "shape": "Integer",
+                    "locationName": "AvailableIpAddressCount"
+                },
+                "EnableBroadcast": {
+                    "shape": "Bool",
+                    "locationName": "EnableBroadcast"
+                },
+                "IsDefault": {
+                    "shape": "Bool",
+                    "locationName": "IsDefault"
+                }
+            }
+        },
+        "RouteTableList": {
+            "type": "list",
+            "member": {
+                "shape": "RouteTable"
+            },
+            "flattened": true
+        },
+        "RouteTable": {
+            "type": "structure",
+            "members": {
+                "RouteTableType": {
+                    "shape": "Integer",
+                    "locationName": "routeTableType"
+                },
+                "RouteTableName": {
+                    "shape": "String",
+                    "locationName": "routeTableName"
+                },
+                "RouteTableId": {
+                    "shape": "String",
+                    "locationName": "routeTableId"
+                }
+            }
+        },
+        "DeleteVpcRequest": {
+            "type": "structure",
+            "members": {
+                "VpcId": {
+                    "shape": "String",
+                    "locationName": "VpcId"
+                }
+            }
+        },
+        "DeleteVpcResult": {
+            "type": "structure",
+            "members": {
+                "Response": {
+                    "shape": "DeleteSecurityGroup"
+                }
+            }
+        },
+        "DescribeSubnetsRequest": {
+            "type": "structure",
+            "members": {
+                "Filters": {
+                    "shape": "FilterList",
+                    "locationName": "Filters"
+                },
+                "SubnetIds": {
+                    "shape": "VpcIdsList",
+                    "locationName": "SubnetIds"
+                },
+                "Offset": {
+                    "shape": "Integer",
+                    "locationName": "Offset,"
+                },
+                "Limit": {
+                    "shape": "Integer",
+                    "locationName": "Limit,"
+                }
+            }
+        },
+        "DescribeSubnetsResult": {
+            "type": "structure",
+            "members": {
+                "Response": {
+                    "shape": "DescribeSubnets"
+                }
+            }
+        },
+        "DescribeSubnets": {
+            "type": "structure",
+            "members": {
+                "RequestID": {
+                    "shape": "String",
+                    "locationName": "RequestId"
+                },
+                "TotalCount": {
+                    "shape": "Integer",
+                    "locationName": "TotalCount"
+                },
+                "SubnetSet": {
+                    "shape": "SubnetList",
+                    "locationName": "SubnetSet"
+                }
+            }
+        },
+        "CreateSubnetRequest": {
+            "type": "structure",
+            "required": [
+                "Zone",
+                "VpcId",
+                "SubnetName",
+                "CidrBlock"
+            ],
+            "members": {
+                "Zone": {
+                    "shape": "String",
+                    "locationName": "Zone"
+                },
+                "VpcId": {
+                    "shape": "String",
+                    "locationName": "VpcId"
+                },
+                "SubnetName": {
+                    "shape": "String",
+                    "locationName": "SubnetName"
+                },
+                "CidrBlock": {
+                    "shape": "String",
+                    "locationName": "CidrBlock"
+                }
+            }
+        },
+        "CreateSubnetResult": {
+            "type": "structure",
+            "members": {
+                "Response": {
+                    "shape": "CreateSubnet"
+                }
+            }
+        },
+        "CreateSubnet": {
+            "type": "structure",
+            "members": {
+                "RequestID": {
+                    "shape": "String",
+                    "locationName": "RequestId"
+                },
+                "Subnet": {
+                    "shape": "Subnet",
+                    "locationName": "Subnet"
+                }
+            }
+        },
+        "DeleteSubnetRequest": {
+            "type": "structure",
+            "members": {
+                "SubnetId": {
+                    "shape": "String",
+                    "locationName": "SubnetId"
+                }
+            }
+        },
+        "DeleteSubnetResult": {
+            "type": "structure",
+            "members": {
+                "Response": {
+                    "shape": "DeleteSecurityGroup"
+                }
+            }
+        },
+        "SecurityGroupIdsList": {
+            "type": "list",
+            "member": {
+                "shape": "String",
+                "locationName": "SecurityGroupIds"
+            },
+            "flattened": true
+        },
+        "DnsServersList": {
+            "type": "list",
+            "member": {
+                "shape": "String"
+            },
+            "flattened": true
+        },
+        "VpcIdsList": {
+            "type": "list",
+            "member": {
+                "shape": "String"
+            },
+            "flattened": true
+        },
+        "FilterList": {
+            "type": "list",
+            "member": {
+                "shape": "Filter",
+                "locationName": "Filter"
+            },
+            "flattened": true
+        },
+        "Filter": {
+            "type": "structure",
+            "members": {
+                "Name": {
+                    "shape": "String"
+                },
+                "Values": {
+                    "shape": "ValueStringList"
+                }
+            }
+        },
+        "ValueStringList": {
+            "type": "list",
+            "member": {
+                "shape": "String"
+            },
+            "flattened": true
+        },
+        "IntegerList": {
+            "type": "list",
+            "member": {
+                "shape": "Integer"
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "Integer": {
+            "type": "integer"
+        },
+        "Bool": {
+            "type": "boolean"
+        }
+    }
+}

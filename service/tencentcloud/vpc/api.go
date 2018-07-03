@@ -8,6 +8,144 @@ import (
 	"github.com/polefishu/sdk-builder/sdf/sdfutil"
 )
 
+const opCreateSecurityGroup = "CreateSecurityGroup"
+
+// CreateSecurityGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSecurityGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateSecurityGroup for more information on using the CreateSecurityGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateSecurityGroupRequest method.
+//    req, resp := client.CreateSecurityGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *VPC) CreateSecurityGroupRequest(input *CreateSecurityGroupInput) (req *request.Request, output *CreateSecurityGroupOutput) {
+	op := &request.Operation{
+		Name:       opCreateSecurityGroup,
+		HTTPMethod: "GET",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateSecurityGroupInput{}
+	}
+
+	output = &CreateSecurityGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateSecurityGroup API operation for VirtualPrivateCloud.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for VirtualPrivateCloud's
+// API operation CreateSecurityGroup for usage and error information.
+func (c *VPC) CreateSecurityGroup(input *CreateSecurityGroupInput) (*CreateSecurityGroupOutput, error) {
+	req, out := c.CreateSecurityGroupRequest(input)
+	return out, req.Send()
+}
+
+// CreateSecurityGroupWithContext is the same as CreateSecurityGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateSecurityGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *VPC) CreateSecurityGroupWithContext(ctx sdf.Context, input *CreateSecurityGroupInput, opts ...request.Option) (*CreateSecurityGroupOutput, error) {
+	req, out := c.CreateSecurityGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateSecurityGroupPolicies = "CreateSecurityGroupPolicies"
+
+// CreateSecurityGroupPoliciesRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSecurityGroupPolicies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateSecurityGroupPolicies for more information on using the CreateSecurityGroupPolicies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateSecurityGroupPoliciesRequest method.
+//    req, resp := client.CreateSecurityGroupPoliciesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *VPC) CreateSecurityGroupPoliciesRequest(input *CreateSecurityGroupPoliciesInput) (req *request.Request, output *CreateSecurityGroupPoliciesOutput) {
+	op := &request.Operation{
+		Name:       opCreateSecurityGroupPolicies,
+		HTTPMethod: "GET",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateSecurityGroupPoliciesInput{}
+	}
+
+	output = &CreateSecurityGroupPoliciesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateSecurityGroupPolicies API operation for VirtualPrivateCloud.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for VirtualPrivateCloud's
+// API operation CreateSecurityGroupPolicies for usage and error information.
+func (c *VPC) CreateSecurityGroupPolicies(input *CreateSecurityGroupPoliciesInput) (*CreateSecurityGroupPoliciesOutput, error) {
+	req, out := c.CreateSecurityGroupPoliciesRequest(input)
+	return out, req.Send()
+}
+
+// CreateSecurityGroupPoliciesWithContext is the same as CreateSecurityGroupPolicies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateSecurityGroupPolicies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *VPC) CreateSecurityGroupPoliciesWithContext(ctx sdf.Context, input *CreateSecurityGroupPoliciesInput, opts ...request.Option) (*CreateSecurityGroupPoliciesOutput, error) {
+	req, out := c.CreateSecurityGroupPoliciesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateSubnet = "CreateSubnet"
 
 // CreateSubnetRequest generates a "aws/request.Request" representing the
@@ -36,7 +174,7 @@ func (c *VPC) CreateSubnetRequest(input *CreateSubnetInput) (req *request.Reques
 	op := &request.Operation{
 		Name:       opCreateSubnet,
 		HTTPMethod: "GET",
-		HTTPPath:   "/v2/index.php",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
@@ -105,7 +243,7 @@ func (c *VPC) CreateVpcRequest(input *CreateVpcInput) (req *request.Request, out
 	op := &request.Operation{
 		Name:       opCreateVpc,
 		HTTPMethod: "GET",
-		HTTPPath:   "/v2/index.php",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
@@ -146,6 +284,144 @@ func (c *VPC) CreateVpcWithContext(ctx sdf.Context, input *CreateVpcInput, opts 
 	return out, req.Send()
 }
 
+const opDeleteSecurityGroup = "DeleteSecurityGroup"
+
+// DeleteSecurityGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSecurityGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteSecurityGroup for more information on using the DeleteSecurityGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteSecurityGroupRequest method.
+//    req, resp := client.DeleteSecurityGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *VPC) DeleteSecurityGroupRequest(input *DeleteSecurityGroupInput) (req *request.Request, output *DeleteSecurityGroupOutput) {
+	op := &request.Operation{
+		Name:       opDeleteSecurityGroup,
+		HTTPMethod: "GET",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteSecurityGroupInput{}
+	}
+
+	output = &DeleteSecurityGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteSecurityGroup API operation for VirtualPrivateCloud.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for VirtualPrivateCloud's
+// API operation DeleteSecurityGroup for usage and error information.
+func (c *VPC) DeleteSecurityGroup(input *DeleteSecurityGroupInput) (*DeleteSecurityGroupOutput, error) {
+	req, out := c.DeleteSecurityGroupRequest(input)
+	return out, req.Send()
+}
+
+// DeleteSecurityGroupWithContext is the same as DeleteSecurityGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteSecurityGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *VPC) DeleteSecurityGroupWithContext(ctx sdf.Context, input *DeleteSecurityGroupInput, opts ...request.Option) (*DeleteSecurityGroupOutput, error) {
+	req, out := c.DeleteSecurityGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteSecurityGroupPolicies = "DeleteSecurityGroupPolicies"
+
+// DeleteSecurityGroupPoliciesRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSecurityGroupPolicies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteSecurityGroupPolicies for more information on using the DeleteSecurityGroupPolicies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteSecurityGroupPoliciesRequest method.
+//    req, resp := client.DeleteSecurityGroupPoliciesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *VPC) DeleteSecurityGroupPoliciesRequest(input *DeleteSecurityGroupPoliciesInput) (req *request.Request, output *DeleteSecurityGroupPoliciesOutput) {
+	op := &request.Operation{
+		Name:       opDeleteSecurityGroupPolicies,
+		HTTPMethod: "GET",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteSecurityGroupPoliciesInput{}
+	}
+
+	output = &DeleteSecurityGroupPoliciesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteSecurityGroupPolicies API operation for VirtualPrivateCloud.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for VirtualPrivateCloud's
+// API operation DeleteSecurityGroupPolicies for usage and error information.
+func (c *VPC) DeleteSecurityGroupPolicies(input *DeleteSecurityGroupPoliciesInput) (*DeleteSecurityGroupPoliciesOutput, error) {
+	req, out := c.DeleteSecurityGroupPoliciesRequest(input)
+	return out, req.Send()
+}
+
+// DeleteSecurityGroupPoliciesWithContext is the same as DeleteSecurityGroupPolicies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteSecurityGroupPolicies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *VPC) DeleteSecurityGroupPoliciesWithContext(ctx sdf.Context, input *DeleteSecurityGroupPoliciesInput, opts ...request.Option) (*DeleteSecurityGroupPoliciesOutput, error) {
+	req, out := c.DeleteSecurityGroupPoliciesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteSubnet = "DeleteSubnet"
 
 // DeleteSubnetRequest generates a "aws/request.Request" representing the
@@ -174,7 +450,7 @@ func (c *VPC) DeleteSubnetRequest(input *DeleteSubnetInput) (req *request.Reques
 	op := &request.Operation{
 		Name:       opDeleteSubnet,
 		HTTPMethod: "GET",
-		HTTPPath:   "/v2/index.php",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
@@ -243,7 +519,7 @@ func (c *VPC) DeleteVpcRequest(input *DeleteVpcInput) (req *request.Request, out
 	op := &request.Operation{
 		Name:       opDeleteVpc,
 		HTTPMethod: "GET",
-		HTTPPath:   "/v2/index.php",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
@@ -284,122 +560,260 @@ func (c *VPC) DeleteVpcWithContext(ctx sdf.Context, input *DeleteVpcInput, opts 
 	return out, req.Send()
 }
 
-const opDescribeSubnet = "DescribeSubnetEx"
+const opDescribeSecurityGroupPolicies = "DescribeSecurityGroupPolicies"
 
-// DescribeSubnetRequest generates a "aws/request.Request" representing the
-// client's request for the DescribeSubnet operation. The "output" return
+// DescribeSecurityGroupPoliciesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeSecurityGroupPolicies operation. The "output" return
 // value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
 //
-// See DescribeSubnet for more information on using the DescribeSubnet
+// See DescribeSecurityGroupPolicies for more information on using the DescribeSecurityGroupPolicies
 // API call, and error handling.
 //
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
 //
-//    // Example sending a request using the DescribeSubnetRequest method.
-//    req, resp := client.DescribeSubnetRequest(params)
+//    // Example sending a request using the DescribeSecurityGroupPoliciesRequest method.
+//    req, resp := client.DescribeSecurityGroupPoliciesRequest(params)
 //
 //    err := req.Send()
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-func (c *VPC) DescribeSubnetRequest(input *DescribeSubnetInput) (req *request.Request, output *DescribeSubnetOutput) {
+func (c *VPC) DescribeSecurityGroupPoliciesRequest(input *DescribeSecurityGroupPoliciesInput) (req *request.Request, output *DescribeSecurityGroupPoliciesOutput) {
 	op := &request.Operation{
-		Name:       opDescribeSubnet,
+		Name:       opDescribeSecurityGroupPolicies,
 		HTTPMethod: "GET",
-		HTTPPath:   "/v2/index.php",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
-		input = &DescribeSubnetInput{}
+		input = &DescribeSecurityGroupPoliciesInput{}
 	}
 
-	output = &DescribeSubnetOutput{}
+	output = &DescribeSecurityGroupPoliciesOutput{}
 	req = c.newRequest(op, input, output)
 	return
 }
 
-// DescribeSubnet API operation for VirtualPrivateCloud.
+// DescribeSecurityGroupPolicies API operation for VirtualPrivateCloud.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
 // See the AWS API reference guide for VirtualPrivateCloud's
-// API operation DescribeSubnet for usage and error information.
-func (c *VPC) DescribeSubnet(input *DescribeSubnetInput) (*DescribeSubnetOutput, error) {
-	req, out := c.DescribeSubnetRequest(input)
+// API operation DescribeSecurityGroupPolicies for usage and error information.
+func (c *VPC) DescribeSecurityGroupPolicies(input *DescribeSecurityGroupPoliciesInput) (*DescribeSecurityGroupPoliciesOutput, error) {
+	req, out := c.DescribeSecurityGroupPoliciesRequest(input)
 	return out, req.Send()
 }
 
-// DescribeSubnetWithContext is the same as DescribeSubnet with the addition of
+// DescribeSecurityGroupPoliciesWithContext is the same as DescribeSecurityGroupPolicies with the addition of
 // the ability to pass a context and additional request options.
 //
-// See DescribeSubnet for details on how to use this API operation.
+// See DescribeSecurityGroupPolicies for details on how to use this API operation.
 //
 // The context must be non-nil and will be used for request cancellation. If
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *VPC) DescribeSubnetWithContext(ctx sdf.Context, input *DescribeSubnetInput, opts ...request.Option) (*DescribeSubnetOutput, error) {
-	req, out := c.DescribeSubnetRequest(input)
+func (c *VPC) DescribeSecurityGroupPoliciesWithContext(ctx sdf.Context, input *DescribeSecurityGroupPoliciesInput, opts ...request.Option) (*DescribeSecurityGroupPoliciesOutput, error) {
+	req, out := c.DescribeSecurityGroupPoliciesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
 }
 
-const opDescribeVpc = "DescribeVpcEx"
+const opDescribeSecurityGroups = "DescribeSecurityGroups"
 
-// DescribeVpcRequest generates a "aws/request.Request" representing the
-// client's request for the DescribeVpc operation. The "output" return
+// DescribeSecurityGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeSecurityGroups operation. The "output" return
 // value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
 //
-// See DescribeVpc for more information on using the DescribeVpc
+// See DescribeSecurityGroups for more information on using the DescribeSecurityGroups
 // API call, and error handling.
 //
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
 //
-//    // Example sending a request using the DescribeVpcRequest method.
-//    req, resp := client.DescribeVpcRequest(params)
+//    // Example sending a request using the DescribeSecurityGroupsRequest method.
+//    req, resp := client.DescribeSecurityGroupsRequest(params)
 //
 //    err := req.Send()
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-func (c *VPC) DescribeVpcRequest(input *DescribeVpcInput) (req *request.Request, output *DescribeVpcOutput) {
+func (c *VPC) DescribeSecurityGroupsRequest(input *DescribeSecurityGroupsInput) (req *request.Request, output *DescribeSecurityGroupsOutput) {
 	op := &request.Operation{
-		Name:       opDescribeVpc,
+		Name:       opDescribeSecurityGroups,
 		HTTPMethod: "GET",
-		HTTPPath:   "/v2/index.php",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeSecurityGroupsInput{}
+	}
+
+	output = &DescribeSecurityGroupsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeSecurityGroups API operation for VirtualPrivateCloud.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for VirtualPrivateCloud's
+// API operation DescribeSecurityGroups for usage and error information.
+func (c *VPC) DescribeSecurityGroups(input *DescribeSecurityGroupsInput) (*DescribeSecurityGroupsOutput, error) {
+	req, out := c.DescribeSecurityGroupsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeSecurityGroupsWithContext is the same as DescribeSecurityGroups with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeSecurityGroups for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *VPC) DescribeSecurityGroupsWithContext(ctx sdf.Context, input *DescribeSecurityGroupsInput, opts ...request.Option) (*DescribeSecurityGroupsOutput, error) {
+	req, out := c.DescribeSecurityGroupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeSubnets = "DescribeSubnets"
+
+// DescribeSubnetsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeSubnets operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeSubnets for more information on using the DescribeSubnets
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeSubnetsRequest method.
+//    req, resp := client.DescribeSubnetsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *VPC) DescribeSubnetsRequest(input *DescribeSubnetsInput) (req *request.Request, output *DescribeSubnetsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeSubnets,
+		HTTPMethod: "GET",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeSubnetsInput{}
+	}
+
+	output = &DescribeSubnetsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeSubnets API operation for VirtualPrivateCloud.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for VirtualPrivateCloud's
+// API operation DescribeSubnets for usage and error information.
+func (c *VPC) DescribeSubnets(input *DescribeSubnetsInput) (*DescribeSubnetsOutput, error) {
+	req, out := c.DescribeSubnetsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeSubnetsWithContext is the same as DescribeSubnets with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeSubnets for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *VPC) DescribeSubnetsWithContext(ctx sdf.Context, input *DescribeSubnetsInput, opts ...request.Option) (*DescribeSubnetsOutput, error) {
+	req, out := c.DescribeSubnetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeVpcs = "DescribeVpcs"
+
+// DescribeVpcsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeVpcs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeVpcs for more information on using the DescribeVpcs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeVpcsRequest method.
+//    req, resp := client.DescribeVpcsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *VPC) DescribeVpcsRequest(input *DescribeVpcsInput) (req *request.Request, output *DescribeVpcsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeVpcs,
+		HTTPMethod: "GET",
+		HTTPPath:   "/",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"Offset"},
-			OutputTokens:    []string{"Detail.TotalCount"},
+			OutputTokens:    []string{"Response.TotalCount"},
 			LimitToken:      "Limit",
 			TruncationToken: "",
 		},
 	}
 
 	if input == nil {
-		input = &DescribeVpcInput{}
+		input = &DescribeVpcsInput{}
 	}
 
-	output = &DescribeVpcOutput{}
+	output = &DescribeVpcsOutput{}
 	req = c.newRequest(op, input, output)
 	return
 }
 
-// DescribeVpc API operation for VirtualPrivateCloud.
+// DescribeVpcs API operation for VirtualPrivateCloud.
 //
 // 本接口 (DescribeVpc) ）用于根据多种索引查询一个或多个私有网络的基本信息。
 //
@@ -413,65 +827,65 @@ func (c *VPC) DescribeVpcRequest(input *DescribeVpcInput) (req *request.Request,
 // the error.
 //
 // See the AWS API reference guide for VirtualPrivateCloud's
-// API operation DescribeVpc for usage and error information.
-func (c *VPC) DescribeVpc(input *DescribeVpcInput) (*DescribeVpcOutput, error) {
-	req, out := c.DescribeVpcRequest(input)
+// API operation DescribeVpcs for usage and error information.
+func (c *VPC) DescribeVpcs(input *DescribeVpcsInput) (*DescribeVpcsOutput, error) {
+	req, out := c.DescribeVpcsRequest(input)
 	return out, req.Send()
 }
 
-// DescribeVpcWithContext is the same as DescribeVpc with the addition of
+// DescribeVpcsWithContext is the same as DescribeVpcs with the addition of
 // the ability to pass a context and additional request options.
 //
-// See DescribeVpc for details on how to use this API operation.
+// See DescribeVpcs for details on how to use this API operation.
 //
 // The context must be non-nil and will be used for request cancellation. If
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *VPC) DescribeVpcWithContext(ctx sdf.Context, input *DescribeVpcInput, opts ...request.Option) (*DescribeVpcOutput, error) {
-	req, out := c.DescribeVpcRequest(input)
+func (c *VPC) DescribeVpcsWithContext(ctx sdf.Context, input *DescribeVpcsInput, opts ...request.Option) (*DescribeVpcsOutput, error) {
+	req, out := c.DescribeVpcsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
 }
 
-// DescribeVpcPages iterates over the pages of a DescribeVpc operation,
+// DescribeVpcsPages iterates over the pages of a DescribeVpcs operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
 //
-// See DescribeVpc method for more information on how to use this operation.
+// See DescribeVpcs method for more information on how to use this operation.
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeVpc operation.
+//    // Example iterating over at most 3 pages of a DescribeVpcs operation.
 //    pageNum := 0
-//    err := client.DescribeVpcPages(params,
-//        func(page *DescribeVpcOutput, lastPage bool) bool {
+//    err := client.DescribeVpcsPages(params,
+//        func(page *DescribeVpcsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
 //        })
 //
-func (c *VPC) DescribeVpcPages(input *DescribeVpcInput, fn func(*DescribeVpcOutput, bool) bool) error {
-	return c.DescribeVpcPagesWithContext(sdf.BackgroundContext(), input, fn)
+func (c *VPC) DescribeVpcsPages(input *DescribeVpcsInput, fn func(*DescribeVpcsOutput, bool) bool) error {
+	return c.DescribeVpcsPagesWithContext(sdf.BackgroundContext(), input, fn)
 }
 
-// DescribeVpcPagesWithContext same as DescribeVpcPages except
+// DescribeVpcsPagesWithContext same as DescribeVpcsPages except
 // it takes a Context and allows setting request options on the pages.
 //
 // The context must be non-nil and will be used for request cancellation. If
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *VPC) DescribeVpcPagesWithContext(ctx sdf.Context, input *DescribeVpcInput, fn func(*DescribeVpcOutput, bool) bool, opts ...request.Option) error {
+func (c *VPC) DescribeVpcsPagesWithContext(ctx sdf.Context, input *DescribeVpcsInput, fn func(*DescribeVpcsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy *DescribeVpcInput
+			var inCpy *DescribeVpcsInput
 			if input != nil {
 				tmp := *input
 				inCpy = &tmp
 			}
-			req, _ := c.DescribeVpcRequest(inCpy)
+			req, _ := c.DescribeVpcsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -480,17 +894,237 @@ func (c *VPC) DescribeVpcPagesWithContext(ctx sdf.Context, input *DescribeVpcInp
 
 	cont := true
 	for p.Next() && cont {
-		cont = fn(p.Page().(*DescribeVpcOutput), !p.HasNextPage())
+		cont = fn(p.Page().(*DescribeVpcsOutput), !p.HasNextPage())
 	}
 	return p.Err()
+}
+
+type CreateSecurityGroup struct {
+	_ struct{} `type:"structure"`
+
+	RequestID *string `locationName:"RequestId" type:"string"`
+
+	SecurityGroup *SecurityGroup `locationName:"SecurityGroup" type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateSecurityGroup) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateSecurityGroup) GoString() string {
+	return s.String()
+}
+
+// SetRequestID sets the RequestID field's value.
+func (s *CreateSecurityGroup) SetRequestID(v string) *CreateSecurityGroup {
+	s.RequestID = &v
+	return s
+}
+
+// SetSecurityGroup sets the SecurityGroup field's value.
+func (s *CreateSecurityGroup) SetSecurityGroup(v *SecurityGroup) *CreateSecurityGroup {
+	s.SecurityGroup = v
+	return s
+}
+
+type CreateSecurityGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	GroupDescription *string `locationName:"GroupDescription" type:"string"`
+
+	GroupName *string `locationName:"GroupName" type:"string"`
+
+	ProjectId *int64 `locationName:"projectId" type:"integer"`
+}
+
+// String returns the string representation
+func (s CreateSecurityGroupInput) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateSecurityGroupInput) GoString() string {
+	return s.String()
+}
+
+// SetGroupDescription sets the GroupDescription field's value.
+func (s *CreateSecurityGroupInput) SetGroupDescription(v string) *CreateSecurityGroupInput {
+	s.GroupDescription = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *CreateSecurityGroupInput) SetGroupName(v string) *CreateSecurityGroupInput {
+	s.GroupName = &v
+	return s
+}
+
+// SetProjectId sets the ProjectId field's value.
+func (s *CreateSecurityGroupInput) SetProjectId(v int64) *CreateSecurityGroupInput {
+	s.ProjectId = &v
+	return s
+}
+
+type CreateSecurityGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	Response *CreateSecurityGroup `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateSecurityGroupOutput) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateSecurityGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetResponse sets the Response field's value.
+func (s *CreateSecurityGroupOutput) SetResponse(v *CreateSecurityGroup) *CreateSecurityGroupOutput {
+	s.Response = v
+	return s
+}
+
+type CreateSecurityGroupPolicies struct {
+	_ struct{} `type:"structure"`
+
+	RequestID *string `locationName:"RequestId" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateSecurityGroupPolicies) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateSecurityGroupPolicies) GoString() string {
+	return s.String()
+}
+
+// SetRequestID sets the RequestID field's value.
+func (s *CreateSecurityGroupPolicies) SetRequestID(v string) *CreateSecurityGroupPolicies {
+	s.RequestID = &v
+	return s
+}
+
+type CreateSecurityGroupPoliciesInput struct {
+	_ struct{} `type:"structure"`
+
+	// SecurityGroupId is a required field
+	SecurityGroupId *string `locationName:"SecurityGroupId" type:"string" required:"true"`
+
+	// SecurityGroupPolicySet is a required field
+	SecurityGroupPolicySet *SecurityGroupPolicyData `locationName:"SecurityGroupPolicySet" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateSecurityGroupPoliciesInput) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateSecurityGroupPoliciesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSecurityGroupPoliciesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSecurityGroupPoliciesInput"}
+	if s.SecurityGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroupId"))
+	}
+	if s.SecurityGroupPolicySet == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroupPolicySet"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSecurityGroupId sets the SecurityGroupId field's value.
+func (s *CreateSecurityGroupPoliciesInput) SetSecurityGroupId(v string) *CreateSecurityGroupPoliciesInput {
+	s.SecurityGroupId = &v
+	return s
+}
+
+// SetSecurityGroupPolicySet sets the SecurityGroupPolicySet field's value.
+func (s *CreateSecurityGroupPoliciesInput) SetSecurityGroupPolicySet(v *SecurityGroupPolicyData) *CreateSecurityGroupPoliciesInput {
+	s.SecurityGroupPolicySet = v
+	return s
+}
+
+type CreateSecurityGroupPoliciesOutput struct {
+	_ struct{} `type:"structure"`
+
+	Response *CreateSecurityGroupPolicies `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateSecurityGroupPoliciesOutput) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateSecurityGroupPoliciesOutput) GoString() string {
+	return s.String()
+}
+
+// SetResponse sets the Response field's value.
+func (s *CreateSecurityGroupPoliciesOutput) SetResponse(v *CreateSecurityGroupPolicies) *CreateSecurityGroupPoliciesOutput {
+	s.Response = v
+	return s
+}
+
+type CreateSubnet struct {
+	_ struct{} `type:"structure"`
+
+	RequestID *string `locationName:"RequestId" type:"string"`
+
+	Subnet *Subnet `locationName:"Subnet" type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateSubnet) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateSubnet) GoString() string {
+	return s.String()
+}
+
+// SetRequestID sets the RequestID field's value.
+func (s *CreateSubnet) SetRequestID(v string) *CreateSubnet {
+	s.RequestID = &v
+	return s
+}
+
+// SetSubnet sets the Subnet field's value.
+func (s *CreateSubnet) SetSubnet(v *Subnet) *CreateSubnet {
+	s.Subnet = v
+	return s
 }
 
 type CreateSubnetInput struct {
 	_ struct{} `type:"structure"`
 
-	SubnetSet []*Subnet `locationName:"subnetSet" type:"list" flattened:"true"`
+	// CidrBlock is a required field
+	CidrBlock *string `locationName:"CidrBlock" type:"string" required:"true"`
 
-	VpcId *string `locationName:"vpcId" type:"string"`
+	// SubnetName is a required field
+	SubnetName *string `locationName:"SubnetName" type:"string" required:"true"`
+
+	// VpcId is a required field
+	VpcId *string `locationName:"VpcId" type:"string" required:"true"`
+
+	// Zone is a required field
+	Zone *string `locationName:"Zone" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -503,9 +1137,37 @@ func (s CreateSubnetInput) GoString() string {
 	return s.String()
 }
 
-// SetSubnetSet sets the SubnetSet field's value.
-func (s *CreateSubnetInput) SetSubnetSet(v []*Subnet) *CreateSubnetInput {
-	s.SubnetSet = v
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSubnetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSubnetInput"}
+	if s.CidrBlock == nil {
+		invalidParams.Add(request.NewErrParamRequired("CidrBlock"))
+	}
+	if s.SubnetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubnetName"))
+	}
+	if s.VpcId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcId"))
+	}
+	if s.Zone == nil {
+		invalidParams.Add(request.NewErrParamRequired("Zone"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCidrBlock sets the CidrBlock field's value.
+func (s *CreateSubnetInput) SetCidrBlock(v string) *CreateSubnetInput {
+	s.CidrBlock = &v
+	return s
+}
+
+// SetSubnetName sets the SubnetName field's value.
+func (s *CreateSubnetInput) SetSubnetName(v string) *CreateSubnetInput {
+	s.SubnetName = &v
 	return s
 }
 
@@ -515,14 +1177,16 @@ func (s *CreateSubnetInput) SetVpcId(v string) *CreateSubnetInput {
 	return s
 }
 
+// SetZone sets the Zone field's value.
+func (s *CreateSubnetInput) SetZone(v string) *CreateSubnetInput {
+	s.Zone = &v
+	return s
+}
+
 type CreateSubnetOutput struct {
 	_ struct{} `type:"structure"`
 
-	Code *int64 `locationName:"code" type:"integer"`
-
-	Message *string `locationName:"message" type:"string"`
-
-	SubnetSet []*Subnet `locationName:"subnetSet" type:"list" flattened:"true"`
+	Response *CreateSubnet `type:"structure"`
 }
 
 // String returns the string representation
@@ -535,32 +1199,54 @@ func (s CreateSubnetOutput) GoString() string {
 	return s.String()
 }
 
-// SetCode sets the Code field's value.
-func (s *CreateSubnetOutput) SetCode(v int64) *CreateSubnetOutput {
-	s.Code = &v
+// SetResponse sets the Response field's value.
+func (s *CreateSubnetOutput) SetResponse(v *CreateSubnet) *CreateSubnetOutput {
+	s.Response = v
 	return s
 }
 
-// SetMessage sets the Message field's value.
-func (s *CreateSubnetOutput) SetMessage(v string) *CreateSubnetOutput {
-	s.Message = &v
+type CreateVpc struct {
+	_ struct{} `type:"structure"`
+
+	RequestID *string `locationName:"RequestId" type:"string"`
+
+	Vpc *Vpc `locationName:"Vpc" type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateVpc) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateVpc) GoString() string {
+	return s.String()
+}
+
+// SetRequestID sets the RequestID field's value.
+func (s *CreateVpc) SetRequestID(v string) *CreateVpc {
+	s.RequestID = &v
 	return s
 }
 
-// SetSubnetSet sets the SubnetSet field's value.
-func (s *CreateSubnetOutput) SetSubnetSet(v []*Subnet) *CreateSubnetOutput {
-	s.SubnetSet = v
+// SetVpc sets the Vpc field's value.
+func (s *CreateVpc) SetVpc(v *Vpc) *CreateVpc {
+	s.Vpc = v
 	return s
 }
 
 type CreateVpcInput struct {
 	_ struct{} `type:"structure"`
 
-	CidrBlock *string `locationName:"cidrBlock" type:"string"`
+	CidrBlock *string `locationName:"CidrBlock" type:"string"`
 
-	SubnetSet []*Subnet `locationName:"subnetSet" type:"list" flattened:"true"`
+	DnsServers []*string `locationName:"DnsServers" type:"list" flattened:"true"`
 
-	VpcName *string `locationName:"vpcName" type:"string"`
+	DomainName *string `locationName:"DomainName" type:"string"`
+
+	EnableMulticast *bool `locationName:"EnableMulticast" type:"boolean"`
+
+	VpcName *string `locationName:"VpcName" type:"string"`
 }
 
 // String returns the string representation
@@ -579,9 +1265,21 @@ func (s *CreateVpcInput) SetCidrBlock(v string) *CreateVpcInput {
 	return s
 }
 
-// SetSubnetSet sets the SubnetSet field's value.
-func (s *CreateVpcInput) SetSubnetSet(v []*Subnet) *CreateVpcInput {
-	s.SubnetSet = v
+// SetDnsServers sets the DnsServers field's value.
+func (s *CreateVpcInput) SetDnsServers(v []*string) *CreateVpcInput {
+	s.DnsServers = v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *CreateVpcInput) SetDomainName(v string) *CreateVpcInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetEnableMulticast sets the EnableMulticast field's value.
+func (s *CreateVpcInput) SetEnableMulticast(v bool) *CreateVpcInput {
+	s.EnableMulticast = &v
 	return s
 }
 
@@ -594,21 +1292,7 @@ func (s *CreateVpcInput) SetVpcName(v string) *CreateVpcInput {
 type CreateVpcOutput struct {
 	_ struct{} `type:"structure"`
 
-	Code *int64 `locationName:"code" type:"integer"`
-
-	CodeDesc *string `locationName:"codeDesc" type:"string"`
-
-	Message *string `locationName:"message" type:"string"`
-
-	RouteTableSet []*RouteTable `locationName:"routeTableSet" type:"list" flattened:"true"`
-
-	SubnetSet []*Subnet `locationName:"subnetSet" type:"list" flattened:"true"`
-
-	UniqVpcId *string `locationName:"uniqVpcId" type:"string"`
-
-	VpcCreateTime *string `locationName:"vpcCreateTime" type:"string"`
-
-	VpcId *string `locationName:"vpcId" type:"string"`
+	Response *CreateVpc `type:"structure"`
 }
 
 // String returns the string representation
@@ -621,60 +1305,174 @@ func (s CreateVpcOutput) GoString() string {
 	return s.String()
 }
 
-// SetCode sets the Code field's value.
-func (s *CreateVpcOutput) SetCode(v int64) *CreateVpcOutput {
-	s.Code = &v
+// SetResponse sets the Response field's value.
+func (s *CreateVpcOutput) SetResponse(v *CreateVpc) *CreateVpcOutput {
+	s.Response = v
 	return s
 }
 
-// SetCodeDesc sets the CodeDesc field's value.
-func (s *CreateVpcOutput) SetCodeDesc(v string) *CreateVpcOutput {
-	s.CodeDesc = &v
+type DeleteSecurityGroup struct {
+	_ struct{} `type:"structure"`
+
+	RequestID *string `locationName:"RequestId" type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteSecurityGroup) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSecurityGroup) GoString() string {
+	return s.String()
+}
+
+// SetRequestID sets the RequestID field's value.
+func (s *DeleteSecurityGroup) SetRequestID(v string) *DeleteSecurityGroup {
+	s.RequestID = &v
 	return s
 }
 
-// SetMessage sets the Message field's value.
-func (s *CreateVpcOutput) SetMessage(v string) *CreateVpcOutput {
-	s.Message = &v
+type DeleteSecurityGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	SecurityGroupId *string `locationName:"SecurityGroupId" type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteSecurityGroupInput) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSecurityGroupInput) GoString() string {
+	return s.String()
+}
+
+// SetSecurityGroupId sets the SecurityGroupId field's value.
+func (s *DeleteSecurityGroupInput) SetSecurityGroupId(v string) *DeleteSecurityGroupInput {
+	s.SecurityGroupId = &v
 	return s
 }
 
-// SetRouteTableSet sets the RouteTableSet field's value.
-func (s *CreateVpcOutput) SetRouteTableSet(v []*RouteTable) *CreateVpcOutput {
-	s.RouteTableSet = v
+type DeleteSecurityGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	Response *DeleteSecurityGroup `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteSecurityGroupOutput) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSecurityGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetResponse sets the Response field's value.
+func (s *DeleteSecurityGroupOutput) SetResponse(v *DeleteSecurityGroup) *DeleteSecurityGroupOutput {
+	s.Response = v
 	return s
 }
 
-// SetSubnetSet sets the SubnetSet field's value.
-func (s *CreateVpcOutput) SetSubnetSet(v []*Subnet) *CreateVpcOutput {
-	s.SubnetSet = v
+type DeleteSecurityGroupPolicies struct {
+	_ struct{} `type:"structure"`
+
+	RequestID *string `locationName:"RequestId" type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteSecurityGroupPolicies) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSecurityGroupPolicies) GoString() string {
+	return s.String()
+}
+
+// SetRequestID sets the RequestID field's value.
+func (s *DeleteSecurityGroupPolicies) SetRequestID(v string) *DeleteSecurityGroupPolicies {
+	s.RequestID = &v
 	return s
 }
 
-// SetUniqVpcId sets the UniqVpcId field's value.
-func (s *CreateVpcOutput) SetUniqVpcId(v string) *CreateVpcOutput {
-	s.UniqVpcId = &v
+type DeleteSecurityGroupPoliciesInput struct {
+	_ struct{} `type:"structure"`
+
+	// SecurityGroupId is a required field
+	SecurityGroupId *string `locationName:"SecurityGroupId" type:"string" required:"true"`
+
+	// SecurityGroupPolicySet is a required field
+	SecurityGroupPolicySet *SecurityGroupPolicyData `locationName:"SecurityGroupPolicySet" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteSecurityGroupPoliciesInput) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSecurityGroupPoliciesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteSecurityGroupPoliciesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteSecurityGroupPoliciesInput"}
+	if s.SecurityGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroupId"))
+	}
+	if s.SecurityGroupPolicySet == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroupPolicySet"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSecurityGroupId sets the SecurityGroupId field's value.
+func (s *DeleteSecurityGroupPoliciesInput) SetSecurityGroupId(v string) *DeleteSecurityGroupPoliciesInput {
+	s.SecurityGroupId = &v
 	return s
 }
 
-// SetVpcCreateTime sets the VpcCreateTime field's value.
-func (s *CreateVpcOutput) SetVpcCreateTime(v string) *CreateVpcOutput {
-	s.VpcCreateTime = &v
+// SetSecurityGroupPolicySet sets the SecurityGroupPolicySet field's value.
+func (s *DeleteSecurityGroupPoliciesInput) SetSecurityGroupPolicySet(v *SecurityGroupPolicyData) *DeleteSecurityGroupPoliciesInput {
+	s.SecurityGroupPolicySet = v
 	return s
 }
 
-// SetVpcId sets the VpcId field's value.
-func (s *CreateVpcOutput) SetVpcId(v string) *CreateVpcOutput {
-	s.VpcId = &v
+type DeleteSecurityGroupPoliciesOutput struct {
+	_ struct{} `type:"structure"`
+
+	Response *DeleteSecurityGroupPolicies `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteSecurityGroupPoliciesOutput) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSecurityGroupPoliciesOutput) GoString() string {
+	return s.String()
+}
+
+// SetResponse sets the Response field's value.
+func (s *DeleteSecurityGroupPoliciesOutput) SetResponse(v *DeleteSecurityGroupPolicies) *DeleteSecurityGroupPoliciesOutput {
+	s.Response = v
 	return s
 }
 
 type DeleteSubnetInput struct {
 	_ struct{} `type:"structure"`
 
-	SubnetId *string `locationName:"subnetId" type:"string"`
-
-	VpcId *string `locationName:"vpcId" type:"string"`
+	SubnetId *string `locationName:"SubnetId" type:"string"`
 }
 
 // String returns the string representation
@@ -693,18 +1491,10 @@ func (s *DeleteSubnetInput) SetSubnetId(v string) *DeleteSubnetInput {
 	return s
 }
 
-// SetVpcId sets the VpcId field's value.
-func (s *DeleteSubnetInput) SetVpcId(v string) *DeleteSubnetInput {
-	s.VpcId = &v
-	return s
-}
-
 type DeleteSubnetOutput struct {
 	_ struct{} `type:"structure"`
 
-	Code *int64 `locationName:"code" type:"integer"`
-
-	Message *string `locationName:"message" type:"string"`
+	Response *DeleteSecurityGroup `type:"structure"`
 }
 
 // String returns the string representation
@@ -717,22 +1507,16 @@ func (s DeleteSubnetOutput) GoString() string {
 	return s.String()
 }
 
-// SetCode sets the Code field's value.
-func (s *DeleteSubnetOutput) SetCode(v int64) *DeleteSubnetOutput {
-	s.Code = &v
-	return s
-}
-
-// SetMessage sets the Message field's value.
-func (s *DeleteSubnetOutput) SetMessage(v string) *DeleteSubnetOutput {
-	s.Message = &v
+// SetResponse sets the Response field's value.
+func (s *DeleteSubnetOutput) SetResponse(v *DeleteSecurityGroup) *DeleteSubnetOutput {
+	s.Response = v
 	return s
 }
 
 type DeleteVpcInput struct {
 	_ struct{} `type:"structure"`
 
-	VpcId *string `locationName:"vpcId" type:"string"`
+	VpcId *string `locationName:"VpcId" type:"string"`
 }
 
 // String returns the string representation
@@ -754,11 +1538,7 @@ func (s *DeleteVpcInput) SetVpcId(v string) *DeleteVpcInput {
 type DeleteVpcOutput struct {
 	_ struct{} `type:"structure"`
 
-	Code *int64 `locationName:"code" type:"integer"`
-
-	CodeDesc *string `locationName:"codeDesc" type:"string"`
-
-	Message *string `locationName:"message" type:"string"`
+	Response *DeleteSecurityGroup `type:"structure"`
 }
 
 // String returns the string representation
@@ -771,342 +1551,656 @@ func (s DeleteVpcOutput) GoString() string {
 	return s.String()
 }
 
-// SetCode sets the Code field's value.
-func (s *DeleteVpcOutput) SetCode(v int64) *DeleteVpcOutput {
-	s.Code = &v
+// SetResponse sets the Response field's value.
+func (s *DeleteVpcOutput) SetResponse(v *DeleteSecurityGroup) *DeleteVpcOutput {
+	s.Response = v
 	return s
 }
 
-// SetCodeDesc sets the CodeDesc field's value.
-func (s *DeleteVpcOutput) SetCodeDesc(v string) *DeleteVpcOutput {
-	s.CodeDesc = &v
-	return s
-}
-
-// SetMessage sets the Message field's value.
-func (s *DeleteVpcOutput) SetMessage(v string) *DeleteVpcOutput {
-	s.Message = &v
-	return s
-}
-
-type DescribeSubnetInput struct {
+type DescribeSecurityGroupPolicies struct {
 	_ struct{} `type:"structure"`
 
-	CodeDesc *string `locationName:"codeDesc" type:"string"`
+	RequestID *string `locationName:"RequestId" type:"string"`
 
-	Limit *int64 `locationName:"Limit," type:"integer"`
-
-	Offset *int64 `locationName:"Offset," type:"integer"`
-
-	OrderDirection *string `locationName:"OffsetLine," type:"string"`
-
-	OrderField *string `locationName:"orderField" type:"string"`
-
-	SubnetId *string `locationName:"SubnetId" type:"string"`
-
-	SubnetName *string `locationName:"subnetName" type:"string"`
-
-	VpcId *string `locationName:"vpcId" type:"string"`
-
-	ZoneIds []*string `locationName:"zoneIds" locationNameList:"item" type:"list" flattened:"true"`
+	SecurityGroupPolicySet *SecurityGroupPolicyData `locationName:"SecurityGroupPolicySet" type:"structure"`
 }
 
 // String returns the string representation
-func (s DescribeSubnetInput) String() string {
+func (s DescribeSecurityGroupPolicies) String() string {
 	return sdfutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s DescribeSubnetInput) GoString() string {
+func (s DescribeSecurityGroupPolicies) GoString() string {
 	return s.String()
 }
 
-// SetCodeDesc sets the CodeDesc field's value.
-func (s *DescribeSubnetInput) SetCodeDesc(v string) *DescribeSubnetInput {
-	s.CodeDesc = &v
+// SetRequestID sets the RequestID field's value.
+func (s *DescribeSecurityGroupPolicies) SetRequestID(v string) *DescribeSecurityGroupPolicies {
+	s.RequestID = &v
+	return s
+}
+
+// SetSecurityGroupPolicySet sets the SecurityGroupPolicySet field's value.
+func (s *DescribeSecurityGroupPolicies) SetSecurityGroupPolicySet(v *SecurityGroupPolicyData) *DescribeSecurityGroupPolicies {
+	s.SecurityGroupPolicySet = v
+	return s
+}
+
+type DescribeSecurityGroupPoliciesInput struct {
+	_ struct{} `type:"structure"`
+
+	// SecurityGroupId is a required field
+	SecurityGroupId *string `locationName:"SecurityGroupId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeSecurityGroupPoliciesInput) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSecurityGroupPoliciesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeSecurityGroupPoliciesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeSecurityGroupPoliciesInput"}
+	if s.SecurityGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroupId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSecurityGroupId sets the SecurityGroupId field's value.
+func (s *DescribeSecurityGroupPoliciesInput) SetSecurityGroupId(v string) *DescribeSecurityGroupPoliciesInput {
+	s.SecurityGroupId = &v
+	return s
+}
+
+type DescribeSecurityGroupPoliciesOutput struct {
+	_ struct{} `type:"structure"`
+
+	Response *DescribeSecurityGroupPolicies `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeSecurityGroupPoliciesOutput) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSecurityGroupPoliciesOutput) GoString() string {
+	return s.String()
+}
+
+// SetResponse sets the Response field's value.
+func (s *DescribeSecurityGroupPoliciesOutput) SetResponse(v *DescribeSecurityGroupPolicies) *DescribeSecurityGroupPoliciesOutput {
+	s.Response = v
+	return s
+}
+
+type DescribeSecurityGroups struct {
+	_ struct{} `type:"structure"`
+
+	RequestID *string `locationName:"RequestId" type:"string"`
+
+	SecurityGroupSet []*SecurityGroup `locationName:"SecurityGroupSet" type:"list"`
+
+	TotalCount *int64 `locationName:"TotalCount" type:"integer"`
+}
+
+// String returns the string representation
+func (s DescribeSecurityGroups) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSecurityGroups) GoString() string {
+	return s.String()
+}
+
+// SetRequestID sets the RequestID field's value.
+func (s *DescribeSecurityGroups) SetRequestID(v string) *DescribeSecurityGroups {
+	s.RequestID = &v
+	return s
+}
+
+// SetSecurityGroupSet sets the SecurityGroupSet field's value.
+func (s *DescribeSecurityGroups) SetSecurityGroupSet(v []*SecurityGroup) *DescribeSecurityGroups {
+	s.SecurityGroupSet = v
+	return s
+}
+
+// SetTotalCount sets the TotalCount field's value.
+func (s *DescribeSecurityGroups) SetTotalCount(v int64) *DescribeSecurityGroups {
+	s.TotalCount = &v
+	return s
+}
+
+type DescribeSecurityGroupsInput struct {
+	_ struct{} `type:"structure"`
+
+	Filters []*Filter `locationName:"Filters" locationNameList:"Filter" type:"list" flattened:"true"`
+
+	Limit *int64 `type:"integer"`
+
+	Offset *int64 `type:"integer"`
+
+	SecurityGroupIds []*string `locationName:"SecurityGroupIds" locationNameList:"SecurityGroupIds" type:"list" flattened:"true"`
+}
+
+// String returns the string representation
+func (s DescribeSecurityGroupsInput) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSecurityGroupsInput) GoString() string {
+	return s.String()
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeSecurityGroupsInput) SetFilters(v []*Filter) *DescribeSecurityGroupsInput {
+	s.Filters = v
 	return s
 }
 
 // SetLimit sets the Limit field's value.
-func (s *DescribeSubnetInput) SetLimit(v int64) *DescribeSubnetInput {
+func (s *DescribeSecurityGroupsInput) SetLimit(v int64) *DescribeSecurityGroupsInput {
 	s.Limit = &v
 	return s
 }
 
 // SetOffset sets the Offset field's value.
-func (s *DescribeSubnetInput) SetOffset(v int64) *DescribeSubnetInput {
+func (s *DescribeSecurityGroupsInput) SetOffset(v int64) *DescribeSecurityGroupsInput {
 	s.Offset = &v
 	return s
 }
 
-// SetOrderDirection sets the OrderDirection field's value.
-func (s *DescribeSubnetInput) SetOrderDirection(v string) *DescribeSubnetInput {
-	s.OrderDirection = &v
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *DescribeSecurityGroupsInput) SetSecurityGroupIds(v []*string) *DescribeSecurityGroupsInput {
+	s.SecurityGroupIds = v
 	return s
 }
 
-// SetOrderField sets the OrderField field's value.
-func (s *DescribeSubnetInput) SetOrderField(v string) *DescribeSubnetInput {
-	s.OrderField = &v
-	return s
-}
-
-// SetSubnetId sets the SubnetId field's value.
-func (s *DescribeSubnetInput) SetSubnetId(v string) *DescribeSubnetInput {
-	s.SubnetId = &v
-	return s
-}
-
-// SetSubnetName sets the SubnetName field's value.
-func (s *DescribeSubnetInput) SetSubnetName(v string) *DescribeSubnetInput {
-	s.SubnetName = &v
-	return s
-}
-
-// SetVpcId sets the VpcId field's value.
-func (s *DescribeSubnetInput) SetVpcId(v string) *DescribeSubnetInput {
-	s.VpcId = &v
-	return s
-}
-
-// SetZoneIds sets the ZoneIds field's value.
-func (s *DescribeSubnetInput) SetZoneIds(v []*string) *DescribeSubnetInput {
-	s.ZoneIds = v
-	return s
-}
-
-type DescribeSubnetOutput struct {
+type DescribeSecurityGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
-	Code *int64 `locationName:"code" type:"integer"`
-
-	Data []*Subnet `locationName:"data" type:"list" flattened:"true"`
-
-	Message *string `locationName:"message" type:"string"`
-
-	TotalCount *int64 `locationName:"totalCount" type:"integer"`
+	Response *DescribeSecurityGroups `type:"structure"`
 }
 
 // String returns the string representation
-func (s DescribeSubnetOutput) String() string {
+func (s DescribeSecurityGroupsOutput) String() string {
 	return sdfutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s DescribeSubnetOutput) GoString() string {
+func (s DescribeSecurityGroupsOutput) GoString() string {
 	return s.String()
 }
 
-// SetCode sets the Code field's value.
-func (s *DescribeSubnetOutput) SetCode(v int64) *DescribeSubnetOutput {
-	s.Code = &v
+// SetResponse sets the Response field's value.
+func (s *DescribeSecurityGroupsOutput) SetResponse(v *DescribeSecurityGroups) *DescribeSecurityGroupsOutput {
+	s.Response = v
 	return s
 }
 
-// SetData sets the Data field's value.
-func (s *DescribeSubnetOutput) SetData(v []*Subnet) *DescribeSubnetOutput {
-	s.Data = v
+type DescribeSubnets struct {
+	_ struct{} `type:"structure"`
+
+	RequestID *string `locationName:"RequestId" type:"string"`
+
+	SubnetSet []*Subnet `locationName:"SubnetSet" type:"list" flattened:"true"`
+
+	TotalCount *int64 `locationName:"TotalCount" type:"integer"`
+}
+
+// String returns the string representation
+func (s DescribeSubnets) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSubnets) GoString() string {
+	return s.String()
+}
+
+// SetRequestID sets the RequestID field's value.
+func (s *DescribeSubnets) SetRequestID(v string) *DescribeSubnets {
+	s.RequestID = &v
 	return s
 }
 
-// SetMessage sets the Message field's value.
-func (s *DescribeSubnetOutput) SetMessage(v string) *DescribeSubnetOutput {
-	s.Message = &v
+// SetSubnetSet sets the SubnetSet field's value.
+func (s *DescribeSubnets) SetSubnetSet(v []*Subnet) *DescribeSubnets {
+	s.SubnetSet = v
 	return s
 }
 
 // SetTotalCount sets the TotalCount field's value.
-func (s *DescribeSubnetOutput) SetTotalCount(v int64) *DescribeSubnetOutput {
+func (s *DescribeSubnets) SetTotalCount(v int64) *DescribeSubnets {
 	s.TotalCount = &v
 	return s
 }
 
-type DescribeVpcInput struct {
+type DescribeSubnetsInput struct {
 	_ struct{} `type:"structure"`
+
+	Filters []*Filter `locationName:"Filters" locationNameList:"Filter" type:"list" flattened:"true"`
 
 	Limit *int64 `locationName:"Limit," type:"integer"`
 
 	Offset *int64 `locationName:"Offset," type:"integer"`
 
-	OrderDirection *string `locationName:"OffsetLine," type:"string"`
-
-	OrderField *string `locationName:"orderField" type:"string"`
-
-	VpcId *string `locationName:"vpcId" type:"string"`
-
-	VpcName *string `locationName:"VpcName" type:"string"`
+	SubnetIds []*string `locationName:"SubnetIds" type:"list" flattened:"true"`
 }
 
 // String returns the string representation
-func (s DescribeVpcInput) String() string {
+func (s DescribeSubnetsInput) String() string {
 	return sdfutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s DescribeVpcInput) GoString() string {
+func (s DescribeSubnetsInput) GoString() string {
 	return s.String()
 }
 
+// SetFilters sets the Filters field's value.
+func (s *DescribeSubnetsInput) SetFilters(v []*Filter) *DescribeSubnetsInput {
+	s.Filters = v
+	return s
+}
+
 // SetLimit sets the Limit field's value.
-func (s *DescribeVpcInput) SetLimit(v int64) *DescribeVpcInput {
+func (s *DescribeSubnetsInput) SetLimit(v int64) *DescribeSubnetsInput {
 	s.Limit = &v
 	return s
 }
 
 // SetOffset sets the Offset field's value.
-func (s *DescribeVpcInput) SetOffset(v int64) *DescribeVpcInput {
+func (s *DescribeSubnetsInput) SetOffset(v int64) *DescribeSubnetsInput {
 	s.Offset = &v
 	return s
 }
 
-// SetOrderDirection sets the OrderDirection field's value.
-func (s *DescribeVpcInput) SetOrderDirection(v string) *DescribeVpcInput {
-	s.OrderDirection = &v
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *DescribeSubnetsInput) SetSubnetIds(v []*string) *DescribeSubnetsInput {
+	s.SubnetIds = v
 	return s
 }
 
-// SetOrderField sets the OrderField field's value.
-func (s *DescribeVpcInput) SetOrderField(v string) *DescribeVpcInput {
-	s.OrderField = &v
-	return s
-}
-
-// SetVpcId sets the VpcId field's value.
-func (s *DescribeVpcInput) SetVpcId(v string) *DescribeVpcInput {
-	s.VpcId = &v
-	return s
-}
-
-// SetVpcName sets the VpcName field's value.
-func (s *DescribeVpcInput) SetVpcName(v string) *DescribeVpcInput {
-	s.VpcName = &v
-	return s
-}
-
-type DescribeVpcOutput struct {
+type DescribeSubnetsOutput struct {
 	_ struct{} `type:"structure"`
 
-	Code *int64 `locationName:"code" type:"integer"`
-
-	CodeDesc *string `locationName:"codeDesc" type:"string"`
-
-	Data []*Vpc `locationName:"data" type:"list"`
-
-	Message *string `locationName:"message" type:"string"`
-
-	TotalCount *int64 `locationName:"totalCount" type:"integer"`
+	Response *DescribeSubnets `type:"structure"`
 }
 
 // String returns the string representation
-func (s DescribeVpcOutput) String() string {
+func (s DescribeSubnetsOutput) String() string {
 	return sdfutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s DescribeVpcOutput) GoString() string {
+func (s DescribeSubnetsOutput) GoString() string {
 	return s.String()
 }
 
-// SetCode sets the Code field's value.
-func (s *DescribeVpcOutput) SetCode(v int64) *DescribeVpcOutput {
-	s.Code = &v
+// SetResponse sets the Response field's value.
+func (s *DescribeSubnetsOutput) SetResponse(v *DescribeSubnets) *DescribeSubnetsOutput {
+	s.Response = v
 	return s
 }
 
-// SetCodeDesc sets the CodeDesc field's value.
-func (s *DescribeVpcOutput) SetCodeDesc(v string) *DescribeVpcOutput {
-	s.CodeDesc = &v
-	return s
+type DescribeVpcs struct {
+	_ struct{} `type:"structure"`
+
+	RequestID *string `locationName:"RequestId" type:"string"`
+
+	TotalCount *int64 `locationName:"TotalCount" type:"integer"`
+
+	VpcSet []*Vpc `locationName:"VpcSet" type:"list"`
 }
 
-// SetData sets the Data field's value.
-func (s *DescribeVpcOutput) SetData(v []*Vpc) *DescribeVpcOutput {
-	s.Data = v
-	return s
+// String returns the string representation
+func (s DescribeVpcs) String() string {
+	return sdfutil.Prettify(s)
 }
 
-// SetMessage sets the Message field's value.
-func (s *DescribeVpcOutput) SetMessage(v string) *DescribeVpcOutput {
-	s.Message = &v
+// GoString returns the string representation
+func (s DescribeVpcs) GoString() string {
+	return s.String()
+}
+
+// SetRequestID sets the RequestID field's value.
+func (s *DescribeVpcs) SetRequestID(v string) *DescribeVpcs {
+	s.RequestID = &v
 	return s
 }
 
 // SetTotalCount sets the TotalCount field's value.
-func (s *DescribeVpcOutput) SetTotalCount(v int64) *DescribeVpcOutput {
+func (s *DescribeVpcs) SetTotalCount(v int64) *DescribeVpcs {
 	s.TotalCount = &v
 	return s
 }
 
-type RouteTable struct {
+// SetVpcSet sets the VpcSet field's value.
+func (s *DescribeVpcs) SetVpcSet(v []*Vpc) *DescribeVpcs {
+	s.VpcSet = v
+	return s
+}
+
+type DescribeVpcsInput struct {
 	_ struct{} `type:"structure"`
 
-	RouteTableId *string `locationName:"routeTableId" type:"string"`
+	Filters []*Filter `locationName:"Filters" locationNameList:"Filter" type:"list" flattened:"true"`
 
-	RouteTableName *string `locationName:"routeTableName" type:"string"`
+	Limit *int64 `locationName:"Limit," type:"integer"`
 
-	RouteTableType *int64 `locationName:"routeTableType" type:"integer"`
+	Offset *int64 `locationName:"Offset," type:"integer"`
+
+	VpcIds []*string `locationName:"VpcIds" type:"list" flattened:"true"`
 }
 
 // String returns the string representation
-func (s RouteTable) String() string {
+func (s DescribeVpcsInput) String() string {
 	return sdfutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s RouteTable) GoString() string {
+func (s DescribeVpcsInput) GoString() string {
 	return s.String()
 }
 
-// SetRouteTableId sets the RouteTableId field's value.
-func (s *RouteTable) SetRouteTableId(v string) *RouteTable {
-	s.RouteTableId = &v
+// SetFilters sets the Filters field's value.
+func (s *DescribeVpcsInput) SetFilters(v []*Filter) *DescribeVpcsInput {
+	s.Filters = v
 	return s
 }
 
-// SetRouteTableName sets the RouteTableName field's value.
-func (s *RouteTable) SetRouteTableName(v string) *RouteTable {
-	s.RouteTableName = &v
+// SetLimit sets the Limit field's value.
+func (s *DescribeVpcsInput) SetLimit(v int64) *DescribeVpcsInput {
+	s.Limit = &v
 	return s
 }
 
-// SetRouteTableType sets the RouteTableType field's value.
-func (s *RouteTable) SetRouteTableType(v int64) *RouteTable {
-	s.RouteTableType = &v
+// SetOffset sets the Offset field's value.
+func (s *DescribeVpcsInput) SetOffset(v int64) *DescribeVpcsInput {
+	s.Offset = &v
+	return s
+}
+
+// SetVpcIds sets the VpcIds field's value.
+func (s *DescribeVpcsInput) SetVpcIds(v []*string) *DescribeVpcsInput {
+	s.VpcIds = v
+	return s
+}
+
+type DescribeVpcsOutput struct {
+	_ struct{} `type:"structure"`
+
+	Response *DescribeVpcs `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeVpcsOutput) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVpcsOutput) GoString() string {
+	return s.String()
+}
+
+// SetResponse sets the Response field's value.
+func (s *DescribeVpcsOutput) SetResponse(v *DescribeVpcs) *DescribeVpcsOutput {
+	s.Response = v
+	return s
+}
+
+type Filter struct {
+	_ struct{} `type:"structure"`
+
+	Name *string `type:"string"`
+
+	Values []*string `locationName:"Value" locationNameList:"item" type:"list" flattened:"true"`
+}
+
+// String returns the string representation
+func (s Filter) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Filter) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *Filter) SetName(v string) *Filter {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *Filter) SetValues(v []*string) *Filter {
+	s.Values = v
+	return s
+}
+
+type SecurityGroup struct {
+	_ struct{} `type:"structure"`
+
+	CreatedTime *string `locationName:"CreatedTime" type:"string"`
+
+	IsDefault *bool `locationName:"IsDefault" type:"boolean"`
+
+	ProjectId *string `locationName:"ProjectId" type:"string"`
+
+	SecurityGroupDesc *string `locationName:"SecurityGroupDesc" type:"string"`
+
+	SecurityGroupId *string `locationName:"SecurityGroupId" type:"string"`
+
+	SecurityGroupName *string `locationName:"SecurityGroupName" type:"string"`
+}
+
+// String returns the string representation
+func (s SecurityGroup) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SecurityGroup) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *SecurityGroup) SetCreatedTime(v string) *SecurityGroup {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetIsDefault sets the IsDefault field's value.
+func (s *SecurityGroup) SetIsDefault(v bool) *SecurityGroup {
+	s.IsDefault = &v
+	return s
+}
+
+// SetProjectId sets the ProjectId field's value.
+func (s *SecurityGroup) SetProjectId(v string) *SecurityGroup {
+	s.ProjectId = &v
+	return s
+}
+
+// SetSecurityGroupDesc sets the SecurityGroupDesc field's value.
+func (s *SecurityGroup) SetSecurityGroupDesc(v string) *SecurityGroup {
+	s.SecurityGroupDesc = &v
+	return s
+}
+
+// SetSecurityGroupId sets the SecurityGroupId field's value.
+func (s *SecurityGroup) SetSecurityGroupId(v string) *SecurityGroup {
+	s.SecurityGroupId = &v
+	return s
+}
+
+// SetSecurityGroupName sets the SecurityGroupName field's value.
+func (s *SecurityGroup) SetSecurityGroupName(v string) *SecurityGroup {
+	s.SecurityGroupName = &v
+	return s
+}
+
+type SecurityGroupPolicy struct {
+	_ struct{} `type:"structure"`
+
+	Action *string `locationName:"Action" type:"string"`
+
+	AddressTemplate *string `locationName:"AddressTemplate" type:"string"`
+
+	CidrBlock *string `locationName:"CidrBlock" type:"string"`
+
+	PolicyDescription *string `locationName:"PolicyDescription" type:"string"`
+
+	PolicyIndex *int64 `locationName:"PolicyIndex" type:"integer"`
+
+	Port *string `locationName:"Port" type:"string"`
+
+	Protocol *string `locationName:"Protocol" type:"string"`
+
+	SecurityGroupId *string `locationName:"SecurityGroupId" type:"string"`
+
+	ServiceTemplate *string `locationName:"ServiceTemplate" type:"string"`
+}
+
+// String returns the string representation
+func (s SecurityGroupPolicy) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SecurityGroupPolicy) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *SecurityGroupPolicy) SetAction(v string) *SecurityGroupPolicy {
+	s.Action = &v
+	return s
+}
+
+// SetAddressTemplate sets the AddressTemplate field's value.
+func (s *SecurityGroupPolicy) SetAddressTemplate(v string) *SecurityGroupPolicy {
+	s.AddressTemplate = &v
+	return s
+}
+
+// SetCidrBlock sets the CidrBlock field's value.
+func (s *SecurityGroupPolicy) SetCidrBlock(v string) *SecurityGroupPolicy {
+	s.CidrBlock = &v
+	return s
+}
+
+// SetPolicyDescription sets the PolicyDescription field's value.
+func (s *SecurityGroupPolicy) SetPolicyDescription(v string) *SecurityGroupPolicy {
+	s.PolicyDescription = &v
+	return s
+}
+
+// SetPolicyIndex sets the PolicyIndex field's value.
+func (s *SecurityGroupPolicy) SetPolicyIndex(v int64) *SecurityGroupPolicy {
+	s.PolicyIndex = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *SecurityGroupPolicy) SetPort(v string) *SecurityGroupPolicy {
+	s.Port = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *SecurityGroupPolicy) SetProtocol(v string) *SecurityGroupPolicy {
+	s.Protocol = &v
+	return s
+}
+
+// SetSecurityGroupId sets the SecurityGroupId field's value.
+func (s *SecurityGroupPolicy) SetSecurityGroupId(v string) *SecurityGroupPolicy {
+	s.SecurityGroupId = &v
+	return s
+}
+
+// SetServiceTemplate sets the ServiceTemplate field's value.
+func (s *SecurityGroupPolicy) SetServiceTemplate(v string) *SecurityGroupPolicy {
+	s.ServiceTemplate = &v
+	return s
+}
+
+type SecurityGroupPolicyData struct {
+	_ struct{} `type:"structure"`
+
+	Egress []*SecurityGroupPolicy `locationName:"Egress" type:"list" flattened:"true"`
+
+	Ingress []*SecurityGroupPolicy `locationName:"Ingress" type:"list" flattened:"true"`
+
+	Version *int64 `locationName:"Version" type:"integer"`
+}
+
+// String returns the string representation
+func (s SecurityGroupPolicyData) String() string {
+	return sdfutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SecurityGroupPolicyData) GoString() string {
+	return s.String()
+}
+
+// SetEgress sets the Egress field's value.
+func (s *SecurityGroupPolicyData) SetEgress(v []*SecurityGroupPolicy) *SecurityGroupPolicyData {
+	s.Egress = v
+	return s
+}
+
+// SetIngress sets the Ingress field's value.
+func (s *SecurityGroupPolicyData) SetIngress(v []*SecurityGroupPolicy) *SecurityGroupPolicyData {
+	s.Ingress = v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *SecurityGroupPolicyData) SetVersion(v int64) *SecurityGroupPolicyData {
+	s.Version = &v
 	return s
 }
 
 type Subnet struct {
 	_ struct{} `type:"structure"`
 
-	AvailableIPNum *int64 `locationName:"availableIPNum" type:"integer"`
+	AvailableIpAddressCount *int64 `locationName:"AvailableIpAddressCount" type:"integer"`
 
-	Broadcast *bool `locationName:"broadcast" type:"boolean"`
+	CidrBlock *string `locationName:"CidrBlock" type:"string"`
 
-	CidrBlock *string `locationName:"cidrBlock" type:"string"`
+	CreatedTime *string `locationName:"CreatedTime" type:"string"`
 
-	IsDefault *bool `locationName:"isDefault" type:"boolean"`
+	EnableBroadcast *bool `locationName:"EnableBroadcast" type:"boolean"`
 
-	NetworkAclId *string `locationName:"networkAclId" type:"string"`
+	IsDefault *bool `locationName:"IsDefault" type:"boolean"`
 
-	RouteTableId *string `locationName:"routeTableId" type:"string"`
+	RouteTableId *string `locationName:"RouteTableId" type:"string"`
 
-	SubnetId *string `locationName:"subnetId" type:"string"`
+	SubnetId *string `locationName:"SubnetId" type:"string"`
 
-	SubnetName *string `locationName:"subnetName" type:"string"`
+	SubnetName *string `locationName:"SubnetName" type:"string"`
 
-	TotalIPNum *int64 `locationName:"totalIPNum" type:"integer"`
+	VpcId *string `locationName:"VpcId" type:"string"`
 
-	UnSubnetId *string `locationName:"unSubnetId" type:"string"`
-
-	UniVpcId *string `locationName:"uniVpcId" type:"string"`
-
-	VpcDevices *int64 `locationName:"vpcDevices" type:"integer"`
-
-	VpcId *string `locationName:"vpcId" type:"string"`
-
-	Zone *string `locationName:"zone" type:"string"`
-
-	ZoneId *int64 `locationName:"zoneId" type:"integer"`
+	Zone *int64 `locationName:"Zone" type:"integer"`
 }
 
 // String returns the string representation
@@ -1119,15 +2213,9 @@ func (s Subnet) GoString() string {
 	return s.String()
 }
 
-// SetAvailableIPNum sets the AvailableIPNum field's value.
-func (s *Subnet) SetAvailableIPNum(v int64) *Subnet {
-	s.AvailableIPNum = &v
-	return s
-}
-
-// SetBroadcast sets the Broadcast field's value.
-func (s *Subnet) SetBroadcast(v bool) *Subnet {
-	s.Broadcast = &v
+// SetAvailableIpAddressCount sets the AvailableIpAddressCount field's value.
+func (s *Subnet) SetAvailableIpAddressCount(v int64) *Subnet {
+	s.AvailableIpAddressCount = &v
 	return s
 }
 
@@ -1137,15 +2225,21 @@ func (s *Subnet) SetCidrBlock(v string) *Subnet {
 	return s
 }
 
-// SetIsDefault sets the IsDefault field's value.
-func (s *Subnet) SetIsDefault(v bool) *Subnet {
-	s.IsDefault = &v
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *Subnet) SetCreatedTime(v string) *Subnet {
+	s.CreatedTime = &v
 	return s
 }
 
-// SetNetworkAclId sets the NetworkAclId field's value.
-func (s *Subnet) SetNetworkAclId(v string) *Subnet {
-	s.NetworkAclId = &v
+// SetEnableBroadcast sets the EnableBroadcast field's value.
+func (s *Subnet) SetEnableBroadcast(v bool) *Subnet {
+	s.EnableBroadcast = &v
+	return s
+}
+
+// SetIsDefault sets the IsDefault field's value.
+func (s *Subnet) SetIsDefault(v bool) *Subnet {
+	s.IsDefault = &v
 	return s
 }
 
@@ -1167,30 +2261,6 @@ func (s *Subnet) SetSubnetName(v string) *Subnet {
 	return s
 }
 
-// SetTotalIPNum sets the TotalIPNum field's value.
-func (s *Subnet) SetTotalIPNum(v int64) *Subnet {
-	s.TotalIPNum = &v
-	return s
-}
-
-// SetUnSubnetId sets the UnSubnetId field's value.
-func (s *Subnet) SetUnSubnetId(v string) *Subnet {
-	s.UnSubnetId = &v
-	return s
-}
-
-// SetUniVpcId sets the UniVpcId field's value.
-func (s *Subnet) SetUniVpcId(v string) *Subnet {
-	s.UniVpcId = &v
-	return s
-}
-
-// SetVpcDevices sets the VpcDevices field's value.
-func (s *Subnet) SetVpcDevices(v int64) *Subnet {
-	s.VpcDevices = &v
-	return s
-}
-
 // SetVpcId sets the VpcId field's value.
 func (s *Subnet) SetVpcId(v string) *Subnet {
 	s.VpcId = &v
@@ -1198,49 +2268,25 @@ func (s *Subnet) SetVpcId(v string) *Subnet {
 }
 
 // SetZone sets the Zone field's value.
-func (s *Subnet) SetZone(v string) *Subnet {
+func (s *Subnet) SetZone(v int64) *Subnet {
 	s.Zone = &v
-	return s
-}
-
-// SetZoneId sets the ZoneId field's value.
-func (s *Subnet) SetZoneId(v int64) *Subnet {
-	s.ZoneId = &v
 	return s
 }
 
 type Vpc struct {
 	_ struct{} `type:"structure"`
 
-	CidrBlock *string `locationName:"cidrBlock" type:"string"`
+	CidrBlock *string `locationName:"CidrBlock" type:"string"`
 
-	ClassicLinkNum *int64 `locationName:"classicLinkNum" type:"integer"`
+	CreatedTime *string `locationName:"CreatedTime" type:"string"`
 
-	CreateTime *string `locationName:"createTime" type:"string"`
+	EnableMulticast *bool `locationName:"EnableMulticast" type:"boolean"`
 
-	IsDefault *bool `locationName:"isDefault" type:"boolean"`
+	IsDefault *bool `locationName:"IsDefault" type:"boolean"`
 
-	IsMulticast *bool `locationName:"isMulticast" type:"boolean"`
+	VpcId *string `locationName:"VpcId" type:"string"`
 
-	NatNum *int64 `locationName:"natNum" type:"integer"`
-
-	RouteTableNum *int64 `locationName:"routeTableNum" type:"integer"`
-
-	SubnetNum *int64 `locationName:"subnetNum" type:"integer"`
-
-	UnVpcId *string `locationName:"unVpcId" type:"string"`
-
-	VpcDeviceNum *int64 `locationName:"vpcDeviceNum" type:"integer"`
-
-	VpcId *string `locationName:"vpcId" type:"string"`
-
-	VpcName *string `locationName:"vpcName" type:"string"`
-
-	VpcPeerNum *int64 `locationName:"vpcPeerNum" type:"integer"`
-
-	VpgNum *int64 `locationName:"vpgNum" type:"integer"`
-
-	VpnGwNum *int64 `locationName:"vpnGwNum" type:"integer"`
+	VpcName *string `locationName:"VpcName" type:"string"`
 }
 
 // String returns the string representation
@@ -1259,57 +2305,21 @@ func (s *Vpc) SetCidrBlock(v string) *Vpc {
 	return s
 }
 
-// SetClassicLinkNum sets the ClassicLinkNum field's value.
-func (s *Vpc) SetClassicLinkNum(v int64) *Vpc {
-	s.ClassicLinkNum = &v
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *Vpc) SetCreatedTime(v string) *Vpc {
+	s.CreatedTime = &v
 	return s
 }
 
-// SetCreateTime sets the CreateTime field's value.
-func (s *Vpc) SetCreateTime(v string) *Vpc {
-	s.CreateTime = &v
+// SetEnableMulticast sets the EnableMulticast field's value.
+func (s *Vpc) SetEnableMulticast(v bool) *Vpc {
+	s.EnableMulticast = &v
 	return s
 }
 
 // SetIsDefault sets the IsDefault field's value.
 func (s *Vpc) SetIsDefault(v bool) *Vpc {
 	s.IsDefault = &v
-	return s
-}
-
-// SetIsMulticast sets the IsMulticast field's value.
-func (s *Vpc) SetIsMulticast(v bool) *Vpc {
-	s.IsMulticast = &v
-	return s
-}
-
-// SetNatNum sets the NatNum field's value.
-func (s *Vpc) SetNatNum(v int64) *Vpc {
-	s.NatNum = &v
-	return s
-}
-
-// SetRouteTableNum sets the RouteTableNum field's value.
-func (s *Vpc) SetRouteTableNum(v int64) *Vpc {
-	s.RouteTableNum = &v
-	return s
-}
-
-// SetSubnetNum sets the SubnetNum field's value.
-func (s *Vpc) SetSubnetNum(v int64) *Vpc {
-	s.SubnetNum = &v
-	return s
-}
-
-// SetUnVpcId sets the UnVpcId field's value.
-func (s *Vpc) SetUnVpcId(v string) *Vpc {
-	s.UnVpcId = &v
-	return s
-}
-
-// SetVpcDeviceNum sets the VpcDeviceNum field's value.
-func (s *Vpc) SetVpcDeviceNum(v int64) *Vpc {
-	s.VpcDeviceNum = &v
 	return s
 }
 
@@ -1322,23 +2332,5 @@ func (s *Vpc) SetVpcId(v string) *Vpc {
 // SetVpcName sets the VpcName field's value.
 func (s *Vpc) SetVpcName(v string) *Vpc {
 	s.VpcName = &v
-	return s
-}
-
-// SetVpcPeerNum sets the VpcPeerNum field's value.
-func (s *Vpc) SetVpcPeerNum(v int64) *Vpc {
-	s.VpcPeerNum = &v
-	return s
-}
-
-// SetVpgNum sets the VpgNum field's value.
-func (s *Vpc) SetVpgNum(v int64) *Vpc {
-	s.VpgNum = &v
-	return s
-}
-
-// SetVpnGwNum sets the VpnGwNum field's value.
-func (s *Vpc) SetVpnGwNum(v int64) *Vpc {
-	s.VpnGwNum = &v
 	return s
 }
