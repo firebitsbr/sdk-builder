@@ -137,9 +137,11 @@ func (q *queryParser) parseList(v url.Values, value reflect.Value, prefix string
 	for i := 0; i < value.Len(); i++ {
 		slicePrefix := prefix
 		if slicePrefix == "" {
-			slicePrefix = strconv.Itoa(i + 1)
+			// TODO: 腾讯云 API 接口要求请求数组需从0开始计数，讲 i+1 改为 i，未测试 aws 和 阿里云
+			slicePrefix = strconv.Itoa(i)
 		} else {
-			slicePrefix = slicePrefix + "." + strconv.Itoa(i+1)
+			// TODO: 腾讯云 API 接口要求请求数组需从0开始计数，讲 i+1 改为 i，未测试 aws 和 阿里云
+			slicePrefix = slicePrefix + "." + strconv.Itoa(i)
 		}
 		if err := q.parseValue(v, value.Index(i), slicePrefix, ""); err != nil {
 			return err
