@@ -666,13 +666,13 @@ type DescribeImagesInput struct {
 
 	Filters []*Filter `locationName:"Filters" locationNameList:"Filter" type:"list" flattened:"true"`
 
-	ImageIds []*string `locationName:"ImageIds" locationNameList:"ImageId" type:"list" flattened:"true"`
+	ImageIds []*string `locationName:"ImageIds" type:"list"`
+
+	InstanceType *string `type:"string"`
 
 	Limit *int64 `type:"integer"`
 
 	Offset *int64 `type:"integer"`
-
-	Region *string `type:"string" enum:"RegionEnum"`
 }
 
 // String returns the string representation
@@ -697,6 +697,12 @@ func (s *DescribeImagesInput) SetImageIds(v []*string) *DescribeImagesInput {
 	return s
 }
 
+// SetInstanceType sets the InstanceType field's value.
+func (s *DescribeImagesInput) SetInstanceType(v string) *DescribeImagesInput {
+	s.InstanceType = &v
+	return s
+}
+
 // SetLimit sets the Limit field's value.
 func (s *DescribeImagesInput) SetLimit(v int64) *DescribeImagesInput {
 	s.Limit = &v
@@ -706,12 +712,6 @@ func (s *DescribeImagesInput) SetLimit(v int64) *DescribeImagesInput {
 // SetOffset sets the Offset field's value.
 func (s *DescribeImagesInput) SetOffset(v int64) *DescribeImagesInput {
 	s.Offset = &v
-	return s
-}
-
-// SetRegion sets the Region field's value.
-func (s *DescribeImagesInput) SetRegion(v string) *DescribeImagesInput {
-	s.Region = &v
 	return s
 }
 
@@ -933,9 +933,11 @@ func (s *Filter) SetValues(v []*string) *Filter {
 type Image struct {
 	_ struct{} `type:"structure"`
 
-	Creator *string `locationName:"Creator" type:"string"`
+	Architecture *string `locationName:"Architecture" type:"string"`
 
-	ImageCreateTime *string `locationName:"ImageCreateTime" type:"string"`
+	CreatedTime *string `locationName:"CreatedTime" type:"string"`
+
+	ImageCreator *string `locationName:"ImageCreator" type:"string"`
 
 	ImageDescription *string `locationName:"ImageDescription" type:"string"`
 
@@ -943,11 +945,17 @@ type Image struct {
 
 	ImageName *string `locationName:"ImageName" type:"string"`
 
-	ImageOsName *string `locationName:"ImageOsName" type:"string"`
+	ImageSize *string `locationName:"Integer" type:"string"`
 
-	ImageStatus *string `locationName:"ImageStatus" type:"string"`
+	ImageSource *string `locationName:"ImageSource" type:"string"`
+
+	ImageState *string `locationName:"ImageState" type:"string"`
 
 	ImageType *string `locationName:"ImageType" type:"string"`
+
+	OsName *string `locationName:"OsName" type:"string"`
+
+	Platform *string `locationName:"Platform" type:"string"`
 }
 
 // String returns the string representation
@@ -960,15 +968,21 @@ func (s Image) GoString() string {
 	return s.String()
 }
 
-// SetCreator sets the Creator field's value.
-func (s *Image) SetCreator(v string) *Image {
-	s.Creator = &v
+// SetArchitecture sets the Architecture field's value.
+func (s *Image) SetArchitecture(v string) *Image {
+	s.Architecture = &v
 	return s
 }
 
-// SetImageCreateTime sets the ImageCreateTime field's value.
-func (s *Image) SetImageCreateTime(v string) *Image {
-	s.ImageCreateTime = &v
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *Image) SetCreatedTime(v string) *Image {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetImageCreator sets the ImageCreator field's value.
+func (s *Image) SetImageCreator(v string) *Image {
+	s.ImageCreator = &v
 	return s
 }
 
@@ -990,21 +1004,39 @@ func (s *Image) SetImageName(v string) *Image {
 	return s
 }
 
-// SetImageOsName sets the ImageOsName field's value.
-func (s *Image) SetImageOsName(v string) *Image {
-	s.ImageOsName = &v
+// SetImageSize sets the ImageSize field's value.
+func (s *Image) SetImageSize(v string) *Image {
+	s.ImageSize = &v
 	return s
 }
 
-// SetImageStatus sets the ImageStatus field's value.
-func (s *Image) SetImageStatus(v string) *Image {
-	s.ImageStatus = &v
+// SetImageSource sets the ImageSource field's value.
+func (s *Image) SetImageSource(v string) *Image {
+	s.ImageSource = &v
+	return s
+}
+
+// SetImageState sets the ImageState field's value.
+func (s *Image) SetImageState(v string) *Image {
+	s.ImageState = &v
 	return s
 }
 
 // SetImageType sets the ImageType field's value.
 func (s *Image) SetImageType(v string) *Image {
 	s.ImageType = &v
+	return s
+}
+
+// SetOsName sets the OsName field's value.
+func (s *Image) SetOsName(v string) *Image {
+	s.OsName = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *Image) SetPlatform(v string) *Image {
+	s.Platform = &v
 	return s
 }
 
@@ -1097,7 +1129,7 @@ type Instance struct {
 
 	SystemDisk *SystemDisk `type:"structure"`
 
-	VirtualPrivateCloud *VirtualPrivateCloud `type:"structure"`
+	VirtualPrivateCloud *VirtualPrivateCloud `type:"structure" flattened:"true"`
 }
 
 // String returns the string representation
@@ -1567,7 +1599,7 @@ type RunInstancesInput struct {
 
 	UserData *string `type:"string"`
 
-	VirtualPrivateCloud *VirtualPrivateCloud `locationName:"VirtualPrivateCloud" type:"structure"`
+	VirtualPrivateCloud *VirtualPrivateCloud `locationName:"VirtualPrivateCloud" type:"structure" flattened:"true"`
 }
 
 // String returns the string representation
@@ -2077,11 +2109,11 @@ func (s *TerminateInstancesOutput) SetResponse(v *OperateInstancesResponse) *Ter
 }
 
 type VirtualPrivateCloud struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" flattened:"true"`
 
 	AsVpcGateway *bool `locationName:"AsVpcGateway" type:"boolean"`
 
-	PrivateIpAddresses []*string `locationName:"PrivateIpAddresses" type:"list"`
+	PrivateIpAddresses []*string `locationName:"PrivateIpAddresses" type:"list" flattened:"true"`
 
 	SubnetId *string `locationName:"SubnetId" type:"string"`
 
@@ -2121,41 +2153,3 @@ func (s *VirtualPrivateCloud) SetVpcId(v string) *VirtualPrivateCloud {
 	s.VpcId = &v
 	return s
 }
-
-const (
-	// RegionEnumApBeijing is a RegionEnum enum value
-	RegionEnumApBeijing = "ap-beijing"
-
-	// RegionEnumApChengdu is a RegionEnum enum value
-	RegionEnumApChengdu = "ap-chengdu"
-
-	// RegionEnumApGuangzhou is a RegionEnum enum value
-	RegionEnumApGuangzhou = "ap-guangzhou"
-
-	// RegionEnumApGuangzhouOpen is a RegionEnum enum value
-	RegionEnumApGuangzhouOpen = "ap-guangzhou-open"
-
-	// RegionEnumApHongkong is a RegionEnum enum value
-	RegionEnumApHongkong = "ap-hongkong"
-
-	// RegionEnumApShanghai is a RegionEnum enum value
-	RegionEnumApShanghai = "ap-shanghai"
-
-	// RegionEnumApSingapore is a RegionEnum enum value
-	RegionEnumApSingapore = "ap-singapore"
-
-	// RegionEnumEuFrankfurt is a RegionEnum enum value
-	RegionEnumEuFrankfurt = "eu-frankfurt"
-
-	// RegionEnumNaSiliconvalley is a RegionEnum enum value
-	RegionEnumNaSiliconvalley = "na-siliconvalley"
-
-	// RegionEnumNaToronto is a RegionEnum enum value
-	RegionEnumNaToronto = "na-toronto"
-
-	// RegionEnumApShanghaiFsi is a RegionEnum enum value
-	RegionEnumApShanghaiFsi = "ap-shanghai-fsi"
-
-	// RegionEnumApShenzhenFsi is a RegionEnum enum value
-	RegionEnumApShenzhenFsi = "ap-shenzhen-fsi"
-)

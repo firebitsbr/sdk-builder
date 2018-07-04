@@ -359,16 +359,11 @@
                     "locationName": "AsVpcGateway"
                 },
                 "PrivateIpAddresses": {
-                    "shape": "PrivateIpAddresseStringList",
+                    "shape": "FlattenedStringList",
                     "locationName": "PrivateIpAddresses"
                 }
-            }
-        },
-        "PrivateIpAddresseStringList": {
-            "type": "list",
-            "member": {
-                "shape": "String"
-            }
+            },
+            "flattened": true
         },
         "Response": {
             "type": "structure",
@@ -834,15 +829,12 @@
         "DescribeImagesRequest": {
             "type": "structure",
             "members": {
-                "Region": {
-                    "shape": "RegionEnum"
-                },
                 "Filters": {
                     "shape": "FilterList",
                     "locationName": "Filters"
                 },
                 "ImageIds": {
-                    "shape": "ImageIdsStringList",
+                    "shape": "StringList",
                     "locationName": "ImageIds"
                 },
                 "Offset": {
@@ -850,16 +842,11 @@
                 },
                 "Limit": {
                     "shape": "Integer"
+                },
+                "InstanceType": {
+                    "shape": "String"
                 }
             }
-        },
-        "ImageIdsStringList": {
-            "type": "list",
-            "member": {
-                "shape": "String",
-                "locationName": "ImageId"
-            },
-            "flattened": true
         },
         "DescribeImagesResult": {
             "type": "structure",
@@ -899,21 +886,33 @@
                     "shape": "String",
                     "locationName": "ImageId"
                 },
-                "ImageOsName": {
+                "ImageSize": {
                     "shape": "String",
-                    "locationName": "ImageOsName"
+                    "locationName": "Integer"
+                },
+                "Architecture": {
+                    "shape": "String",
+                    "locationName": "Architecture"
+                },
+                "Platform": {
+                    "shape": "String",
+                    "locationName": "Platform"
+                },
+                "OsName": {
+                    "shape": "String",
+                    "locationName": "OsName"
                 },
                 "ImageType": {
                     "shape": "String",
                     "locationName": "ImageType"
                 },
-                "ImageCreateTime": {
+                "CreatedTime": {
                     "shape": "String",
-                    "locationName": "ImageCreateTime"
+                    "locationName": "CreatedTime"
                 },
-                "ImageStatus": {
+                "ImageState": {
                     "shape": "String",
-                    "locationName": "ImageStatus"
+                    "locationName": "ImageState"
                 },
                 "ImageName": {
                     "shape": "String",
@@ -923,9 +922,13 @@
                     "shape": "String",
                     "locationName": "ImageDescription"
                 },
-                "Creator": {
+                "ImageCreator": {
                     "shape": "String",
-                    "locationName": "Creator"
+                    "locationName": "ImageCreator"
+                },
+                "ImageSource": {
+                    "shape": "String",
+                    "locationName": "ImageSource"
                 }
             }
         }
