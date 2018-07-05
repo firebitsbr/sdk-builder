@@ -936,7 +936,7 @@ type CreateSecurityGroupInput struct {
 
 	GroupName *string `locationName:"GroupName" type:"string"`
 
-	ProjectId *int64 `locationName:"projectId" type:"integer"`
+	ProjectId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -962,7 +962,7 @@ func (s *CreateSecurityGroupInput) SetGroupName(v string) *CreateSecurityGroupIn
 }
 
 // SetProjectId sets the ProjectId field's value.
-func (s *CreateSecurityGroupInput) SetProjectId(v int64) *CreateSecurityGroupInput {
+func (s *CreateSecurityGroupInput) SetProjectId(v string) *CreateSecurityGroupInput {
 	s.ProjectId = &v
 	return s
 }
@@ -1968,7 +1968,7 @@ type Filter struct {
 
 	Name *string `type:"string"`
 
-	Values []*string `locationName:"Value" locationNameList:"item" type:"list" flattened:"true"`
+	Values []*string `type:"list" flattened:"true"`
 }
 
 // String returns the string representation

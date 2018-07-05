@@ -373,8 +373,7 @@
                     "locationName": "GroupName"
                 },
                 "ProjectId": {
-                    "shape": "Integer",
-                    "locationName": "projectId"
+                    "shape": "String"
                 }
             }
         },
